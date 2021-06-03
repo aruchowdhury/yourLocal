@@ -52,7 +52,7 @@ const Foot = styled.div`
   bottom: 0;
   width: 100%;
   color: #ffae01;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `;
 
 const CopyWrite = styled.div`
@@ -63,11 +63,17 @@ const CopyWrite = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   align-content: center;
+  @media (max-width: 600px) {
+    padding: 0 1rem;
+  }
 `;
 const Logo = styled.div`
   padding: 0 1rem;
   span {
     font-size: 0.7rem;
+  }
+  @media (max-width: 600px) {
+    padding: 0 0.4rem;
   }
 `;
 const Social = styled.div`
@@ -90,6 +96,13 @@ const Social = styled.div`
       transition: all 0.2s ease-in-out;
       border: 0.1rem solid #ffae01;
     }
+    @media (max-width: 600px) {
+      padding: 0 0.2rem;
+      margin: 0 0.2rem;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 0 1rem;
   }
 `;
 
