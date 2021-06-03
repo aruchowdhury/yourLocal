@@ -10,6 +10,7 @@ import About from "./About";
 import Home from "./Home";
 import SignIn from "./SignInComponents/SignIn";
 import SignUp from "./SignInComponents/SignUp";
+import Footer from "./FooterComponent/Footer";
 
 const App = () => {
   return (
@@ -35,10 +36,11 @@ const App = () => {
               <SignIn />
             </Route> */}
           </Switch>
+          <Footer />
         </Wrapper>
+        <SignIn />
+        <SignUp />
       </Router>
-      <SignIn />
-      <SignUp />
     </>
   );
 };

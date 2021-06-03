@@ -1,0 +1,96 @@
+import React from "react";
+import styled from "styled-components";
+import {
+  TiSocialTwitter,
+  TiSocialInstagram,
+  TiSocialFacebook,
+  TiSocialYoutube,
+} from "react-icons/ti";
+import { FaRegCopyright } from "react-icons/fa";
+
+const Footer = () => {
+  return (
+    <Foot>
+      <CopyWrite>
+        <span>
+          <FaRegCopyright />
+        </span>
+        <span>{new Date().getFullYear()}</span>
+        <Logo>
+          yourL<span>🍔</span>CAL{" "}
+        </Logo>
+      </CopyWrite>
+
+      <Social>
+        <a href="/#">
+          <TiSocialTwitter />
+        </a>
+        <a href="/#">
+          <TiSocialInstagram />
+        </a>
+        <a href="/#">
+          <TiSocialFacebook />
+        </a>
+        <a href="/#">
+          <TiSocialYoutube />
+        </a>
+      </Social>
+    </Foot>
+  );
+};
+const Foot = styled.div`
+  width: 100vw;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #ffae01;
+  font-size: 1.1rem;
+`;
+
+const CopyWrite = styled.div`
+  padding: 0 12.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: center;
+`;
+const Logo = styled.div`
+  padding: 0 1rem;
+  span {
+    font-size: 0.7rem;
+  }
+`;
+const Social = styled.div`
+  padding: 0 12.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: center;
+
+  a {
+    margin: 0 2rem;
+    padding: 0 0.3rem;
+    color: #ffae01;
+    border: 0.1rem solid black;
+    border-radius: 0.4rem;
+    &:hover {
+      opacity: 0.5;
+      transition: all 0.2s ease-in-out;
+      border: 0.1rem solid #ffae01;
+    }
+  }
+`;
+
+export default Footer;
