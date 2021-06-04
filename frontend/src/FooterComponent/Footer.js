@@ -53,6 +53,7 @@ const Foot = styled.div`
   width: 100%;
   color: #ffae01;
   font-size: 1rem;
+  background-color: black;
 `;
 
 const CopyWrite = styled.div`
