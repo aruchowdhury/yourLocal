@@ -2,8 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import img from "./assets/bg.png";
-import { GiCandlestickPhone } from "react-icons/gi";
+import { TiPhoneOutline } from "react-icons/ti";
 import { BiEnvelopeOpen } from "react-icons/bi";
+import { GiArrowCursor } from "react-icons/gi";
 
 const Contact = () => {
   return (
@@ -14,12 +15,16 @@ const Contact = () => {
             <Envelope>
               <BiEnvelopeOpen />
             </Envelope>
-            CONTACT <HomeLink to="/">US</HomeLink>
+            CONTACT{" "}
+            <HomeLink to="/">
+              US
+              <GiArrowCursor />
+            </HomeLink>
           </h3>
 
           <div>
             <p>
-              <GiCandlestickPhone /> +1 222 333 4444
+              <TiPhoneOutline /> +1 222 333 4444
             </p>
             <p> 111-0000 Rue Abc, Montreal</p>
             <p>A0B 0C0, QC</p>
@@ -91,16 +96,8 @@ const Contact = () => {
 };
 
 const Background = styled.div`
-  background-color: #b97e00;
-  margin: auto;
-  width: 85vw;
-  height: 80vh;
   align-content: center;
   align-items: center;
-  /* background-image: url(${img});
-  background-size: cover; */
-  position: relative;
-  z-index: -1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -110,11 +107,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: auto;
+  margin: 2rem;
   border-radius: 1.5rem;
   background-color: #ffae01;
-  width: 60rem;
-  height: 30rem;
+  width: 60vw;
+  height: 72vh;
   color: black;
 `;
 
@@ -136,11 +133,11 @@ const ContactForm = styled.div`
 `;
 
 const HomeLink = styled(NavLink)`
-  text-decoration: none;
+  text-decoration: underline 0.2rem solid;
   color: black;
   cursor: pointer;
   &:hover {
-    color: white;
+    opacity: 0.6;
   }
 `;
 
@@ -192,6 +189,7 @@ const Button = styled.button`
   border: 0.1rem solid black;
   border-radius: 0.4rem;
   color: #ffae01;
+  cursor: pointer;
 
   &:hover {
     background: #ffae01;

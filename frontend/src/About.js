@@ -14,12 +14,12 @@ const About = () => {
               href="https://www.restaurantscanada.org/support-restaurants/"
               alt="restaurantscanada.org web url"
             >
-              https://www.restaurantscanada.org/support-restaurants/
+              https://www.restaurantscanada.org/support-restaurants/,
             </a>{" "}
-            since march 2020 10,000 restaurants closed due to a global pandemic.
-            A big portion of those closed restaurants is locally owned small
-            businesses. So it was never been a hard time for our local business
-            owners than now ever.
+            since march 2020 10,000 restaurants closed their kitchen permanently
+            due to a global pandemic. A big portion of those closed restaurants
+            is locally owned small businesses. So it was never been a hard time
+            for our local business owners than now ever.
           </p>
           <p>
             After joining Concordia Bootcamp I was thinking why not make a
@@ -51,10 +51,6 @@ const About = () => {
 };
 
 const Background = styled.div`
-  background-color: #b97e00;
-  margin: auto;
-  width: 85vw;
-  height: 80vh;
   align-content: center;
   align-items: center;
   display: flex;
@@ -65,16 +61,21 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: auto;
+  margin: 2rem;
   border-radius: 1.5rem;
   background-color: #ffae01;
-  width: 60rem;
-  height: 30rem;
+  width: 60vw;
+  height: 72vh;
   color: black;
 `;
 const Para = styled.p`
   font-size: 1.2rem;
   color: black;
-  padding: 5rem;
+  padding: 0 3.5rem;
+  a {
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 `;
 export default About;
