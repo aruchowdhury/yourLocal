@@ -9,7 +9,7 @@ const Home = () => {
         <ImageDiv></ImageDiv>
         <ContentDiv>
           <h1>tasty local food like old days...</h1>
-          <h2>find your local food!</h2>
+          <h2>find your own local food!</h2>
           <h2>and all other ehinic food around you!!</h2>
           <NavLink to="/restaurants">
             <Button>Order Now</Button>
@@ -34,17 +34,21 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: stretch;
   align-content: stretch;
-  background-color: #ffae01;
-  width: 88vw;
+  margin-left: -4rem;
+  margin-right: 1rem;
+  margin-top: -1.5rem;
+  /* background-color: #ffae01; */
+  width: 90vw;
   height: 85vh;
   color: black;
 `;
 const ImageDiv = styled.div`
-  flex: 1;
+  flex: 2;
   background-image: url(${img});
   background-size: cover;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  background-position: center;
 `;
 
 const ContentDiv = styled.div`

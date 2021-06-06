@@ -107,12 +107,17 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 2rem;
   border-radius: 1.5rem;
+  /* background-color: #f28e13; */
   background-color: #ffae01;
+  /* background-color: #e59c00; */
   width: 60vw;
-  height: 72vh;
+  height: 75vh;
   color: black;
+  margin: 1.6% 0;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `;
 
 const ContactInfo = styled.div`

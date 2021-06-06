@@ -11,6 +11,7 @@ import Home from "./Home";
 import SignIn from "./SignInComponents/SignIn";
 import SignUp from "./SignInComponents/SignUp";
 import Footer from "./FooterComponent/Footer";
+import CustomerProfile from "./CustomerProfile";
 
 const App = () => {
   return (
@@ -31,6 +32,9 @@ const App = () => {
             </Route>
             <Route exact path="/contact">
               <Contact />
+            </Route>
+            <Route exact path="/profile">
+              <CustomerProfile />
             </Route>
             {/* <Route exact path="/signin">
               <SignIn />
