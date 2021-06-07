@@ -7,6 +7,7 @@ import {
   TiSocialYoutube,
 } from "react-icons/ti";
 import { FaRegCopyright } from "react-icons/fa";
+import { COLORS } from "../Constants";
 
 const Footer = () => {
   return (
@@ -40,7 +41,7 @@ const Footer = () => {
 };
 const Foot = styled.div`
   width: 100vw;
-  height: 4rem;
+  height: 2.5rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -50,10 +51,8 @@ const Foot = styled.div`
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
-  color: #ffae01;
+  color: ${COLORS.primary};
   font-size: 1rem;
-  background-color: black;
 `;
 
 const CopyWrite = styled.div`
@@ -89,13 +88,13 @@ const Social = styled.div`
   a {
     margin: 0 2rem;
     padding: 0 0.3rem;
-    color: #ffae01;
-    border: 0.1rem solid black;
+    color: ${COLORS.primary};
+    border: 0.1rem solid ${COLORS.background};
     border-radius: 0.4rem;
     &:hover {
       opacity: 0.5;
       transition: all 0.2s ease-in-out;
-      border: 0.1rem solid #ffae01;
+      border: 0.1rem solid ${COLORS.primary};
     }
     @media (max-width: 600px) {
       padding: 0 0.2rem;

@@ -1,17 +1,15 @@
 import { createGlobalStyle } from "styled-components";
-
+import { COLORS } from "./Constants";
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    /* background: black; */
-    color: #fff;
+    color: #382918;
     font-family: Open-Sans, Helvetica, Sans-Serif;
-    background:   
-    linear-gradient(rgba(185, 126, 0, 1) 100%, rgba(185, 126, 0, 1) 100%) center center/ 88vw 175vh no-repeat,black;
-   
+    background: ${COLORS.background};
+    color: ${COLORS.primary};
+
   }
-  
 `;
 
 export default GlobalStyle;

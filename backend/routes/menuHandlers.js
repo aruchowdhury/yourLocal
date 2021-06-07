@@ -39,10 +39,26 @@ const postMenuItem = async (req, res) => {
   client.close();
 };
 
+//get menu items by restaurant id
+
+const getMenuItemsByRestaurantId = async (req, res) => {
+  const restaurantId = req.params.restaurantId;
+
+  // console.log("restaurantId", restaurantId);
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("your-local");
+
+  const menus = await db.collection("menus").find(restaurantId).toArray();
+  res.status(200).json({ status: 200, data: menus });
+  client.close();
+};
+
 module.exports = {
   getAllMenuItems,
   //   getAllMenuItemById,
   postMenuItem,
+  getMenuItemsByRestaurantId,
   //   updatemenuItem,
   //   deleteMenuItem,
 };

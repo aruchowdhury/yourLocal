@@ -9,6 +9,7 @@ const {} = require("./routes/loginHandlers");
 const {
   getAllMenuItems,
   // getAllMenuItemById,
+  getMenuItemsByRestaurantId,
   postMenuItem,
   // updatemenuItem,
   // deleteMenuItem,
@@ -60,6 +61,7 @@ app.get("/menu-items", getAllMenuItems);
 // //endpoint to display aone menu item item by id
 
 // app.get("/api/mongo/menu-items/:id", getAllFoodItemById);
+app.get("/menu-items/:id", getMenuItemsByRestaurantId);
 
 // // an endpoint to add/post a menu item
 

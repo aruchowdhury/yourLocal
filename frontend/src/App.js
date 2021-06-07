@@ -5,13 +5,13 @@ import GlobalStyle from "./GlobalStyles";
 import Navbar from "./NavComponents/Navbar";
 import Contact from "./Contact";
 // import SignIn from "./SignInComponents/SignIn";
-import Restaurents from "./Restaurents";
+import AllRestaurents from "./RestaurantComponents/AllRestaurents";
 import About from "./About";
 import Home from "./Home";
 import SignIn from "./SignInComponents/SignIn";
 import SignUp from "./SignInComponents/SignUp";
 import Footer from "./FooterComponent/Footer";
-import CustomerProfile from "./CustomerProfile";
+import CustomerProfile from "./ProfileComponents/CustomerProfile";
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
               <About />
             </Route>
             <Route exact path="/restaurants">
-              <Restaurents />
+              <AllRestaurents />
             </Route>
             <Route exact path="/contact">
               <Contact />

@@ -4,26 +4,26 @@ import styled from "styled-components";
 import { MdClose } from "react-icons/md";
 
 const SignUp = () => {
-  const { openModal, setOpenModal } = useContext(ModalContext);
+  const { openModal2, setOpenModal2 } = useContext(ModalContext);
   const signInRef = useRef();
 
   const closeSignIn = (e) => {
     if (signInRef.current === e.target) {
-      setOpenModal(false);
+      setOpenModal2(false);
     }
   };
 
   return (
     <>
-      {openModal ? (
+      {openModal2 ? (
         <Background onClick={closeSignIn} ref={signInRef}>
-          <SignInWrapper openModal={openModal}>
+          <SignInWrapper openModal={openModal2}>
             <ModalContent>
               <h1>Sign up form</h1>
               <p>Modal is wonderfull</p>
               <button>Signup</button>
             </ModalContent>
-            <CloseModalButton onClick={() => setOpenModal((prev) => !prev)} />
+            <CloseModalButton onClick={() => setOpenModal2((prev) => !prev)} />
           </SignInWrapper>
         </Background>
       ) : null}

@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import img from "./assets/bg.png";
+import { COLORS } from "./Constants";
 const Home = () => {
   return (
     <Background>
@@ -34,13 +35,18 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: stretch;
   align-content: stretch;
-  margin-left: -4rem;
-  margin-right: 1rem;
-  margin-top: -1.5rem;
-  /* background-color: #ffae01; */
   width: 90vw;
   height: 85vh;
   color: black;
+  background: ${COLORS.secondary};
+  color: ${COLORS.primary};
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+  }
 `;
 const ImageDiv = styled.div`
   flex: 2;
@@ -59,21 +65,24 @@ const ContentDiv = styled.div`
   justify-content: center;
   align-items: flex-start;
   align-content: center;
+  @media (max-width: 600px) {
+    margin: 1rem;
+  }
 `;
 const Button = styled.button`
   height: 2.2rem;
   width: 7rem;
   margin: 1.5rem 0;
-  background: black;
-  border: 0.2rem solid black;
+  background: ${COLORS.primary};
+  color: ${COLORS.secondary};
+  border: 0.2rem solid ${COLORS.primary};
   border-radius: 0.4rem;
-  color: #ffae01;
   cursor: pointer;
   font-size: 1rem;
 
   &:hover {
-    background: #ffae01;
-    border: 0.2rem solid black;
+    background: ${COLORS.secondary};
+    border: 0.2rem solid ${COLORS.primary};
     border-radius: 0.4rem;
     color: black;
   }

@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import img from "./assets/bg.png";
 import { TiPhoneOutline } from "react-icons/ti";
 import { BiEnvelopeOpen } from "react-icons/bi";
 import { GiArrowCursor } from "react-icons/gi";
+import { COLORS } from "./Constants";
 
 const Contact = () => {
   return (
@@ -108,16 +108,21 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   border-radius: 1.5rem;
-  /* background-color: #f28e13; */
-  background-color: #ffae01;
-  /* background-color: #e59c00; */
+  margin: 1.6% 0;
   width: 60vw;
   height: 75vh;
-  color: black;
-  margin: 1.6% 0;
+  background-color: ${COLORS.secondary};
+  color: ${COLORS.primary};
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  @media (max-width: 600px) {
+    margin: 1rem;
+    border-radius: 1rem;
+    width: 80vw;
+    height: 100%;
+  }
 `;
 
 const ContactInfo = styled.div`
@@ -135,11 +140,15 @@ const ContactForm = styled.div`
   justify-content: flex-start;
   align-items: left;
   padding: 2rem;
+  @media (max-width: 600px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const HomeLink = styled(NavLink)`
   text-decoration: underline 0.2rem solid;
-  color: black;
+  color: ${COLORS.primary};
   cursor: pointer;
   &:hover {
     opacity: 0.6;
@@ -190,17 +199,17 @@ const Button = styled.button`
   height: 2.2rem;
   width: 5rem;
   margin: 0.5rem 0 0.5rem 0.5rem;
-  background: black;
-  border: 0.1rem solid black;
+  background: ${COLORS.primary};
+  border: 0.1rem solid ${COLORS.primary};
   border-radius: 0.4rem;
-  color: #ffae01;
+  color: ${COLORS.secondary};
   cursor: pointer;
 
   &:hover {
-    background: #ffae01;
-    border: 0.1rem solid black;
+    background: ${COLORS.secondary};
+    border: 0.1rem solid ${COLORS.primary};
     border-radius: 0.4rem;
-    color: black;
+    color: ${COLORS.primary};
   }
 `;
 

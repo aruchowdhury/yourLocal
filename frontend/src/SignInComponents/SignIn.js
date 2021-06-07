@@ -4,28 +4,30 @@ import styled from "styled-components";
 import { MdClose } from "react-icons/md";
 
 const SignIn = () => {
-  const { openModal, setOpenModal, handleClickOpen } = useContext(ModalContext);
+  const { openModal1, setOpenModal1, handleClickOpen2, handleClose1 } =
+    useContext(ModalContext);
   const signInRef = useRef();
 
   const closeSignIn = (e) => {
     if (signInRef.current === e.target) {
-      setOpenModal(false);
+      setOpenModal1(false);
     }
   };
 
   return (
     <>
-      {openModal ? (
+      {openModal1 ? (
         <Background onClick={closeSignIn} ref={signInRef}>
-          <SignInWrapper openModal={openModal}>
+          <SignInWrapper openModal={openModal1}>
             <ModalContent>
               <h1>Look at my modal</h1>
               <p>Modal is wonderfull</p>
               <button>Signin</button>
               <p>Not registered?</p>
-              <button onClick={handleClickOpen}>Signup</button>
+
+              <button onClick={handleClickOpen2}>Signup</button>
             </ModalContent>
-            <CloseModalButton onClick={() => setOpenModal((prev) => !prev)} />
+            <CloseModalButton onClick={handleClose1} />
           </SignInWrapper>
         </Background>
       ) : null}
@@ -51,7 +53,7 @@ const SignInWrapper = styled.div`
   /* display: grid;
   grid-template-columns: 1fr 1fr; */
   position: relative;
-  z-index: 1;
+  z-index: 100;
   border-radius: 10px;
   margin-top: -150px;
 `;
@@ -80,6 +82,6 @@ const CloseModalButton = styled(MdClose)`
   right: 20px;
   width: 32px;
   height: 32px;
-  z-index: 1;
+  z-index: 10000;
 `;
 export default SignIn;

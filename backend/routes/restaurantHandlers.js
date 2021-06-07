@@ -19,7 +19,7 @@ const getAllRestaurant = async (req, res) => {
   // console.log("connected");
 
   const restaurants = await db.collection("restaurants").find().toArray();
-  res.status(200).json({ status: 200, data: restaurants });
+  res.status(200).json({ data: restaurants });
   client.close();
 };
 

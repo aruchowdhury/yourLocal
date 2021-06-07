@@ -2,59 +2,82 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 import { ModalContext } from "../ModalContext";
+import RestaurantDropDown from "./RestaurantDropDown";
+import { HiOutlineShoppingCart } from "react-icons/hi";
+import { COLORS } from "../Constants";
 
 const Navbar = () => {
-  const { openModal, handleClickOpen } = useContext(ModalContext);
+  const { setOpenModal1, handleHover } = useContext(ModalContext);
 
   // crating a state to make hamburger menu to go up and down on click
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleMenuItem = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleClickOpen = () => {
+    setOpenModal1((prev) => !prev);
+    handleMenuItem();
+  };
 
   return (
     <Wrapper>
       <Logo to="/">
         <span>your</span>L🍔CAL
       </Logo>
-      <HamburgerMenu onClick={() => setIsOpen(!isOpen)}>
+      <HamburgerMenu onClick={handleMenuItem}>
         <span></span>
         <span></span>
         <span></span>
       </HamburgerMenu>
       <MenuItems isOpen={isOpen}>
-        <MenuItemLink exact to="/about">
+        <MenuItemLink onClick={handleMenuItem} exact to="/about">
           About
         </MenuItemLink>
-        <MenuItemLink exact to="/restaurants">
+        {/* <MenuItemLink
+          onClick={() => setIsOpen(!isOpen)}
+          exact
+          to="/restaurants"
+        >
+          Restaurants
+        </MenuItemLink> */}
+        <MenuItemLink onClick={handleMenuItem} exact to="/restaurants">
+          <RestaurantDropDown />
           Restaurants
         </MenuItemLink>
-        <MenuItemLink exact to="/contact">
+        <MenuItemLink onClick={handleMenuItem} exact to="/contact">
           Contact
         </MenuItemLink>
         {/* <LoginItemLink exact path="/signin">
           Login
         </LoginItemLink> */}
         <Button onClick={handleClickOpen}>SignIn</Button>
+        <CartButton onClick={handleClickOpen}>
+          <HiOutlineShoppingCart />
+        </CartButton>
       </MenuItems>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 2rem 0.5rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   font-size: 1.2rem;
+  color: ${COLORS.primary};
 `;
 
 const Logo = styled(Link)`
   font-weight: 600;
   font-size: 2rem;
   padding: 1rem 0;
-  color: #ffae01;
+  color: ${COLORS.primary};
   text-decoration: none;
   cursor: pointer;
-
   span {
     font-weight: 300;
     font-size: 1.5rem;
@@ -69,14 +92,13 @@ const HamburgerMenu = styled.div`
   span {
     height: 2px;
     width: 27px;
-    background: #ffae01;
+    background: ${COLORS.primary};
     margin: 2.5px;
     border-radius: 3px;
   }
   @media (max-width: 600px) {
     display: flex;
   }
-
   &:hover {
     transition: 0.3s ease-in;
     span {
@@ -107,13 +129,13 @@ const MenuItemLink = styled(NavLink)`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  color: #ffae01;
+  color: ${COLORS.primary};
   border-radius: 4px;
 
   &:hover {
-    color: black;
+    color: ${COLORS.secondary};
     transition: 0.3s ease-in;
-    background: #ffae01;
+    background: ${COLORS.primary};
   }
 `;
 // const LoginItemLink = styled(NavLink)`
@@ -140,17 +162,36 @@ const Button = styled.button`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  color: black;
-  background: #ffae01;
+  color: ${COLORS.secondary};
+  background: ${COLORS.primary};
   border-radius: 4px;
-  border: 1px solid #ffae01;
+  border: 1px solid ${COLORS.primary};
   font-size: 1.1rem;
 
   &:hover {
-    color: #ffae01;
+    color: ${COLORS.primary};
     transition: 0.3s ease-in;
     background: none;
-    border: 1px solid #ffae01;
+    border: 1px solid ${COLORS.primary};
+  }
+`;
+const CartButton = styled.button`
+  padding: 0 0.3rem;
+  margin: 0.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  color: ${COLORS.primary};
+  background: ${COLORS.background};
+  border-radius: 4px;
+  border: 1px solid ${COLORS.background};
+  font-size: 1.2rem;
+
+  &:hover {
+    color: ${COLORS.primary};
+    transition: 0.3s ease-in;
+    background: none;
+    border: 1px solid ${COLORS.primary};
   }
 `;
 
