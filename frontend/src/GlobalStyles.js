@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Open-Sans, Helvetica, Sans-Serif;
     background: ${COLORS.background};
     color: ${COLORS.primary};
-
+   
   }
 `;
 

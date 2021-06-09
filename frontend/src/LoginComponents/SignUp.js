@@ -11,7 +11,7 @@ const SignUp = () => {
     confirmPassword: "",
     isRestaurantOwner: false,
   });
-
+  const [trueResto, setTrueResto] = useState(false);
   // post/create restaurant
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -23,16 +23,21 @@ const SignUp = () => {
     });
   };
 
+  const onChangeTick = (e) => {
+    setTrueResto(!trueResto);
+  };
+
   const onClick = (e) => {
     e.preventDefault();
-
+    console.log(input.isRestaurantOwner);
     const newUser = {
       fullName: input.fullName,
       email: input.email,
       password: input.password,
       confirmPassword: input.confirmPassword,
-      isRestaurantOwner: input.isRestaurantOwner,
+      isRestaurantOwner: trueResto,
     };
+    // console.log(JSON.stringify(newUser));
 
     axios.post("/users/register", newUser);
     setInput({
@@ -98,10 +103,10 @@ const SignUp = () => {
         </div>
         <div>
           <input
-            onChange={onChange}
+            onChange={onChangeTick}
             type="checkbox"
             name="isRestaurantOwner"
-            value={input.isRestaurantOwner}
+            value={trueResto}
             required
           />
           <label> Restaurant Owner.</label>

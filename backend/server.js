@@ -5,27 +5,29 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const {
-  getAllUsers,
   getUserById,
+  getAllUsers,
   registerUser,
   loginUser,
+  deleteUser,
 } = require("./routes/loginHandlers");
 
 const {
   getAllMenuItems,
   getMenuItemsById,
-  getMenuItemsByRestaurantId,
   postMenuItem,
+  getMenuItemsByRestaurantId,
   updateMenuItem,
   deleteMenuItem,
 } = require("./routes/menuHandlers");
 
 const {
   getAllRestaurant,
-  // getRestaurantByCategory,
-  // getRestaurantById,
   postRestaurant,
-  // deleteRestaurant,
+  getRestaurantById,
+  // getRestaurantByCategory,
+  updateRestaurant,
+  deleteRestaurant,
 } = require("./routes/restaurantHandlers");
 
 const PORT = process.env.PORT || 8000;
@@ -42,36 +44,31 @@ app.use("/", express.static(__dirname + "/"));
 //Restaurant
 
 app.get("/all-restaurants", getAllRestaurant);
-// app.get("/api/mongo/all-restaurant/:category", getRestaurantByCategory);
-// app.get("/api/mongo/all-restaurant/:id", getRestaurantById);
-
 app.post("/add-restaurant", postRestaurant);
-
-// app.delete("/api/mongo/all-restaurant/:id", deleteRestaurant);
+app.get("/restaurant/:id", getRestaurantById);
+// app.get("/restaurant/:category", getRestaurantByCategory);
+app.patch("/restaurant/update/:id", updateRestaurant);
+app.delete("/restaurant/delete/:id", deleteRestaurant);
 
 // //
 // //
 // //Menu-Items
 
 app.get("/menu-items", getAllMenuItems);
-
-app.get("menu-items/:id", getMenuItemsById);
-
+app.get("/menu-items/find/:id", getMenuItemsById);
 app.get("/menu-items/:restaurantId", getMenuItemsByRestaurantId);
-
-app.post("/add-menu-item", postMenuItem);
-
-app.patch("menu-items/:id", updateMenuItem);
-
-app.delete("menu-items/:id", deleteMenuItem);
+app.post("/menu-items/add", postMenuItem);
+app.patch("/menu-items/update/:id", updateMenuItem);
+app.delete("/menu-items/delete/:id", deleteMenuItem);
 
 //
 //
 // log-in/Authentication
-app.get("./users", getAllUsers);
-app.get("./users/:id", getUserById);
-app.get("./users/register", registerUser);
-app.get("./users/login", loginUser);
+app.get("/users", getAllUsers);
+app.get("/users/find/:id", getUserById);
+app.post("/users/register", registerUser);
+app.post("/users/login", loginUser);
+app.delete("/users/delete/:id", deleteUser);
 
 app.use((req, res) => res.status(404).type("txt").send("🤷‍♂️"));
 

@@ -10,6 +10,10 @@ const options = {
   useUnifiedTopology: true,
 };
 
+const { ObjectId } = require("mongodb");
+
+// get all user works
+
 const getAllUsers = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
@@ -20,66 +24,29 @@ const getAllUsers = async (req, res) => {
   client.close();
 };
 
-// const users = await db.collection("users").find().toArray();
-
-// console.log("users", users);
-
-// const excludePassword = users.map((user) => {
-//   return {
-//     _id: user._id,
-//     fullName: user.firstName,
-//     email: user.email,
-//     phoneNo: user.phoneNo,
-//     address: user.address,
-//     restaurantOwner: user.restaurantOwner,
-//     customer: user.customer,
-//     admin: user.admin,
-//   };
-// });
-// res.status(200).json({
-//   status: 200,
-//   data: users,
-// });
-// client.close();
-// };
+// get a single use by id works
 
 const getUserById = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
+  const { id } = req.params;
   await client.connect();
   const db = client.db("your-local");
 
-  const { _id } = req.params;
-  const user = await db.collection("users").findOne({ _id });
-  res.status(200).json({
-    status: 200,
-    data: {
-      _id: user._id,
-      fullName: user.firstName,
-      email: user.email,
-      phoneNo: user.phoneNo,
-      address: user.address,
-      restaurantOwner: user.restaurantOwner,
-      customer: user.customer,
-      admin: user.admin,
-    },
-  });
+  const result = await db.collection("users").findOne({ _id: ObjectId(id) });
+  result
+    ? res.status(200).json({ status: 200, id, data: result })
+    : res.status(404).json({ status: 404, id, data: "Not Found" });
+
   client.close();
 };
+
+// post a new user works
+
 const registerUser = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("your-local");
 
-  const {
-    fullName,
-    password,
-    email,
-    phoneNo,
-    address,
-    restaurantOwner,
-    customer,
-    admin,
-  } = userInfo;
   const userInfo = req.body;
   const user = await db.collection("users").insertOne(userInfo);
 
@@ -87,29 +54,50 @@ const registerUser = async (req, res) => {
   client.close();
 };
 
+// post a user login works but app cheshes after login
+
 const loginUser = async (req, res) => {
   const client = await MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("your-local");
 
-  const { password, email } = req.body;
+  const { email } = req.body;
 
   const users = await db.collection("users").find().toArray();
 
-  const identifiedUser = users.find((user) => user.email === email);
-
-  if (!identifiedUser || identifiedUser.password !== password) {
-    res.status(401).json({ status: 401, message: "could not found user" });
+  if (users) {
+    let identifiedUser = users.find((user) => user.email === email);
+    if (!identifiedUser) {
+      res.status(401).json({ status: 401, message: "bad pw" });
+    } else {
+      res.status(200).json({ status: 200, data: identifiedUser });
+    }
   }
-  res.status(200).json({ status: 200, data: identifiedUser });
+  res.status(401).json({ status: 401, message: "could not found user" });
   client.close();
 };
-const deleteUser = () => {};
 
+//delete a user by id works
+
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  // console.log("restaurantId", id);
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("your-local");
+
+  const result = await db.collection("users").deleteOne({ _id: ObjectId(id) });
+  console.log("result", result);
+  result
+    ? res.status(200).json({ status: 200, data: result })
+    : res.status(404).json({ status: 404, data: "Not Found" });
+  client.close();
+};
 module.exports = {
   getUserById,
   getAllUsers,
   registerUser,
   loginUser,
-  //  deleteUser
+  deleteUser,
 };

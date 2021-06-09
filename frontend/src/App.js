@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyle from "./GlobalStyles";
@@ -16,6 +16,18 @@ import SignIn from "./LoginComponents/SignIn";
 import SignUp from "./LoginComponents/SignUp";
 
 const App = () => {
+  const [allUsers, setAllUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState("");
+
+  useEffect(() => {
+    fetch("/users", { method: "GET" })
+      .then((res) => res.json())
+      .then((json) => {
+        // const restaurantArray = Object.values(data);
+        console.log(json.data);
+        setAllUsers(json.data);
+      });
+  }, []);
   return (
     <>
       <Router>
@@ -36,20 +48,23 @@ const App = () => {
             <Route exact path="/contact">
               <Contact />
             </Route>
+
             <Route exact path="/customer-profile">
-              <CustomerProfile />
+              <CustomerProfile currentUser={currentUser} />
             </Route>
+            {/* {currentUser.type === "admin" ?  */}
             <Route exact path="/admin-profile">
-              <AdminProfile />
+              <AdminProfile currentUser={currentUser} />
             </Route>
+            {/* : ""} */}
             <Route exact path="/restaurant-owner-profile">
-              <RestaurantOwnerProfile />
+              <RestaurantOwnerProfile currentUser={currentUser} />
             </Route>
             <Route exact path="/signup">
               <SignUp />
             </Route>
             <Route exact path="/signin">
-              <SignIn />
+              <SignIn allUsers={allUsers} setCurrentUser={setCurrentUser} />
             </Route>
             <Route exact path="/restaurants/:category/:restaurantId">
               <RestaurantMenu />

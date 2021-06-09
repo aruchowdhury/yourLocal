@@ -3,7 +3,27 @@ import styled from "styled-components";
 import { COLORS } from "../Constants";
 import { Link } from "react-router-dom";
 
-export const Login = () => {
+export const Login = ({ allUsers, setCurrentUser }) => {
+  const [inputEmail, setInputEmail] = useState("");
+  const handleChange = (e) => {
+    setInputEmail(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    // why not working?
+    e.preventDeafult();
+    allUsers.forEach((user) => {
+      if (user.email === inputEmail) {
+        // here we set the currentUser state after doing a fetch get
+        // to get one user by EMAIL
+        console.log(
+          "they can login... maybe we can do a fetch/to get & to set setCurrentUser"
+        );
+        // based on currentUser.type, we route them to the specific page!
+      } else {
+        console.log("user email doesn't exist");
+      }
+    });
+  };
   return (
     <Wrap>
       <h1>Sign in for better experience!</h1>
@@ -11,7 +31,14 @@ export const Login = () => {
         <div>
           <label> Email:</label>
           <br />
-          <Input type="email" name="email" required />
+          <Input
+            type="email"
+            name="email"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            required
+          />
         </div>
         <div>
           <label>Password:</label>
@@ -20,7 +47,7 @@ export const Login = () => {
         </div>
 
         <div>
-          <Button> Sign in </Button>
+          <Button onClick={handleSubmit}>Sign in</Button>
         </div>
         <div>
           <h3>

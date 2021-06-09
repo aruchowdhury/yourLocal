@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   align-items: stretch;
   align-content: stretch;
   width: 90vw;
-  height: 85vh;
+  height: 82vh;
   color: black;
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
@@ -47,6 +47,9 @@ const Wrapper = styled.div`
     margin-right: 0;
     margin-top: 0;
   }
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
 `;
 const ImageDiv = styled.div`
   flex: 2;

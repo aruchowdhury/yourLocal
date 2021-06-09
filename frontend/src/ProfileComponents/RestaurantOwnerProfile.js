@@ -32,7 +32,7 @@ const RestaurantOwnerProfile = () => {
       price: input.price,
     };
 
-    axios.post("/add-menu-item", newMenuItem);
+    axios.post("/menu-items/add", newMenuItem);
     setInput({
       name: "",
       description: "",

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
 
-const CustomerProfile = () => {
+const CustomerProfile = ({ currentUser }) => {
   return (
     <Grid>
       <ProfileInfo>
