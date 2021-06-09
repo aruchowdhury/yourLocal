@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Restaurant from "./Restaurant";
 
@@ -27,16 +26,15 @@ const AllRestaurents = () => {
 };
 
 const RestaurantGrid = styled.div`
-  width: 100%;
   margin: 3rem auto;
   display: grid;
-  grid-template-columns: 20rem 20rem;
+  grid-template-columns: 27rem 27rem;
   justify-content: center;
   align-items: center;
   grid-gap: 3rem;
 
   @media (max-width: 675px) {
-    grid-template-columns: 20rem;
+    grid-template-columns: 27rem;
   }
 `;
 

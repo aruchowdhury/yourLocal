@@ -1,24 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
-import { ModalContext } from "../ModalContext";
 import RestaurantDropDown from "./RestaurantDropDown";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { COLORS } from "../Constants";
 
 const Navbar = () => {
-  const { setOpenModal1, handleHover } = useContext(ModalContext);
-
   // crating a state to make hamburger menu to go up and down on click
   const [isOpen, setIsOpen] = useState(false);
+  const [isShown, setIsShown] = useState(false);
 
   const handleMenuItem = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleClickOpen = () => {
-    setOpenModal1((prev) => !prev);
-    handleMenuItem();
   };
 
   return (
@@ -35,25 +28,27 @@ const Navbar = () => {
         <MenuItemLink onClick={handleMenuItem} exact to="/about">
           About
         </MenuItemLink>
-        {/* <MenuItemLink
-          onClick={() => setIsOpen(!isOpen)}
+        <MenuItemLink
+          onClick={handleMenuItem}
+          onMouseEnter={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
           exact
           to="/restaurants"
         >
-          Restaurants
-        </MenuItemLink> */}
-        <MenuItemLink onClick={handleMenuItem} exact to="/restaurants">
-          <RestaurantDropDown />
+          {isShown && (
+            <div>
+              <RestaurantDropDown />
+            </div>
+          )}
           Restaurants
         </MenuItemLink>
         <MenuItemLink onClick={handleMenuItem} exact to="/contact">
           Contact
         </MenuItemLink>
-        {/* <LoginItemLink exact path="/signin">
-          Login
-        </LoginItemLink> */}
-        <Button onClick={handleClickOpen}>SignIn</Button>
-        <CartButton onClick={handleClickOpen}>
+        <LoginItemLink onClick={handleMenuItem} exact to="/signin">
+          SignIn
+        </LoginItemLink>
+        <CartButton>
           <HiOutlineShoppingCart />
         </CartButton>
       </MenuItems>
@@ -156,7 +151,8 @@ const MenuItemLink = styled(NavLink)`
 //     border: 1px solid #ffae01;
 //   }
 // `;
-const Button = styled.button`
+
+const LoginItemLink = styled(NavLink)`
   padding: 0.1rem;
   margin: 0.8rem;
   cursor: pointer;

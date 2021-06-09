@@ -13,9 +13,7 @@ const Restaurant = ({ restaurant }) => {
       <InfoWrap>
         <Hover>
           {restaurant.isOpen ? (
-            <Link
-              to={`/all-restaurants/${restaurant.category}/${restaurant._id}`}
-            >
+            <Link to={`/restaurants/${restaurant.category}/${restaurant._id}`}>
               <OrderButton>Order now!</OrderButton>
             </Link>
           ) : null}
@@ -30,7 +28,7 @@ const Restaurant = ({ restaurant }) => {
 
 const ItemWrapper = styled.div`
   padding: 1rem;
-  width: 17rem;
+  width: 24rem;
   height: 17rem;
   border: none;
   border-radius: 1.5rem;

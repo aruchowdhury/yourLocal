@@ -4,9 +4,10 @@ import { useParams } from "react-router";
 import MenuItem from "./MenuItem";
 
 const RestaurantMenu = () => {
-  const { restaurantId } = useParams;
+  const { restaurantId } = useParams();
   const [menuItems, setMenuItems] = useState([]);
 
+  console.log("restaurantId", restaurantId);
   useEffect(() => {
     fetch(`/menu-items/${restaurantId}`, { method: "GET" })
       .then((res) => res.json())
@@ -15,6 +16,8 @@ const RestaurantMenu = () => {
         console.log("json", json);
       });
   }, []);
+
+  console.log("menuitems", menuItems);
 
   return (
     <MenuGrid>

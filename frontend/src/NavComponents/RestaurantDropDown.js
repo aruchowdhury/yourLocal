@@ -2,15 +2,12 @@ import React, { useContext, useState } from "react";
 import { DropDownItems } from "./DropDownItems";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ModalContext } from "../ModalContext";
 import { COLORS } from "../Constants";
 
 const RestaurantDropDown = () => {
-  const { hover, setHover } = useContext(ModalContext);
-
   return (
     <>
-      <Menu>
+      <DropDownMenu>
         {DropDownItems.map((item, index) => {
           return (
             <MenuItems key={index}>
@@ -18,7 +15,7 @@ const RestaurantDropDown = () => {
             </MenuItems>
           );
         })}
-      </Menu>
+      </DropDownMenu>
     </>
   );
 };
@@ -26,17 +23,17 @@ const RestaurantDropDown = () => {
 // if onhover is true on restaurent i want to display this menu
 //and onclick it will take you to restaurents page
 
-const Menu = styled.div`
+const DropDownMenu = styled.div`
   width: 6.9rem;
   position: absolute;
-  top: 2.8rem;
+  top: 2.6rem;
   right: 15.4rem;
   list-style: none;
   text-align: left;
+
   @media (max-width: 600px) {
     display: none;
   }
-  display: ${({ hover }) => (hover ? "relative" : "absolute")};
 `;
 const MenuItems = styled.div`
   background: ${COLORS.secondary};
@@ -52,8 +49,8 @@ const ItemLink = styled(Link)`
   text-decoration: none;
   padding: 0.2rem;
   &:hover {
-    background: ${COLORS.secondary};
-    color: ${COLORS.primary};
+    background: ${COLORS.primary};
+    color: ${COLORS.secondary};
     transition: max-height 0.4s ease-in;
   }
 `;
