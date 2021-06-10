@@ -59,12 +59,10 @@ const Background = styled.div`
   justify-content: center;
 `;
 const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 2rem;
+  padding: 2rem;
+  margin: 2% 15%;
   border-radius: 1.5rem;
-  width: 60vw;
+  width: 100%;
   height: 100%;
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
@@ -80,19 +78,18 @@ const Wrapper = styled.div`
   }
 `;
 const Para = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.22rem;
   padding: 0 3.5rem;
+  h1 {
+    font-size: 1.7rem;
+    padding: 0.5rem 0;
+  }
 
   p {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    align-content: stretch;
-    overflow-wrap: break-word;
+    padding: 0.5rem 0;
   }
   a {
+    display: inline;
     &:hover {
       opacity: 0.5;
     }

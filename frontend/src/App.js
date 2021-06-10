@@ -14,6 +14,7 @@ import RestaurantOwnerProfile from "./ProfileComponents/RestaurantOwnerProfile";
 import RestaurantMenu from "./RestaurantComponents/RestaurantMenu";
 import SignIn from "./LoginComponents/SignIn";
 import SignUp from "./LoginComponents/SignUp";
+import Cart from "./CartComponents/Cart";
 
 const App = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -31,52 +32,51 @@ const App = () => {
   return (
     <>
       <Router>
-        <Wrapper>
-          <GlobalStyle />
-          <Navbar />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route exact path="/restaurants">
-              <AllRestaurents />
-            </Route>
+        <GlobalStyle />
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/restaurants">
+            <AllRestaurents />
+          </Route>
 
-            <Route exact path="/contact">
-              <Contact />
-            </Route>
+          <Route exact path="/contact">
+            <Contact />
+          </Route>
 
-            <Route exact path="/customer-profile">
-              <CustomerProfile currentUser={currentUser} />
-            </Route>
-            {/* {currentUser.type === "admin" ?  */}
-            <Route exact path="/admin-profile">
-              <AdminProfile currentUser={currentUser} />
-            </Route>
-            {/* : ""} */}
-            <Route exact path="/restaurant-owner-profile">
-              <RestaurantOwnerProfile currentUser={currentUser} />
-            </Route>
-            <Route exact path="/signup">
-              <SignUp />
-            </Route>
-            <Route exact path="/signin">
-              <SignIn allUsers={allUsers} setCurrentUser={setCurrentUser} />
-            </Route>
-            <Route exact path="/restaurants/:category/:restaurantId">
-              <RestaurantMenu />
-            </Route>
-          </Switch>
-          <Footer />
-        </Wrapper>
+          <Route exact path="/customer-profile">
+            <CustomerProfile currentUser={currentUser} />
+          </Route>
+          {/* {currentUser.type === "admin" ?  */}
+          <Route exact path="/admin-profile">
+            <AdminProfile currentUser={currentUser} />
+          </Route>
+          {/* : ""} */}
+          <Route exact path="/restaurant-owner-profile">
+            <RestaurantOwnerProfile currentUser={currentUser} />
+          </Route>
+          <Route exact path="/signup">
+            <SignUp />
+          </Route>
+          <Route exact path="/signin">
+            <SignIn allUsers={allUsers} setCurrentUser={setCurrentUser} />
+          </Route>
+          <Route exact path="/order/cart">
+            <Cart />
+          </Route>
+          <Route exact path="/restaurants/:category/:restaurantId">
+            <RestaurantMenu />
+          </Route>
+        </Switch>
+        <Footer />
       </Router>
     </>
   );
 };
-
-const Wrapper = styled.div``;
 
 export default App;

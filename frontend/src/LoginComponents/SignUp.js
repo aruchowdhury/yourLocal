@@ -128,10 +128,12 @@ const Wrap = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: stretch;
+  align-items: center;
+  padding: 2rem;
   align-content: center;
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
+  border-radius: 1rem;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
       rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -153,16 +155,16 @@ const RegistrationForm = styled.form`
 `;
 
 const Input = styled.input`
-  width: 20rem;
-  height: 1.5rem;
+  width: 21rem;
+  height: 2.5rem;
   padding: 0.3rem;
   border-radius: 0.3rem;
   margin: 0.2rem 0.2rem 0.2rem 0;
 `;
 
 const Button = styled.button`
-  height: 2.2rem;
-  width: 20.8rem;
+  height: 2.6rem;
+  width: 20.9rem;
   margin: 0.5rem 0;
   background: ${COLORS.primary};
   border: 0.1rem solid ${COLORS.primary};

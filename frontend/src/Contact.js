@@ -104,15 +104,17 @@ const Background = styled.div`
 `;
 
 const Wrapper = styled.div`
+  padding: 2rem;
+  margin: 2% 20%;
+  border-radius: 1.5rem;
+  width: 100%;
+  height: 100%;
+  background: ${COLORS.secondary};
+  color: ${COLORS.primary};
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   border-radius: 1.5rem;
-  margin: 1.6% 0;
-  width: 60vw;
-  height: 75vh;
-  background-color: ${COLORS.secondary};
-  color: ${COLORS.primary};
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -176,7 +178,7 @@ const Input = styled.input`
 `;
 const MessageInput = styled.input`
   width: 25rem;
-  height: 4rem;
+  height: 6rem;
   padding: 0.3rem;
   border-radius: 0.3rem;
   margin: 0.2rem 0;

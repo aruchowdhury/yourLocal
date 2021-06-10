@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
+import { CartContext } from "../CartComponents/CartContext";
 
 const MenuItem = ({ item }) => {
+  const { onAdd } = useContext(CartContext);
+
   return (
     <ItemWrapper>
-      <ItemImg src={item.imageSrc} />
+      <ItemImg src={item.imgSrc} />
       <InfoWrap>
-        <Name>{item.name}</Name>
+        <PriceWrap>
+          <Name>{item.name}</Name>
+          <Name>${item.price}</Name>
+        </PriceWrap>
         <InfoDiv>{item.description}</InfoDiv>
-        <Address>{item.price}</Address>
+        <OrderButton onClick={() => onAdd(item)}>Add to cart!</OrderButton>
       </InfoWrap>
     </ItemWrapper>
   );
@@ -17,12 +23,12 @@ const MenuItem = ({ item }) => {
 
 const ItemWrapper = styled.div`
   padding: 1rem;
-  width: 17rem;
-  height: 17rem;
+  width: 18rem;
+  height: 23rem;
   border: none;
-  border-radius: 1.5rem;
+  border-radius: 0.5rem;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: left;
@@ -33,25 +39,30 @@ const ItemWrapper = styled.div`
     0 16px 16px rgba(0, 0, 0, 0.12);
 `;
 
-const InfoWrap = styled.div``;
+const InfoWrap = styled.div`
+  border-radius: 0.5rem;
+  width: 16rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+`;
 
 const ItemImg = styled.img`
-  position: absolute;
   border-radius: 1rem;
-  align-self: center;
+  width: 16rem;
+  height: 15rem;
 `;
-const Hover = styled.div`
-  position: relative;
-  z-index: 3;
-  background: none;
-  opacity: 0;
-  &:hover {
-    opacity: 1;
-    transition: all 0.3s ease-in-out;
-  }
+
+const PriceWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: left;
+  align-content: left;
 `;
+
 const OrderButton = styled.button`
-  width: 60%;
+  width: 100%;
   height: 1.6rem;
   border: none;
   margin: 0.3rem 0;
@@ -61,6 +72,11 @@ const OrderButton = styled.button`
   border-radius: 0.4rem;
   color: ${COLORS.secondary};
   cursor: pointer;
+  &:hover {
+    border: 0.1rem solid ${COLORS.primary};
+    background: ${COLORS.secondary};
+    color: ${COLORS.primary};
+  }
 `;
 
 const InfoDiv = styled.div`
@@ -75,7 +91,4 @@ const Name = styled.div`
   border-radius: 0.3rem;
 `;
 
-const Address = styled.div`
-  font-size: 1rem;
-`;
 export default MenuItem;

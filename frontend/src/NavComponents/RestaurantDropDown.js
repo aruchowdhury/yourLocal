@@ -24,10 +24,10 @@ const RestaurantDropDown = () => {
 //and onclick it will take you to restaurents page
 
 const DropDownMenu = styled.div`
-  width: 6.9rem;
+  width: 7.1rem;
   position: absolute;
-  top: 2.6rem;
-  right: 15.4rem;
+  top: 2.9rem;
+  right: 17rem;
   list-style: none;
   text-align: left;
 

@@ -27,6 +27,12 @@ const Background = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-image: url(${img});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 82vh;
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -35,8 +41,9 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: stretch;
   align-content: stretch;
-  width: 90vw;
-  height: 82vh;
+  width: 100%;
+  height: 100%;
+  margin: 5%;
   color: black;
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
@@ -56,7 +63,6 @@ const ImageDiv = styled.div`
   background-image: url(${img});
   background-size: cover;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
   background-position: center;
 `;
 

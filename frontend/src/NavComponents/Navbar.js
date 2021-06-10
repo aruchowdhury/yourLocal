@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 import RestaurantDropDown from "./RestaurantDropDown";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { COLORS } from "../Constants";
+import { CartContext } from "../CartComponents/CartContext";
 
 const Navbar = () => {
+  const { cartItems, setCartItems } = useContext(CartContext);
+
   // crating a state to make hamburger menu to go up and down on click
   const [isOpen, setIsOpen] = useState(false);
   const [isShown, setIsShown] = useState(false);
@@ -48,9 +51,16 @@ const Navbar = () => {
         <LoginItemLink onClick={handleMenuItem} exact to="/signin">
           SignIn
         </LoginItemLink>
-        <CartButton>
-          <HiOutlineShoppingCart />
-        </CartButton>
+        <NavLink style={{ textDecoration: "none" }} to={"/order/cart"}>
+          <CartButton>
+            <HiOutlineShoppingCart />
+            {cartItems.length ? (
+              <CartItem>{cartItems.length}</CartItem>
+            ) : (
+              <EmptyCartItem>0</EmptyCartItem>
+            )}
+          </CartButton>
+        </NavLink>
       </MenuItems>
     </Wrapper>
   );
@@ -119,7 +129,7 @@ const MenuItems = styled.div`
 `;
 
 const MenuItemLink = styled(NavLink)`
-  padding: 0.2rem;
+  padding: 0.4rem;
   margin: 0.8rem;
   cursor: pointer;
   text-decoration: none;
@@ -133,27 +143,9 @@ const MenuItemLink = styled(NavLink)`
     background: ${COLORS.primary};
   }
 `;
-// const LoginItemLink = styled(NavLink)`
-//   padding: 0.1rem;
-//   margin: 0.8rem;
-//   cursor: pointer;
-//   text-decoration: none;
-//   text-align: center;
-//   color: black;
-//   background: #ffae01;
-//   border-radius: 4px;
-//   border: 1px solid #ffae01;
-
-//   &:hover {
-//     color: #ffae01;
-//     transition: 0.3s ease-in;
-//     background: none;
-//     border: 1px solid #ffae01;
-//   }
-// `;
 
 const LoginItemLink = styled(NavLink)`
-  padding: 0.1rem;
+  padding: 0.38rem;
   margin: 0.8rem;
   cursor: pointer;
   text-decoration: none;
@@ -172,7 +164,7 @@ const LoginItemLink = styled(NavLink)`
   }
 `;
 const CartButton = styled.button`
-  padding: 0 0.3rem;
+  padding: 0.25rem 0.1rem;
   margin: 0.8rem;
   cursor: pointer;
   text-decoration: none;
@@ -181,7 +173,9 @@ const CartButton = styled.button`
   background: ${COLORS.background};
   border-radius: 4px;
   border: 1px solid ${COLORS.background};
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row-gap;
 
   &:hover {
     color: ${COLORS.primary};
@@ -191,4 +185,13 @@ const CartButton = styled.button`
   }
 `;
 
+const CartItem = styled.div`
+  color: ${COLORS.primary};
+  font-size: 1rem;
+`;
+const EmptyCartItem = styled.div`
+  color: ${COLORS.primary};
+  font-size: 1rem;
+  opacity: 0;
+`;
 export default Navbar;
