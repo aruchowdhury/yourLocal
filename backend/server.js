@@ -5,6 +5,12 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const {
+  getAllOrders,
+  postOrder,
+  getOrderById,
+} = require("./routes/orderHandlers");
+
+const {
   getUserById,
   getAllUsers,
   registerUser,
@@ -69,6 +75,14 @@ app.get("/users/find/:id", getUserById);
 app.post("/users/register", registerUser);
 app.post("/users/login", loginUser);
 app.delete("/users/delete/:id", deleteUser);
+
+//
+//
+//Order handlers
+
+app.get("/orders", getAllOrders);
+app.get("/order/:id", getOrderById);
+app.post("/order/add", postOrder);
 
 app.use((req, res) => res.status(404).type("txt").send("🤷‍♂️"));
 

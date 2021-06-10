@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
@@ -6,28 +6,34 @@ import { Redirect, Link } from "react-router-dom";
 
 export const Login = ({ allUsers, currentUser, setCurrentUser }) => {
   const [inputEmail, setInputEmail] = useState("");
-  const [login, setLogin] = useState(false);
+  const [password, setPassword] = useState("");
+
   const { id } = useParams();
 
-  useEffect(() => {
-    fetch(`/users/find/${id}`, { method: "GET" })
-      .then((res) => res.json())
-      .then((json) => {
-        setCurrentUser(json.data);
-
-        console.log(json.data);
-      });
-  }, []);
-
-  const handleChange = (e) => {
+  const handleChangeEmail = (e) => {
     setInputEmail(e.target.value);
+  };
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //will map current user data to redirected profile
+
     allUsers.forEach((user) => {
       if (user.email === inputEmail) {
-        setLogin((prev) => !prev);
+        (async () => {
+          const incomingData = await fetch(`/users/find/${id}`, {
+            method: "GET",
+          })
+            .then((res) => res.json())
+            .catch((error) => error);
+
+          console.log(inputEmail, password);
+          setCurrentUser(incomingData);
+          // console.log("incomingdata", JSON.parse(incomingData));
+        })();
 
         // here we set the currentUser state after doing a fetch get
         // to get one user by EMAIL
@@ -42,7 +48,7 @@ export const Login = ({ allUsers, currentUser, setCurrentUser }) => {
       }
     });
   };
-  console.log("login", login);
+  console.log("login", currentUser);
   return (
     <Wrap>
       {/* {currentUser ? (
@@ -63,18 +69,23 @@ export const Login = ({ allUsers, currentUser, setCurrentUser }) => {
           <label> Email:</label>
           <br />
           <Input
+            onChange={handleChangeEmail}
             type="email"
             name="email"
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            value={inputEmail}
             required
           />
         </div>
         <div>
           <label>Password:</label>
           <br />
-          <Input type="password" name="password" required />
+          <Input
+            onChange={handleChangePassword}
+            type="password"
+            name="password"
+            value={password}
+            required
+          />
         </div>
 
         <div>

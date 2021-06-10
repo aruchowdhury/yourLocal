@@ -15,6 +15,7 @@ import RestaurantMenu from "./RestaurantComponents/RestaurantMenu";
 import SignIn from "./LoginComponents/SignIn";
 import SignUp from "./LoginComponents/SignUp";
 import Cart from "./CartComponents/Cart";
+import SuccessPage from "./CartComponents/SuccessPage";
 
 const App = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -68,6 +69,9 @@ const App = () => {
           </Route>
           <Route exact path="/order/cart">
             <Cart />
+          </Route>
+          <Route exact path="/order/success">
+            <SuccessPage />
           </Route>
           <Route exact path="/restaurants/:category/:restaurantId">
             <RestaurantMenu />

@@ -18,7 +18,7 @@ const Cart = () => {
   }, 0);
 
   const taxPrice = itemsPrice * 0.15;
-  const shippingPrice = itemsPrice > 200 ? "Free" : 10;
+  const shippingPrice = itemsPrice > 200 ? "Free" : 4.99;
   const totalPrice =
     shippingPrice === "Free"
       ? itemsPrice + taxPrice
@@ -27,21 +27,24 @@ const Cart = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    let itemQuantArray = [];
-    cartItems.map((item) => {
-      return itemQuantArray.push({ _id: item._id, quantity: item.quantity });
+    let orderArray = cartItems.map((item) => {
+      return {
+        name: item.name,
+        quantity: item.quantity,
+      };
     });
 
     fetch("/order/add", {
       method: "POST",
-
-      body: { itemQuantArray },
-    }).then((data) => {
-      console.log("data", data);
-    });
-
-    setCartItems([]);
+      body: JSON.stringify({ orderArray }),
+    }).then((res) =>
+      res.json().then((json) => {
+        setCartItems(json.data);
+        console.log("json.data", json.data);
+      })
+    );
   };
+
   return (
     <Grid>
       <OrderWrapper>
@@ -56,35 +59,61 @@ const Cart = () => {
               <RemoveButton onClick={() => onRemove(item)}>-</RemoveButton>
               <AddButton onClick={() => onAdd(item)}>+</AddButton>
             </ButtonWrap>
-            <PriceDiv>
+            <Price>
               <span>{item.quantity}</span> x <span>{item.price}</span>
-            </PriceDiv>
+            </Price>
           </AllOrders>
-        ))}{" "}
+        ))}
       </OrderWrapper>
       {cartItems.length !== 0 && (
         <OrderSummary>
-          <ItemsPrice>
-            <span>Price:</span> ${itemsPrice.toFixed(2)}
-          </ItemsPrice>
-          <Tax>
-            <span>Tax:</span> ${taxPrice.toFixed(2)}{" "}
-          </Tax>
-          <Shipping>
-            <span>Delivery Charge:</span> ${shippingPrice}
-          </Shipping>
-          <FinalPrice>
-            <span>Total:</span> ${totalPrice.toFixed(2)}{" "}
-          </FinalPrice>
+          <Div1>
+            <PriceDiv>
+              <span>Price:</span> <span>${itemsPrice.toFixed(2)}</span>
+            </PriceDiv>
+            <PriceDiv>
+              <span>Tax:</span> <span>${taxPrice.toFixed(2)}</span>
+            </PriceDiv>
+            <PriceDiv>
+              <span>Delivery Charge:</span> <span>${shippingPrice}</span>
+            </PriceDiv>
+            <FinalPrice>
+              <span>Total:</span> <span>${totalPrice.toFixed(2)}</span>
+            </FinalPrice>
+          </Div1>
+          <Div2>
+            <WrapperDiv>
+              <label> Name:</label>
 
-          <Terms>
-            <label>
-              Accept terms and condition{" "}
-              <input type="checkbox" required></input>{" "}
-            </label>
-          </Terms>
+              <input type="email" name="email" required />
+            </WrapperDiv>
+            <WrapperDiv>
+              <label> Address:</label>
 
-          <CheckoutButton onClick={submitHandler}>Checkout</CheckoutButton>
+              <input type="email" name="email" required />
+            </WrapperDiv>
+            <WrapperDiv>
+              <label>Card No:</label>
+
+              <input type="number" name="number" required />
+            </WrapperDiv>
+            <WrapperDiv>
+              <label>Expiry:</label>
+
+              <input type="date" name="date" required />
+              <label>CVV:</label>
+
+              <input type="number" name="number" required />
+            </WrapperDiv>
+          </Div2>
+          <Div3>
+            <Terms>
+              <input type="checkbox" required></input>
+              <label>Accept terms and condition</label>
+            </Terms>
+
+            <CheckoutButton onClick={submitHandler}>Checkout</CheckoutButton>
+          </Div3>
         </OrderSummary>
       )}
     </Grid>
@@ -152,7 +181,7 @@ const ButtonWrap = styled.div`
   padding: 0.8rem;
   margin: 0 1rem;
 `;
-const PriceDiv = styled.div`
+const Price = styled.div`
   padding: 0.5rem;
   font-size: 1.2rem;
   text-align: center;
@@ -163,19 +192,15 @@ const PriceDiv = styled.div`
 `;
 
 const OrderSummary = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: flex-end;
-  align-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 1rem;
+  justify-content: stretch;
+  align-items: stretch;
+  grid-gap: 0.5rem;
   font-size: 1.2rem;
   margin: 0.5rem;
-  background: ${COLORS.secondary};
-  color: ${COLORS.primary};
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
   @media only screen and (max-width: 700px) {
     align-content: center;
     display: flex;
@@ -186,38 +211,32 @@ const OrderSummary = styled.div`
   }
 `;
 
-const ItemsPrice = styled.div`
+const PriceDiv = styled.div`
   padding: 0.5rem;
-  text-align: center;
   margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
   span {
     font-size: 1.2rem;
   }
+
   box-shadow: 0px 15px 10px -15px;
 `;
-const Tax = styled.div`
-  padding: 0.5rem;
-  text-align: center;
-  margin: 1rem;
-  span {
-    font-size: 1.2rem;
-  }
-  box-shadow: 0px 15px 10px -15px;
-`;
-const Shipping = styled.div`
-  padding: 0.5rem;
-  text-align: center;
-  margin: 1rem;
-  span {
-    font-size: 1.2rem;
-  }
-  box-shadow: 0px 15px 10px -15px;
-`;
+
 const FinalPrice = styled.div`
   padding: 0.5rem;
   text-align: center;
   margin: 1rem;
   font-weight: 550;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   span {
     font-size: 1.2rem;
   }
@@ -253,6 +272,7 @@ const RemoveButton = styled.button`
   }
 `;
 const CheckoutButton = styled.button`
+  width: 90%;
   margin: 1rem;
   font-size: 1rem;
   border-radius: 0.4rem;
@@ -271,4 +291,47 @@ const Terms = styled.div`
   margin: 1rem;
   font-size: 1rem;
 `;
+const Div1 = styled.div`
+  background: ${COLORS.secondary};
+  color: ${COLORS.primary};
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+`;
+const Div2 = styled.div`
+  padding: 0.4rem;
+  background: ${COLORS.secondary};
+  color: ${COLORS.primary};
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  /* div {
+    margin: 0.3rem 0;
+    box-shadow: 0px 15px 10px -15px;
+  } */
+  input {
+    border: none;
+    background: ${COLORS.secondary};
+  }
+`;
+
+const WrapperDiv = styled.div`
+  margin: 0.3rem 0;
+  box-shadow: 0px 15px 10px -15px;
+`;
+const Div3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: ${COLORS.secondary};
+  color: ${COLORS.primary};
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+`;
+
 export default Cart;
