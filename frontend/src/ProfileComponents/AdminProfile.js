@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { SignInContext } from "../LoginComponents/SignInContext";
 
 const AdminProfile = () => {
+  const { allUsers, currentUser, setCurrentUser, setAllUsers } =
+    useContext(SignInContext);
+
+  console.log("currentuser at admin profile page", currentUser);
+
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -48,7 +54,17 @@ const AdminProfile = () => {
   return (
     <Grid>
       <ProfileInfo>
-        <h2>Hello, </h2>
+        <h1>Hello, {currentUser.fullName}! </h1>
+        {currentUser.isAdmin ? (
+          <h2>Welcome to Admin Pannel!</h2>
+        ) : currentUser.isRestaurantOwner ? (
+          <h2>Welcome to restaurant owner profile!</h2>
+        ) : (
+          <h2>Welcome to customer profile!</h2>
+        )}
+        <h2>Name: {currentUser.fullName}</h2>
+        <h2>Address: {currentUser.address}</h2>
+        <h2>Phone Number: {currentUser.phoneNo}</h2>
       </ProfileInfo>
 
       <UpdateItem>
@@ -150,7 +166,7 @@ const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: left;
   padding: 2rem;
   background: ${COLORS.secondary};

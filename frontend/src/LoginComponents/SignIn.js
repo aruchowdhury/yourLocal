@@ -1,14 +1,28 @@
-import React, { useState } from "react";
-import { useParams } from "react-router";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
-import { Redirect, Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { SignInContext } from "./SignInContext";
 
-export const Login = ({ allUsers, currentUser, setCurrentUser }) => {
+export const Login = () => {
+  const { allUsers, currentUser, setCurrentUser, setAllUsers } =
+    useContext(SignInContext);
+
   const [inputEmail, setInputEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
-  const { id } = useParams();
+  // fetched all user data to signin page
+
+  useEffect(() => {
+    fetch("/users", { method: "GET" })
+      .then((res) => res.json())
+      .then((json) => {
+        // const restaurantArray = Object.values(data);
+        console.log(json.data);
+        setAllUsers(json.data);
+      });
+  }, []);
 
   const handleChangeEmail = (e) => {
     setInputEmail(e.target.value);
@@ -16,53 +30,39 @@ export const Login = ({ allUsers, currentUser, setCurrentUser }) => {
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  //compared incoming data to fetched data and then pushed to specefic profile after login
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    //will map current user data to redirected profile
-
-    allUsers.forEach((user) => {
-      if (user.email === inputEmail) {
-        (async () => {
-          const incomingData = await fetch(`/users/find/${id}`, {
-            method: "GET",
-          })
-            .then((res) => res.json())
-            .catch((error) => error);
-
-          console.log(inputEmail, password);
-          setCurrentUser(incomingData);
-          // console.log("incomingdata", JSON.parse(incomingData));
-        })();
-
-        // here we set the currentUser state after doing a fetch get
-        // to get one user by EMAIL
-        console.log(
-          "they can login... maybe we can do a fetch/to get & to set setCurrentUser"
-        );
-        console.log("allUsers", allUsers);
-        console.log("inputemail", inputEmail);
-        // based on currentUser.type, we route them to the specific page!
+    const filteredUser = allUsers.find((user) => {
+      return user.email === inputEmail;
+    }); // end of filter
+    if (filteredUser) {
+      if (filteredUser.password === password) {
+        console.log(filteredUser);
+        fetch(`/users/find/${filteredUser._id}`, { METHOD: "GET" })
+          .then((res) => res.json())
+          .then((json) => {
+            // console.log(json);
+            setCurrentUser(json.data);
+            if (json.data.isAdmin) {
+              history.push("/admin-profile");
+            } else if (json.data.isRestaurantOwner) {
+              history.push("/restaurant-owner-profile");
+            } else {
+              history.push("/customer-profile");
+            }
+          });
       } else {
-        console.log("user email doesn't exist");
+        console.log("password doesn't match");
       }
-    });
+    } else {
+      console.log("no user in db ");
+    }
   };
-  console.log("login", currentUser);
+
   return (
     <Wrap>
-      {/* {currentUser ? (
-        user.isAdmin ? (
-          <Redirect to="/admin-profile" />
-        ) : user.isRestaurantOwner ? (
-          <Redirect to="/restaurent-owner-profile" />
-        ) : (
-          <Redirect to="/customer-profile" />
-        )
-      ) : (
-        <div></div>
-      )} */}
-
       <h1>Sign in for better experience!</h1>
       <LoginForm>
         <div>

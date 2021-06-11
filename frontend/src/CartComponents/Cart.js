@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { CartContext } from "./CartContext";
 import { COLORS } from "../Constants";
+import { useHistory } from "react-router-dom";
 
 //imported CartContyext to add reomve ites and calculate price on cart
 // if there is no item conditionaly it will show an empty message
@@ -10,8 +11,10 @@ import { COLORS } from "../Constants";
 
 const Cart = () => {
   const { cartItems, setCartItems, onAdd, onRemove } = useContext(CartContext);
+  const history = useHistory();
 
   //calculated price of items and conditionaly display those to the summary section
+  console.log(cartItems, "hello from cart items");
 
   const itemsPrice = cartItems.reduce((a, c) => {
     return a + c.quantity * c.price;
@@ -31,18 +34,25 @@ const Cart = () => {
       return {
         name: item.name,
         quantity: item.quantity,
+        price: item.price,
       };
     });
 
     fetch("/order/add", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ orderArray }),
-    }).then((res) =>
-      res.json().then((json) => {
-        setCartItems(json.data);
-        console.log("json.data", json.data);
-      })
-    );
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        //reset this
+        // set order items here
+        return json.data;
+      });
+    setCartItems([]);
+    history.push(`/order/success`);
   };
 
   return (

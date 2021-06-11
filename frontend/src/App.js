@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import styled from "styled-components";
 import GlobalStyle from "./GlobalStyles";
 import Navbar from "./NavComponents/Navbar";
 import Contact from "./Contact";
@@ -16,20 +15,12 @@ import SignIn from "./LoginComponents/SignIn";
 import SignUp from "./LoginComponents/SignUp";
 import Cart from "./CartComponents/Cart";
 import SuccessPage from "./CartComponents/SuccessPage";
+import { SignInContext } from "./LoginComponents/SignInContext";
+import UserControl from "./ProfileComponents/UserControl";
 
 const App = () => {
-  const [allUsers, setAllUsers] = useState([]);
-  const [currentUser, setCurrentUser] = useState("");
+  const { currentUser } = useContext(SignInContext);
 
-  useEffect(() => {
-    fetch("/users", { method: "GET" })
-      .then((res) => res.json())
-      .then((json) => {
-        // const restaurantArray = Object.values(data);
-        console.log(json.data);
-        setAllUsers(json.data);
-      });
-  }, []);
   return (
     <>
       <Router>
@@ -51,21 +42,28 @@ const App = () => {
           </Route>
 
           <Route exact path="/customer-profile">
-            <CustomerProfile currentUser={currentUser} />
+            <CustomerProfile />
           </Route>
-          {/* {currentUser.type === "admin" ?  */}
-          <Route exact path="/admin-profile">
-            <AdminProfile currentUser={currentUser} />
+          {currentUser.isAdmin ? (
+            <Route exact path="/admin-profile">
+              <AdminProfile />
+            </Route>
+          ) : (
+            <Route exact path="/signin">
+              <SignIn />
+            </Route>
+          )}
+          <Route exact path="/admin-profile/user-control">
+            <UserControl />
           </Route>
-          {/* : ""} */}
           <Route exact path="/restaurant-owner-profile">
-            <RestaurantOwnerProfile currentUser={currentUser} />
+            <RestaurantOwnerProfile />
           </Route>
           <Route exact path="/signup">
             <SignUp />
           </Route>
           <Route exact path="/signin">
-            <SignIn allUsers={allUsers} setCurrentUser={setCurrentUser} />
+            <SignIn />
           </Route>
           <Route exact path="/order/cart">
             <Cart />

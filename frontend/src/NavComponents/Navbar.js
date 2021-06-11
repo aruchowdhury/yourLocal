@@ -5,9 +5,11 @@ import RestaurantDropDown from "./RestaurantDropDown";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { COLORS } from "../Constants";
 import { CartContext } from "../CartComponents/CartContext";
+import { SignInContext } from "../LoginComponents/SignInContext";
 
 const Navbar = () => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
+  const { currentUser, setCurrentUser } = useContext(SignInContext);
 
   // crating a state to make hamburger menu to go up and down on click
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +17,10 @@ const Navbar = () => {
 
   const handleMenuItem = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSignOut = () => {
+    setCurrentUser(false);
   };
 
   return (
@@ -27,41 +33,98 @@ const Navbar = () => {
         <span></span>
         <span></span>
       </HamburgerMenu>
-      <MenuItems isOpen={isOpen}>
-        <MenuItemLink onClick={handleMenuItem} exact to="/about">
-          About
-        </MenuItemLink>
-        <MenuItemLink
-          onClick={handleMenuItem}
-          onMouseEnter={() => setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
-          exact
-          to="/restaurants"
-        >
-          {isShown && (
-            <div>
-              <RestaurantDropDown />
-            </div>
-          )}
-          Restaurants
-        </MenuItemLink>
-        <MenuItemLink onClick={handleMenuItem} exact to="/contact">
-          Contact
-        </MenuItemLink>
-        <LoginItemLink onClick={handleMenuItem} exact to="/signin">
-          SignIn
-        </LoginItemLink>
-        <NavLink style={{ textDecoration: "none" }} to={"/order/cart"}>
-          <CartButton>
-            <HiOutlineShoppingCart />
-            {cartItems.length ? (
-              <CartItem>{cartItems.length}</CartItem>
-            ) : (
-              <EmptyCartItem>0</EmptyCartItem>
+
+      {!currentUser ? (
+        <MenuItems isOpen={isOpen}>
+          <MenuItemLink onClick={handleMenuItem} exact to="/about">
+            About
+          </MenuItemLink>
+          <MenuItemLink
+            onClick={handleMenuItem}
+            onMouseEnter={() => setIsShown(true)}
+            onMouseLeave={() => setIsShown(false)}
+            exact
+            to="/restaurants"
+          >
+            {isShown && (
+              <div>
+                <RestaurantDropDown />
+              </div>
             )}
-          </CartButton>
-        </NavLink>
-      </MenuItems>
+            Restaurants
+          </MenuItemLink>
+          <MenuItemLink onClick={handleMenuItem} exact to="/contact">
+            Contact
+          </MenuItemLink>
+          <LoginItemLink onClick={handleMenuItem} exact to="/signin">
+            SignIn
+          </LoginItemLink>
+          <NavLink style={{ textDecoration: "none" }} to={"/order/cart"}>
+            <CartButton>
+              <HiOutlineShoppingCart />
+              {cartItems.length ? (
+                <CartItem>{cartItems.length}</CartItem>
+              ) : (
+                <EmptyCartItem>0</EmptyCartItem>
+              )}
+            </CartButton>
+          </NavLink>
+        </MenuItems>
+      ) : (
+        <MenuItems isOpen={isOpen}>
+          <MenuItemLink onClick={handleMenuItem} exact to="/about">
+            About
+          </MenuItemLink>
+          <MenuItemLink
+            onClick={handleMenuItem}
+            onMouseEnter={() => setIsShown(true)}
+            onMouseLeave={() => setIsShown(false)}
+            exact
+            to="/restaurants"
+          >
+            {isShown && (
+              <div>
+                <RestaurantDropDown />
+              </div>
+            )}
+            Restaurants
+          </MenuItemLink>
+          <MenuItemLink onClick={handleMenuItem} exact to="/contact">
+            Contact
+          </MenuItemLink>
+          {currentUser.isAdmin ? (
+            <MenuItemLink onClick={handleMenuItem} exact to="/admin-profile">
+              Profile
+            </MenuItemLink>
+          ) : currentUser.isRestaurantOwner ? (
+            <MenuItemLink
+              onClick={handleMenuItem}
+              exact
+              to="/restaurant-owner-profile"
+            >
+              Profile
+            </MenuItemLink>
+          ) : (
+            <MenuItemLink onClick={handleMenuItem} exact to="/customer-profile">
+              Profile
+            </MenuItemLink>
+          )}
+
+          <LoginItemLink onClick={handleSignOut} exact to="/signin">
+            SignOut
+          </LoginItemLink>
+          <NavLink style={{ textDecoration: "none" }} to={"/order/cart"}>
+            <CartButton>
+              <HiOutlineShoppingCart />
+              {cartItems.length ? (
+                <CartItem>{cartItems.length}</CartItem>
+              ) : (
+                <EmptyCartItem>0</EmptyCartItem>
+              )}
+            </CartButton>
+          </NavLink>
+        </MenuItems>
+      )}
     </Wrapper>
   );
 };
