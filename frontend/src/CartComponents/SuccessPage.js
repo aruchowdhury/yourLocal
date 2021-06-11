@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
 import { Link } from "react-router-dom";
-
+import { useParams } from "react-router";
 export const SuccessPage = () => {
+  const { id } = useParams();
   return (
     <Wrap>
       <div>Your order is successfull!</div>
 
-      <div>Order ID: {}</div>
+      <div>Order ID: {id}</div>
       <div>
         To Check your current order and all previous orders plase sign in.
       </div>

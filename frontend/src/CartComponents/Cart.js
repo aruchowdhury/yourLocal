@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { CartContext } from "./CartContext";
 import { COLORS } from "../Constants";
 import { useHistory } from "react-router-dom";
+import { SignInContext } from "../LoginComponents/SignInContext";
 
 //imported CartContyext to add reomve ites and calculate price on cart
 // if there is no item conditionaly it will show an empty message
@@ -11,6 +12,7 @@ import { useHistory } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, setCartItems, onAdd, onRemove } = useContext(CartContext);
+  const { currentUser } = useContext(SignInContext);
   const history = useHistory();
 
   //calculated price of items and conditionaly display those to the summary section
@@ -43,16 +45,16 @@ const Cart = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ orderArray }),
+      body: JSON.stringify({ orderArray, orderedBy: currentUser._id }),
     })
       .then((res) => res.json())
       .then((json) => {
         //reset this
         // set order items here
-        return json.data;
+        const orderId = json.data[json.data.length - 1]._id;
+        setCartItems([]);
+        history.push(`/order/success/${orderId}`);
       });
-    setCartItems([]);
-    history.push(`/order/success`);
   };
 
   return (

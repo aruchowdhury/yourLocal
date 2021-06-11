@@ -1,16 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
 import { SignInContext } from "../LoginComponents/SignInContext";
 
 const CustomerProfile = () => {
-  const { allUsers, currentUser, setCurrentUser, setAllUsers } =
-    useContext(SignInContext);
-
+  const { currentUser } = useContext(SignInContext);
+  const [myOrders, setMyOrders] = useState([]);
+  useEffect(() => {
+    fetch("/orders", { method: "GET" })
+      .then((res) => res.json())
+      .then((json) =>
+        setMyOrders(
+          json.data.filter((order) => order.orderedBy === currentUser._id)
+        )
+      );
+  }, []);
+  console.log("these are my orders", myOrders);
   return (
     <Grid>
       <ProfileInfo>
         <h1>Hello, {currentUser.fullName}! </h1>
+        <h2>User ID: {currentUser._id}</h2>
         {currentUser.isAdmin ? (
           <h2>Welcome to Admin Pannel!</h2>
         ) : currentUser.isRestaurantOwner ? (
@@ -24,6 +34,27 @@ const CustomerProfile = () => {
       </ProfileInfo>
       <OtherInfo>
         <h2>Previous Orders</h2>
+        {myOrders
+          ? myOrders.map((order) => {
+              return (
+                <div>
+                  Order ID: {order._id}
+                  <br></br>
+                  <div>
+                    {order.orderArray.map((inner) => {
+                      return (
+                        <div>
+                          <span>Name: {inner.name} </span>
+                          <span>Price: ${inner.price} </span>
+                          <span>Quantity: {inner.quantity} </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })
+          : ""}
       </OtherInfo>
     </Grid>
   );

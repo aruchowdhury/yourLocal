@@ -34,8 +34,11 @@ const postOrder = async (req, res) => {
   await client.connect();
   const db = client.db("your-local");
 
-  const orders = await db.collection("orders").insertOne(orderInfo);
-  res.status(200).json({ status: 200, data: orders });
+  await db.collection("orders").insertOne(orderInfo);
+  const allOrder = await db.collection("orders").find().toArray();
+
+  res.status(200).json({ status: 200, data: allOrder });
+
   client.close();
 };
 

@@ -18,7 +18,7 @@ const UserControl = () => {
       });
   }, []);
 
-  const handleClick = (e) => {
+  const handleClickDelete = (e) => {
     e.preventDefault();
 
     const singleUserData = { userId: userId };
@@ -49,7 +49,7 @@ const UserControl = () => {
             ) : (
               <div>User Type: Customer</div>
             )}
-            <button onClick={handleClick}>Delete user</button>
+            <button onClick={handleClickDelete}>Delete user</button>
           </SingleUser>
         );
       })}
