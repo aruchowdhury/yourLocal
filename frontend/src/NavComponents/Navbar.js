@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <Wrapper>
       <Logo to="/">
-        <span>your</span>L🍔CAL
+        <span>your</span>L🥘CAL
       </Logo>
       <HamburgerMenu onClick={handleMenuItem}>
         <span></span>
@@ -36,10 +36,7 @@ const Navbar = () => {
 
       {!currentUser ? (
         <MenuItems isOpen={isOpen}>
-          <MenuItemLink onClick={handleMenuItem} exact to="/about">
-            About
-          </MenuItemLink>
-          <MenuItemLink
+          <RestaurantMenuItemLink
             onClick={handleMenuItem}
             onMouseEnter={() => setIsShown(true)}
             onMouseLeave={() => setIsShown(false)}
@@ -52,6 +49,9 @@ const Navbar = () => {
               </div>
             )}
             Restaurants
+          </RestaurantMenuItemLink>
+          <MenuItemLink onClick={handleMenuItem} exact to="/about">
+            About
           </MenuItemLink>
           <MenuItemLink onClick={handleMenuItem} exact to="/contact">
             Contact
@@ -72,10 +72,33 @@ const Navbar = () => {
         </MenuItems>
       ) : (
         <MenuItems isOpen={isOpen}>
-          <MenuItemLink onClick={handleMenuItem} exact to="/about">
-            About
-          </MenuItemLink>
-          <MenuItemLink
+          {currentUser.isAdmin ? (
+            <ProfileMenuItemLink
+              onClick={handleMenuItem}
+              exact
+              to="/admin-profile"
+            >
+              Profile
+            </ProfileMenuItemLink>
+          ) : currentUser.isRestaurantOwner ? (
+            <ProfileMenuItemLink
+              onClick={handleMenuItem}
+              exact
+              to="/restaurant-owner-profile"
+            >
+              Profile
+            </ProfileMenuItemLink>
+          ) : (
+            <ProfileMenuItemLink
+              onClick={handleMenuItem}
+              exact
+              to="/customer-profile"
+            >
+              Profile
+            </ProfileMenuItemLink>
+          )}
+
+          <RestaurantMenuItemLink
             onClick={handleMenuItem}
             onMouseEnter={() => setIsShown(true)}
             onMouseLeave={() => setIsShown(false)}
@@ -88,27 +111,13 @@ const Navbar = () => {
               </div>
             )}
             Restaurants
+          </RestaurantMenuItemLink>
+          <MenuItemLink onClick={handleMenuItem} exact to="/about">
+            About
           </MenuItemLink>
           <MenuItemLink onClick={handleMenuItem} exact to="/contact">
             Contact
           </MenuItemLink>
-          {currentUser.isAdmin ? (
-            <MenuItemLink onClick={handleMenuItem} exact to="/admin-profile">
-              Profile
-            </MenuItemLink>
-          ) : currentUser.isRestaurantOwner ? (
-            <MenuItemLink
-              onClick={handleMenuItem}
-              exact
-              to="/restaurant-owner-profile"
-            >
-              Profile
-            </MenuItemLink>
-          ) : (
-            <MenuItemLink onClick={handleMenuItem} exact to="/customer-profile">
-              Profile
-            </MenuItemLink>
-          )}
 
           <LoginItemLink onClick={handleSignOut} exact to="/signin">
             SignOut
@@ -166,12 +175,6 @@ const HamburgerMenu = styled.div`
   }
   @media (max-width: 600px) {
     display: flex;
-  }
-  &:hover {
-    transition: 0.3s ease-in;
-    span {
-      background: white;
-    }
   }
 `;
 
@@ -256,5 +259,43 @@ const EmptyCartItem = styled.div`
   color: ${COLORS.primary};
   font-size: 1rem;
   opacity: 0;
+`;
+
+const RestaurantMenuItemLink = styled(NavLink)`
+  padding: 0.4rem;
+  margin: 0.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  color: ${COLORS.primary};
+  border-radius: 4px;
+  position: absolute;
+  top: 0.05rem;
+  right: 22rem;
+
+  &:hover {
+    color: ${COLORS.secondary};
+    transition: 0.3s ease-in;
+    background: ${COLORS.primary};
+  }
+`;
+
+const ProfileMenuItemLink = styled(NavLink)`
+  padding: 0.4rem;
+  margin: 0.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  color: ${COLORS.primary};
+  border-radius: 4px;
+  position: absolute;
+  top: 0.05rem;
+  right: 30rem;
+
+  &:hover {
+    color: ${COLORS.secondary};
+    transition: 0.3s ease-in;
+    background: ${COLORS.primary};
+  }
 `;
 export default Navbar;

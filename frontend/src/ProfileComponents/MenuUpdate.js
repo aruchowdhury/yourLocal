@@ -1,57 +1,57 @@
 import React, { useContext, useState } from "react";
-import { SignInContext } from "../LoginComponents/SignInContext";
+import { RestaurantContext } from "../RestaurantComponents/RestaurantContext";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
-const UserUpdate = () => {
-  const { allUsers, setAllUsers, userChange, setUserChange } =
-    useContext(SignInContext);
+const MenuUpdate = () => {
+  const { menuItems, setMenuItems, menuItemChange, setMenuItemChange } =
+    useContext(RestaurantContext);
 
-  const [user, setUser] = useState({});
-  const [fullName, setfullName] = useState();
+  const [menu, setMenu] = useState({});
+  const [name, setName] = useState();
   const [address, setAddress] = useState();
 
   const { id } = useParams();
   const history = useHistory();
 
   const handleInputChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setMenu({ ...menu, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUser();
+    updateMenu();
   };
 
-  const updateUser = () => {
-    fetch(`/users/update/${id}`, {
+  const updateMenu = () => {
+    fetch(`/menu-items/update/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ fullName: user.fullName, address: user.address }),
+      body: JSON.stringify({ name: menu.name, address: menu.address }),
     })
       .then((res) => res.json())
       .then((data) => {
-        setUser(data.id);
-        setUserChange(!userChange);
-        setAllUsers(data);
+        setMenu(data.id);
+        setMenuItemChange(!menuItemChange);
+        setMenuItems(data);
         console.log("data from patch", data);
-        history.push("/admin-profile/user-control");
+        history.push("/restaurant-owner-profile/menu-control");
       });
   };
 
   return (
     <UserGrid>
       <form>
-        <label>Full Name</label>
+        <label> Name</label>
         <input
           type="text"
-          name="fullName"
-          defaultValue={fullName}
+          name="name"
+          defaultValue={name}
           onChange={handleInputChange}
         />
 
@@ -86,4 +86,4 @@ const UserGrid = styled.div`
   }
 `;
 
-export default UserUpdate;
+export default MenuUpdate;

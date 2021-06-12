@@ -1,80 +1,70 @@
 import React, { useEffect, useContext } from "react";
-import { SignInContext } from "../LoginComponents/SignInContext";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { RestaurantContext } from "../RestaurantComponents/RestaurantContext";
+import { useParams } from "react-router";
 
-const UserControl = () => {
-  const {
-    allUsers,
-    setAllUsers,
-    userChange,
-    setUserChange,
-    menuItems,
-    setMenuItems,
-    menuChange,
-    setMenuChange,
-  } = useContext(SignInContext);
-
-  // console.log("all users from user control", allUsers);
+const MenuControl = () => {
+  const { menuItems, setMenuItems, menuItemChange, setMenuItemChange } =
+    useContext(RestaurantContext);
   const history = useHistory();
+  const { restaurantId } = useParams();
+
+  console.log("restaurant id from menu control", restaurantId);
+
   useEffect(() => {
-    fetch("/users", { method: "GET" })
+    fetch(`/menu-items`, { method: "GET" })
       .then((res) => res.json())
       .then((json) => {
         // console.log("data from user control", json.data);
-        setAllUsers(json.data);
+        setMenuItems(json.data);
       });
-  }, [userChange]);
+  }, [menuItemChange]);
+
+  console.log("menuItems from menu control", menuItems);
 
   const handleClickDelete = (e, id) => {
     e.preventDefault();
 
-    fetch(`/users/delete/${id}`, {
+    fetch(`/menu-items/delete/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
-      .then((data) => setUserChange(!userChange));
+      .then((data) => setMenuItemChange(!menuItemChange));
   };
 
   const handleClickUpdate = (e, id) => {
-    history.push(`/admin-profile/user-control/update/${id}`);
+    history.push(`/restaurant-owner-profile/user-control/update/${id}`);
   };
 
   return (
     <UserGrid>
-      {allUsers.length > 0
-        ? allUsers.map((user) => {
+      {menuItems.length > 0
+        ? menuItems.map((item) => {
             return (
-              <SingleUser key={user._id}>
-                <div>Name: {user.fullName}</div>
-                <div>Email:{user.email}</div>
-                <div>Phone Number:{user.phoneNo}</div>
+              <MenuItem key={item._id}>
+                <div>Name: {item.name}</div>
+                <div>Description:{item.description}</div>
+                <div>Price:{item.price}</div>
 
-                {user.isAdmin ? (
-                  <div>User Type: Admin user</div>
-                ) : user.isRestaurantOwner ? (
-                  <div>User Type: Restaurant owner</div>
-                ) : (
-                  <div>User Type: Customer</div>
-                )}
                 <button
                   onClick={(e) => {
-                    handleClickDelete(e, user._id);
+                    handleClickDelete(e, item._id);
                   }}
                 >
-                  Delete user
+                  Delete menu item
                 </button>
                 <button
                   onClick={(e) => {
-                    handleClickUpdate(e, user._id);
+                    handleClickUpdate(e, item._id);
                   }}
                 >
-                  Update User
+                  Update menu item
                 </button>
-              </SingleUser>
+              </MenuItem>
             );
           })
         : ""}
@@ -96,7 +86,7 @@ const UserGrid = styled.div`
   }
 `;
 
-const SingleUser = styled.div`
+const MenuItem = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -105,4 +95,4 @@ const SingleUser = styled.div`
   align-content: left;
 `;
 
-export default UserControl;
+export default MenuControl;

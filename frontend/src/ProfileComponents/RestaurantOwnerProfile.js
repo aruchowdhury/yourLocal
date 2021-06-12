@@ -62,7 +62,7 @@ const RestaurantOwnerProfile = () => {
       </ProfileInfo>
 
       <UpdateItem>
-        <Link to="/restaurant-owner-profile/update-menuitems">
+        <Link to="/restaurant-owner-profile/menu-control">
           <MenuUpdateBtn>Update/Menu Items</MenuUpdateBtn>
         </Link>
       </UpdateItem>

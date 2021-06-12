@@ -26,8 +26,8 @@ const RestaurantDropDown = () => {
 const DropDownMenu = styled.div`
   width: 7.1rem;
   position: absolute;
-  top: 2.9rem;
-  right: 17rem;
+  top: 2.05rem;
+  right: 0.1rem;
   list-style: none;
   text-align: left;
 

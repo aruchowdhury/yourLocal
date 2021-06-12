@@ -7,7 +7,7 @@ const About = () => {
     <Background>
       <Wrapper>
         <Para>
-          <h1>Why yourL🍔CAL:</h1>
+          <h1>Why yourL🥘CAL:</h1>
           <p>
             According to{" "}
             <a

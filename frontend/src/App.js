@@ -19,7 +19,7 @@ import { SignInContext } from "./LoginComponents/SignInContext";
 import UserControl from "./ProfileComponents/UserControl";
 import UserUpdate from "./ProfileComponents/UserUpdate";
 import MenuUpdate from "./ProfileComponents/MenuUpdate";
-import MenuControl from "./ProfileComponents/MenuUpdate";
+import MenuControl from "./ProfileComponents/MenuControl";
 
 const App = () => {
   const { currentUser } = useContext(SignInContext);
@@ -62,9 +62,6 @@ const App = () => {
           <Route exact path="/restaurant-owner-profile">
             <RestaurantOwnerProfile />
           </Route>
-          <Route exact path="/restaurant-owner-profile/menu-control/update/:id">
-            <MenuUpdate />
-          </Route>
           <Route exact path="/restaurant-owner-profile/menu-control">
             <MenuControl />
           </Route>
@@ -76,6 +73,9 @@ const App = () => {
           </Route>
           <Route exact path="/order/cart">
             <Cart />
+          </Route>
+          <Route exact path="/restaurant-owner-profile/menu-control/update/:id">
+            <MenuUpdate />
           </Route>
           <Route exact path="/admin-profile/user-control/update/:id">
             <UserUpdate />

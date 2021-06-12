@@ -10,6 +10,7 @@ const RestaurantMenu = () => {
   const { restaurantId } = useParams();
 
   console.log("restaurantId", restaurantId);
+
   useEffect(() => {
     fetch(`/menu-items/${restaurantId}`, { method: "GET" })
       .then((res) => res.json())

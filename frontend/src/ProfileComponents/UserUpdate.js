@@ -7,13 +7,12 @@ import { useHistory } from "react-router-dom";
 const UserUpdate = () => {
   const { allUsers, setAllUsers, userChange, setUserChange } =
     useContext(SignInContext);
+  const history = useHistory();
+  const { id } = useParams();
 
   const [user, setUser] = useState({});
   const [fullName, setfullName] = useState();
   const [address, setAddress] = useState();
-
-  const { id } = useParams();
-  const history = useHistory();
 
   const handleInputChange = (e) => {
     console.log(e.target.value);
@@ -40,7 +39,7 @@ const UserUpdate = () => {
         setUserChange(!userChange);
         setAllUsers(data);
         console.log("data from patch", data);
-        history.push("/admin-profile/user-control");
+        // history.push("/admin-profile/user-control");
       });
   };
 

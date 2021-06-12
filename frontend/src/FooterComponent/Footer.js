@@ -53,6 +53,10 @@ const Foot = styled.div`
   bottom: 0;
   color: ${COLORS.primary};
   font-size: 1rem;
+
+  @media (max-width: 600px) {
+    position: relative;
+  }
 `;
 
 const CopyWrite = styled.div`

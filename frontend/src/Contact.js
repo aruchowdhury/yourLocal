@@ -31,7 +31,6 @@ const Contact = () => {
           </div>
         </ContactInfo>
         <ContactForm>
-          <h2>Contact Form</h2>
           <form action="submit">
             <NameDiv>
               <div>
@@ -124,6 +123,7 @@ const Wrapper = styled.div`
     border-radius: 1rem;
     width: 80vw;
     height: 100%;
+    justify-content: center;
   }
 `;
 
@@ -171,20 +171,25 @@ const NameDiv = styled.div`
 `;
 
 const Input = styled.input`
-  width: 12rem;
+  width: 15rem;
+  height: 2rem;
   padding: 0.3rem;
   border-radius: 0.3rem;
   margin: 0.2rem 0.2rem 0.2rem 0;
+  border: none;
+  background-color: ${COLORS.background};
 `;
 const MessageInput = styled.input`
-  width: 25rem;
+  width: 30.5rem;
   height: 6rem;
   padding: 0.3rem;
   border-radius: 0.3rem;
   margin: 0.2rem 0;
+  border: none;
+  background-color: ${COLORS.background};
 
   @media (max-width: 600px) {
-    width: 12rem;
+    width: 15rem;
     height: 10rem;
   }
 `;
@@ -212,6 +217,9 @@ const Button = styled.button`
     border: 0.1rem solid ${COLORS.primary};
     border-radius: 0.4rem;
     color: ${COLORS.primary};
+  }
+  @media (max-width: 600px) {
+    margin-right: 0.5rem;
   }
 `;
 
