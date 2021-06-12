@@ -26,11 +26,11 @@ const ContentDiv = styled.div`
   justify-content: center;
   align-items: flex-start;
   align-content: center;
-  width: 30%;
+  width: 33%;
   height: 80%;
   position: absolute;
   top: 10%;
-  left: 65%;
+  left: 62.5%;
   border-radius: 0.5rem;
   font-size: 1.5rem;
   background-color: rgba(242, 232, 221, 0.2);

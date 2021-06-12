@@ -30,6 +30,7 @@ const DropDownMenu = styled.div`
   right: 0.1rem;
   list-style: none;
   text-align: left;
+  z-index: 1;
 
   @media (max-width: 600px) {
     display: none;

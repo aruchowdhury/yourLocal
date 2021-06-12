@@ -104,7 +104,7 @@ const Background = styled.div`
 
 const Wrapper = styled.div`
   padding: 2rem;
-  margin: 2% 20%;
+  margin: 2% 18%;
   border-radius: 1.5rem;
   width: 100%;
   height: 100%;
@@ -123,7 +123,6 @@ const Wrapper = styled.div`
     border-radius: 1rem;
     width: 80vw;
     height: 100%;
-    justify-content: center;
   }
 `;
 

@@ -9,7 +9,7 @@ const Restaurant = ({ restaurant }) => {
 
   return (
     <ItemWrapper>
-      <ItemImg src={restaurant.imageSrc} />
+      <ItemImg src={restaurant.imgSrc} />
       <InfoWrap>
         <Hover>
           {restaurant.isOpen ? (
@@ -17,19 +17,18 @@ const Restaurant = ({ restaurant }) => {
               <OrderButton>Order now!</OrderButton>
             </Link>
           ) : null}
+          <Name>{restaurant.name}</Name>
+          <InfoDiv>{restaurant.description}</InfoDiv>
+          <Address>{restaurant.address}</Address>
         </Hover>
-        <Name>{restaurant.name}</Name>
-        <InfoDiv>{restaurant.description}</InfoDiv>
-        <Address>{restaurant.address}</Address>
       </InfoWrap>
     </ItemWrapper>
   );
 };
 
 const ItemWrapper = styled.div`
-  padding: 1rem;
-  width: 24rem;
-  height: 17rem;
+  width: 26rem;
+  height: 18rem;
   border: none;
   border-radius: 1.5rem;
   display: flex;
@@ -44,16 +43,18 @@ const ItemWrapper = styled.div`
     0 16px 16px rgba(0, 0, 0, 0.12);
 `;
 
-const InfoWrap = styled.div``;
+const InfoWrap = styled.div`
+  margin: 1rem;
+`;
 
 const ItemImg = styled.img`
-  position: absolute;
   border-radius: 1rem;
-  align-self: center;
+  width: 26rem;
+  height: 18rem;
+  position: absolute;
 `;
 const Hover = styled.div`
   position: relative;
-  z-index: 3;
   background: none;
   opacity: 0;
   &:hover {

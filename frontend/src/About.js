@@ -60,7 +60,7 @@ const Background = styled.div`
 `;
 const Wrapper = styled.div`
   padding: 2rem;
-  margin: 2% 15%;
+  margin: 2% 20%;
   border-radius: 1.5rem;
   width: 100%;
   height: 100%;

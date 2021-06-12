@@ -29,10 +29,10 @@ const AllRestaurents = () => {
 const RestaurantGrid = styled.div`
   margin: 3rem auto;
   display: grid;
-  grid-template-columns: 27rem 27rem;
+  grid-template-columns: 27.5rem 25.5rem;
   justify-content: center;
   align-items: center;
-  grid-gap: 3rem;
+  grid-gap: 1.8rem;
 
   @media (max-width: 675px) {
     grid-template-columns: 27rem;
