@@ -14,7 +14,8 @@ const {
   getUserById,
   getAllUsers,
   registerUser,
-  loginUser,
+  updateUser,
+  // loginUser,
   deleteUser,
 } = require("./routes/loginHandlers");
 
@@ -73,7 +74,8 @@ app.delete("/menu-items/delete/:id", deleteMenuItem);
 app.get("/users", getAllUsers);
 app.get("/users/find/:id", getUserById);
 app.post("/users/register", registerUser);
-app.post("/users/login", loginUser);
+// app.post("/users/login", loginUser);
+app.patch("/users/update/:id", updateUser);
 app.delete("/users/delete/:id", deleteUser);
 
 //

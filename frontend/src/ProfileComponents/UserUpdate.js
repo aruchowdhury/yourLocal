@@ -1,20 +1,19 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SignInContext } from "../LoginComponents/SignInContext";
 import styled from "styled-components";
 import { useParams } from "react-router";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const UserUpdate = () => {
-  const { allUsers, setAllUsers } = useContext(SignInContext);
+  const { allUsers, setAllUsers, userChange, setUserChange } =
+    useContext(SignInContext);
 
   const [user, setUser] = useState({});
-  const [name, setName] = useState();
-  const [Address, setAddress] = useState();
-  const [phoneNo, setPhoneNo] = useState();
+  const [fullName, setfullName] = useState();
+  const [address, setAddress] = useState();
 
-  const { userId } = useParams();
+  const { id } = useParams();
   const history = useHistory();
-  console.log("all users from user control", allUsers);
 
   const handleInputChange = (e) => {
     console.log(e.target.value);
@@ -24,42 +23,35 @@ const UserUpdate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateProduct();
-    history.push("/");
+    updateUser();
   };
 
-  const updateProduct = () => {
-    fetch(`/addproducts/${userId}`, {
+  const updateUser = () => {
+    fetch(`/users/update/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: user.name,
-        price: user.address,
-      }),
+      body: JSON.stringify({ fullName: user.fullName, address: user.address }),
     })
       .then((res) => res.json())
-      .then((result) => setUser(result));
-  };
-
-  useEffect(() => {
-    fetch(`/products/${userId}`)
-      .then((res) => res.json())
-      .then((result) => {
-        setName(result.product.name);
-        setAddress(result.product.address);
+      .then((data) => {
+        setUser(data.id);
+        setUserChange(!userChange);
+        setAllUsers(data);
+        console.log("data from patch", data);
+        history.push("/admin-profile/user-control");
       });
-  }, []);
+  };
 
   return (
     <UserGrid>
-      <form onSubmit={handleSubmit}>
-        <label>Name</label>
+      <form>
+        <label>Full Name</label>
         <input
           type="text"
-          name="name"
-          defaultValue={name}
+          name="fullName"
+          defaultValue={fullName}
           onChange={handleInputChange}
         />
 
@@ -71,7 +63,9 @@ const UserUpdate = () => {
           onChange={handleInputChange}
         />
 
-        <button type="submit">Update</button>
+        <button type="submit" onSubmit={handleSubmit}>
+          Update
+        </button>
         <button>Cancel</button>
       </form>
     </UserGrid>
@@ -90,15 +84,6 @@ const UserGrid = styled.div`
   @media (max-width: 675px) {
     grid-template-columns: 20rem;
   }
-`;
-
-const SingleUser = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: left;
-  align-items: left;
-  align-content: left;
 `;
 
 export default UserUpdate;

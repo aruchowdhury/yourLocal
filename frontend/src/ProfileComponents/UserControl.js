@@ -1,14 +1,16 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { SignInContext } from "../LoginComponents/SignInContext";
 import styled from "styled-components";
 import { useParams } from "react-router";
-
+import { useHistory } from "react-router-dom";
 const UserControl = () => {
-  const { allUsers, setAllUsers } = useContext(SignInContext);
+  const { allUsers, setAllUsers, userChange, setUserChange } =
+    useContext(SignInContext);
+
   const { userId } = useParams();
 
   console.log("all users from user control", allUsers);
-
+  const history = useHistory();
   useEffect(() => {
     fetch("/users", { method: "GET" })
       .then((res) => res.json())
@@ -16,43 +18,60 @@ const UserControl = () => {
         // console.log("data from user control", json.data);
         setAllUsers(json.data);
       });
-  }, []);
+  }, [userChange]);
 
-  const handleClickDelete = (e) => {
+  const handleClickDelete = (e, id) => {
     e.preventDefault();
 
-    const singleUserData = { userId: userId };
-    fetch(`/users/delete/${userId}`, {
+    fetch(`/users/delete/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(singleUserData),
     })
       .then((res) => res.json())
-      .then((data) => console.log("data from user control", data));
+      .then((data) => setUserChange(!userChange));
+  };
+
+  const handleClickUpdate = (e, id) => {
+    history.push(`/admin-profile/user-control/update/${id}`);
   };
 
   return (
     <UserGrid>
-      {allUsers.map((user) => {
-        return (
-          <SingleUser key={user._id}>
-            <div>Name: {user.fullName}</div>
-            <div>Email:{user.email}</div>
-            <div>Phone Number:{user.phoneNo}</div>
+      {allUsers.length > 0
+        ? allUsers.map((user) => {
+            return (
+              <SingleUser key={user._id}>
+                <div>Name: {user.fullName}</div>
+                <div>Email:{user.email}</div>
+                <div>Phone Number:{user.phoneNo}</div>
 
-            {user.isAdmin ? (
-              <div>User Type: Admin user</div>
-            ) : user.isRestaurantOwner ? (
-              <div>User Type: Restaurant owner</div>
-            ) : (
-              <div>User Type: Customer</div>
-            )}
-            <button onClick={handleClickDelete}>Delete user</button>
-          </SingleUser>
-        );
-      })}
+                {user.isAdmin ? (
+                  <div>User Type: Admin user</div>
+                ) : user.isRestaurantOwner ? (
+                  <div>User Type: Restaurant owner</div>
+                ) : (
+                  <div>User Type: Customer</div>
+                )}
+                <button
+                  onClick={(e) => {
+                    handleClickDelete(e, user._id);
+                  }}
+                >
+                  Delete user
+                </button>
+                <button
+                  onClick={(e) => {
+                    handleClickUpdate(e, user._id);
+                  }}
+                >
+                  Update User
+                </button>
+              </SingleUser>
+            );
+          })
+        : ""}
     </UserGrid>
   );
 };

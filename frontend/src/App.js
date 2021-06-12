@@ -17,6 +17,7 @@ import Cart from "./CartComponents/Cart";
 import SuccessPage from "./CartComponents/SuccessPage";
 import { SignInContext } from "./LoginComponents/SignInContext";
 import UserControl from "./ProfileComponents/UserControl";
+import UserUpdate from "./ProfileComponents/UserUpdate";
 
 const App = () => {
   const { currentUser } = useContext(SignInContext);
@@ -67,6 +68,9 @@ const App = () => {
           </Route>
           <Route exact path="/order/cart">
             <Cart />
+          </Route>
+          <Route exact path="/admin-profile/user-control/update/:id">
+            <UserUpdate />
           </Route>
           <Route exact path="/order/success/:id">
             <SuccessPage />

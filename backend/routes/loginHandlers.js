@@ -56,26 +56,26 @@ const registerUser = async (req, res) => {
 
 // post a user login works but app cheshes after login
 
-const loginUser = async (req, res) => {
-  const client = await MongoClient(MONGO_URI, options);
-  await client.connect();
-  const db = client.db("your-local");
+// const loginUser = async (req, res) => {
+//   const client = await MongoClient(MONGO_URI, options);
+//   await client.connect();
+//   const db = client.db("your-local");
 
-  const { email } = req.body;
+//   const { email } = req.body;
 
-  const users = await db.collection("users").find().toArray();
+//   const users = await db.collection("users").find().toArray();
 
-  if (users) {
-    let identifiedUser = users.find((user) => user.email === email);
-    if (!identifiedUser) {
-      res.status(401).json({ status: 401, message: "bad pw" });
-    } else {
-      res.status(200).json({ status: 200, data: identifiedUser });
-    }
-  }
-  res.status(401).json({ status: 401, message: "could not found user" });
-  client.close();
-};
+//   if (users) {
+//     let identifiedUser = users.find((user) => user.email === email);
+//     if (!identifiedUser) {
+//       res.status(401).json({ status: 401, message: "bad pw" });
+//     } else {
+//       res.status(200).json({ status: 200, data: identifiedUser });
+//     }
+//   }
+//   res.status(401).json({ status: 401, message: "could not found user" });
+//   client.close();
+// };
 
 //delete a user by id works
 
@@ -94,10 +94,31 @@ const deleteUser = async (req, res) => {
     : res.status(404).json({ status: 404, data: "Not Found" });
   client.close();
 };
+
+// update user by id
+
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const toUpdate = req.body;
+  console.log(req.body);
+  const client = await MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("your-local");
+
+  await db
+    .collection("users")
+    .findOneAndUpdate({ _id: ObjectId(id) }, { $set: toUpdate });
+  const allUsers = await db.collection("users").find().toArray();
+
+  res.status(200).json({ status: 200, data: allUsers, itemsUpdated: toUpdate });
+  client.close();
+};
+
 module.exports = {
   getUserById,
   getAllUsers,
   registerUser,
-  loginUser,
+  updateUser,
+  // loginUser,
   deleteUser,
 };
