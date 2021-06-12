@@ -18,6 +18,8 @@ import SuccessPage from "./CartComponents/SuccessPage";
 import { SignInContext } from "./LoginComponents/SignInContext";
 import UserControl from "./ProfileComponents/UserControl";
 import UserUpdate from "./ProfileComponents/UserUpdate";
+import MenuUpdate from "./ProfileComponents/MenuUpdate";
+import MenuControl from "./ProfileComponents/MenuUpdate";
 
 const App = () => {
   const { currentUser } = useContext(SignInContext);
@@ -59,6 +61,12 @@ const App = () => {
           </Route>
           <Route exact path="/restaurant-owner-profile">
             <RestaurantOwnerProfile />
+          </Route>
+          <Route exact path="/restaurant-owner-profile/menu-control/update/:id">
+            <MenuUpdate />
+          </Route>
+          <Route exact path="/restaurant-owner-profile/menu-control">
+            <MenuControl />
           </Route>
           <Route exact path="/signup">
             <SignUp />

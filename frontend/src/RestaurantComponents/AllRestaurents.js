@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import Restaurant from "./Restaurant";
+import { RestaurantContext } from "./RestaurantContext";
 
 const AllRestaurents = () => {
-  const [allRestaurants, setAllRestaurants] = useState([]);
+  const { allRestaurants, setAllRestaurants } = useContext(RestaurantContext);
 
   useEffect(() => {
     fetch("/all-restaurants", { method: "GET" })

@@ -4,8 +4,16 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 const UserControl = () => {
-  const { allUsers, setAllUsers, userChange, setUserChange } =
-    useContext(SignInContext);
+  const {
+    allUsers,
+    setAllUsers,
+    userChange,
+    setUserChange,
+    menuItems,
+    setMenuItems,
+    menuChange,
+    setMenuChange,
+  } = useContext(SignInContext);
 
   // console.log("all users from user control", allUsers);
   const history = useHistory();

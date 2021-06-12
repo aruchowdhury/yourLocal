@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { COLORS } from "../Constants";
 import axios from "axios";
 import { SignInContext } from "../LoginComponents/SignInContext";
+import { Link } from "react-router-dom";
 
 const RestaurantOwnerProfile = () => {
   const { allUsers, currentUser, setCurrentUser, setAllUsers } =
@@ -61,26 +62,9 @@ const RestaurantOwnerProfile = () => {
       </ProfileInfo>
 
       <UpdateItem>
-        <h2>Update or Remove menu items:</h2>
-        <form>
-          <div>
-            <label>Item Name:</label>
-            <br />
-            <Input
-              type="text"
-              name="itemname"
-              placeholder="item Name"
-              required
-            />
-            <Button>Search</Button>
-          </div>
-          <div>
-            <h3>Item ID: 12121 1212 12121 12212</h3>
-
-            <Button>Update</Button>
-            <Button>Delete</Button>
-          </div>
-        </form>
+        <Link to="/restaurant-owner-profile/update-menuitems">
+          <MenuUpdateBtn>Update/Menu Items</MenuUpdateBtn>
+        </Link>
       </UpdateItem>
       <AddItem>
         <h2>Add New Menu Items</h2>
@@ -210,6 +194,25 @@ const Button = styled.button`
   border-radius: 0.4rem;
   color: ${COLORS.secondary};
   cursor: pointer;
+
+  &:hover {
+    background: ${COLORS.secondary};
+    border: 0.1rem solid ${COLORS.primary};
+    border-radius: 0.4rem;
+    color: ${COLORS.primary};
+  }
+`;
+
+const MenuUpdateBtn = styled.button`
+  height: 4rem;
+  width: 10rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  background: ${COLORS.primary};
+  border: 0.1rem solid ${COLORS.primary};
+  border-radius: 0.4rem;
+  color: ${COLORS.secondary};
+  cursor: pointer;
+  font-size: 1.5rem;
 
   &:hover {
     background: ${COLORS.secondary};

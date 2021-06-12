@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import MenuItem from "./MenuItem";
+import { RestaurantContext } from "./RestaurantContext";
 
 const RestaurantMenu = () => {
+  const { menuItems, setMenuItems } = useContext(RestaurantContext);
+
   const { restaurantId } = useParams();
-  const [menuItems, setMenuItems] = useState([]);
 
   console.log("restaurantId", restaurantId);
   useEffect(() => {
