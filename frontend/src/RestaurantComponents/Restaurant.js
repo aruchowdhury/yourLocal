@@ -12,11 +12,9 @@ const Restaurant = ({ restaurant }) => {
       <ItemImg src={restaurant.imgSrc} />
       <InfoWrap>
         <Hover>
-          {restaurant.isOpen ? (
-            <Link to={`/restaurants/${restaurant.category}/${restaurant._id}`}>
-              <OrderButton>Order now!</OrderButton>
-            </Link>
-          ) : null}
+          <Link to={`/restaurants/${restaurant.category}/${restaurant._id}`}>
+            <OrderButton>Order now!</OrderButton>
+          </Link>
           <Name>{restaurant.name}</Name>
           <InfoDiv>{restaurant.description}</InfoDiv>
           <Address>{restaurant.address}</Address>

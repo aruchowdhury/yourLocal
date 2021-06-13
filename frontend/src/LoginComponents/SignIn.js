@@ -65,9 +65,9 @@ export const Login = () => {
     <Wrap>
       <h1>Sign in for better experience!</h1>
       <LoginForm>
-        <div>
+        <InputDivWrapper>
           <label> Email:</label>
-          <br />
+
           <Input
             onChange={handleChangeEmail}
             type="email"
@@ -75,10 +75,10 @@ export const Login = () => {
             value={inputEmail}
             required
           />
-        </div>
-        <div>
+        </InputDivWrapper>
+        <InputDivWrapper>
           <label>Password:</label>
-          <br />
+
           <Input
             onChange={handleChangePassword}
             type="password"
@@ -86,15 +86,16 @@ export const Login = () => {
             value={password}
             required
           />
-        </div>
+        </InputDivWrapper>
 
         <div>
           <Button onClick={handleSubmit}>Sign in</Button>
         </div>
         <div>
-          <h3>
-            Not Registed? <Link to="/signup">Please sign up!</Link>
-          </h3>
+          <StyledLink>
+            Not Registed?{" "}
+            <SignUpLink to="/signup/customer">Please sign up!</SignUpLink>
+          </StyledLink>
         </div>
       </LoginForm>
     </Wrap>
@@ -116,10 +117,14 @@ const Wrap = styled.div`
   color: ${COLORS.primary};
   border-radius: 1rem;
 
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
   }
 `;
 
@@ -142,12 +147,14 @@ const Input = styled.input`
   padding: 0.3rem;
   border-radius: 0.3rem;
   margin: 0.2rem 0.2rem 0.2rem 0;
+  background: ${COLORS.background};
+  border: none;
 `;
 
 const Button = styled.button`
   height: 2.6rem;
   width: 20.9rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0 5.7rem;
   background: ${COLORS.primary};
   border: 0.1rem solid ${COLORS.primary};
   border-radius: 0.4rem;
@@ -159,5 +166,33 @@ const Button = styled.button`
     border: 0.1rem solid ${COLORS.primary};
     border-radius: 0.4rem;
     color: ${COLORS.primary};
+    transition: 0.3s ease-in-out;
+  }
+`;
+const InputDivWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  label {
+    margin-right: 1rem;
+  }
+`;
+const StyledLink = styled.h3`
+  margin: 1rem 0 0 5.7rem;
+`;
+const SignUpLink = styled(Link)`
+  background: ${COLORS.secondary};
+  border: 0.1rem solid ${COLORS.primary};
+  border-radius: 0.2rem;
+  color: ${COLORS.primary};
+  cursor: pointer;
+
+  &:hover {
+    background: ${COLORS.primary};
+    border: 0.1rem solid ${COLORS.secondary};
+    color: ${COLORS.secondary};
+    transition: 0.3s ease-in-out;
   }
 `;

@@ -12,7 +12,8 @@ import AdminProfile from "./ProfileComponents/AdminProfile";
 import RestaurantOwnerProfile from "./ProfileComponents/RestaurantOwnerProfile";
 import RestaurantMenu from "./RestaurantComponents/RestaurantMenu";
 import SignIn from "./LoginComponents/SignIn";
-import SignUp from "./LoginComponents/SignUp";
+import CustomerSignUp from "./LoginComponents/CustomerSignUp";
+import RestaurantOwnerSignUp from "./LoginComponents/RestaurantOwnerSignUp";
 import Cart from "./CartComponents/Cart";
 import SuccessPage from "./CartComponents/SuccessPage";
 import { SignInContext } from "./LoginComponents/SignInContext";
@@ -66,11 +67,17 @@ const App = () => {
           <Route exact path="/restaurant-owner-profile">
             <RestaurantOwnerProfile />
           </Route>
-          <Route exact path="/restaurant-owner-profile/menu-control">
+          <Route
+            exact
+            path="/restaurant-owner-profile/menu-control/:restaurantId"
+          >
             <MenuControl />
           </Route>
-          <Route exact path="/signup">
-            <SignUp />
+          <Route exact path="/signup/customer">
+            <CustomerSignUp />
+          </Route>
+          <Route exact path="/signup/restaurant-owner">
+            <RestaurantOwnerSignUp />
           </Route>
           <Route exact path="/signin">
             <SignIn />

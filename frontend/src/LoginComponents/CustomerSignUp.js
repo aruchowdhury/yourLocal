@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const CustomerSignUp = () => {
   const [input, setInput] = useState({
     fullName: "",
     email: "",
+    addres: "",
+    phoneNo: Number,
     password: "",
     confirmPassword: "",
-    isRestaurantOwner: false,
+    isCustomer: false,
   });
   const [trueResto, setTrueResto] = useState(false);
   // post/create restaurant
@@ -29,13 +32,15 @@ const SignUp = () => {
 
   const onClick = (e) => {
     e.preventDefault();
-    console.log(input.isRestaurantOwner);
+    // console.log(input.isCustomer);
     const newUser = {
       fullName: input.fullName,
       email: input.email,
+      address: input.address,
+      phoneNo: input.phoneNo,
       password: input.password,
       confirmPassword: input.confirmPassword,
-      isRestaurantOwner: trueResto,
+      isCustomer: trueResto,
     };
     // console.log(JSON.stringify(newUser));
 
@@ -43,9 +48,11 @@ const SignUp = () => {
     setInput({
       fullName: "",
       email: "",
+      addres: "",
+      phoneNo: Number,
       password: "",
       confirmPassword: "",
-      isRestaurantOwner: false,
+      isCustomer: false,
     });
   };
 
@@ -53,9 +60,8 @@ const SignUp = () => {
     <Wrap>
       <h1>Please Register yourself!</h1>
       <RegistrationForm>
-        <div>
+        <InputDivWrapper>
           <label> Full Name:</label>
-          <br />
           <Input
             onChange={onChange}
             type="text"
@@ -64,10 +70,9 @@ const SignUp = () => {
             placeholder="full name"
             required
           />
-        </div>
-        <div>
+        </InputDivWrapper>
+        <InputDivWrapper>
           <label> Email:</label>
-          <br />
           <Input
             onChange={onChange}
             type="email"
@@ -76,10 +81,31 @@ const SignUp = () => {
             placeholder="email"
             required
           />
-        </div>
-        <div>
+        </InputDivWrapper>
+        <InputDivWrapper>
+          <label> Phone No:</label>
+          <Input
+            onChange={onChange}
+            type="number"
+            name="phoneNo"
+            value={input.phoneNo}
+            placeholder="phone no"
+            required
+          />
+        </InputDivWrapper>
+        <InputDivWrapper>
+          <label> Address:</label>
+          <Input
+            onChange={onChange}
+            type="text"
+            name="address"
+            value={input.address}
+            placeholder="address"
+            required
+          />
+        </InputDivWrapper>
+        <InputDivWrapper>
           <label>Password:</label>
-          <br />
           <Input
             onChange={onChange}
             type="password"
@@ -88,10 +114,9 @@ const SignUp = () => {
             placeholder="password"
             required
           />
-        </div>
-        <div>
+        </InputDivWrapper>
+        <InputDivWrapper>
           <label>Confirm Password:</label>
-          <br />
           <Input
             onChange={onChange}
             type="password"
@@ -100,27 +125,35 @@ const SignUp = () => {
             placeholder="confirm password"
             required
           />
-        </div>
-        <div>
+        </InputDivWrapper>
+        <InputDiv>
           <input
             onChange={onChangeTick}
             type="checkbox"
-            name="isRestaurantOwner"
+            name="isCustomer"
             value={trueResto}
             required
           />
-          <label> Restaurant Owner.</label>
-        </div>
+          <label> Customer?</label>
+        </InputDiv>
 
-        <div>
+        <InputDivWrapper>
           <Button onClick={onClick}> Register Now </Button>
-        </div>
+        </InputDivWrapper>
       </RegistrationForm>
+      <div>
+        <StyledLink>
+          Restaurant Owner?{" "}
+          <SignUpLink Link to="/signup/restaurant-owner">
+            Please sign up here!
+          </SignUpLink>
+        </StyledLink>
+      </div>
     </Wrap>
   );
 };
 
-export default SignUp;
+export default CustomerSignUp;
 
 const Wrap = styled.div`
   margin: 5% 25%;
@@ -134,10 +167,14 @@ const Wrap = styled.div`
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
   border-radius: 1rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
   }
 `;
 
@@ -160,12 +197,14 @@ const Input = styled.input`
   padding: 0.3rem;
   border-radius: 0.3rem;
   margin: 0.2rem 0.2rem 0.2rem 0;
+  border: none;
+  background: ${COLORS.background}; ;
 `;
 
 const Button = styled.button`
   height: 2.6rem;
   width: 20.9rem;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 0 9.6rem;
   background: ${COLORS.primary};
   border: 0.1rem solid ${COLORS.primary};
   border-radius: 0.4rem;
@@ -177,5 +216,36 @@ const Button = styled.button`
     border: 0.1rem solid ${COLORS.primary};
     border-radius: 0.4rem;
     color: ${COLORS.primary};
+    transition: 0.3s ease-in-out;
   }
+`;
+const InputDivWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  label {
+    margin-right: 1rem;
+  }
+`;
+const StyledLink = styled.h3`
+  margin: 1rem 0 0 8rem;
+`;
+const SignUpLink = styled(Link)`
+  background: ${COLORS.secondary};
+  border: 0.1rem solid ${COLORS.primary};
+  border-radius: 0.2rem;
+  color: ${COLORS.primary};
+  cursor: pointer;
+
+  &:hover {
+    background: ${COLORS.primary};
+    border: 0.1rem solid ${COLORS.secondary};
+    color: ${COLORS.secondary};
+    transition: 0.3s ease-in-out;
+  }
+`;
+const InputDiv = styled.div`
+  margin: 0.5rem 0 0.5rem 9.6rem;
 `;

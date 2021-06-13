@@ -1,54 +1,11 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import { RestaurantContext } from "../RestaurantComponents/RestaurantContext";
 import { useHistory } from "react-router-dom";
+import RestaurantAddition from "./RestaurantAddition";
 
 const RestaurantControl = () => {
-  // add restaurant
-
-  const [input, setInput] = useState({
-    name: "",
-    description: "",
-    address: "",
-    category: "",
-    type: "",
-  });
-
-  // post/create restaurant
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setInput((prevInput) => {
-      return {
-        ...prevInput,
-        [name]: value,
-      };
-    });
-  };
-
-  const onClick = (e) => {
-    e.preventDefault();
-
-    const newRestaurant = {
-      name: input.name,
-      description: input.description,
-      address: input.address,
-      category: input.category,
-      type: input.type,
-    };
-
-    axios.post("/add-restaurant", newRestaurant);
-    setInput({
-      name: "",
-      description: "",
-      address: "",
-      category: "",
-      type: "",
-    });
-  };
-
   //update or delete restaurant
 
   const {
@@ -92,77 +49,7 @@ const RestaurantControl = () => {
   return (
     <Grid>
       <ProfileInfo>
-        <h2>Add New Restaurant</h2>
-        <form>
-          <div>
-            <label>Name:</label>
-            <br />
-            <Input
-              onChange={onChange}
-              type="text"
-              name="name"
-              value={input.name}
-              placeholder="restaurant name"
-              required
-            />
-          </div>
-
-          <div>
-            <label>Description:</label>
-            <br />
-            <Input
-              onChange={onChange}
-              type="text"
-              name="description"
-              value={input.description}
-              placeholder="description"
-              required
-            />
-          </div>
-
-          <div>
-            <label>Address:</label>
-            <br />
-            <Input
-              onChange={onChange}
-              type="text"
-              name="address"
-              value={input.address}
-              placeholder="address"
-              required
-            />
-          </div>
-
-          <div>
-            <label>Category:</label>
-            <br />
-            <Input
-              onChange={onChange}
-              type="text"
-              name="category"
-              value={input.category}
-              placeholder="category"
-              required
-            />
-          </div>
-
-          <div>
-            <label>Type:</label>
-            <br />
-            <Input
-              onChange={onChange}
-              type="text"
-              name="type"
-              value={input.type}
-              placeholder="type"
-              required
-            />
-          </div>
-
-          <div>
-            <Button onClick={onClick}>Update</Button>
-          </div>
-        </form>
+        <RestaurantAddition />
       </ProfileInfo>
       <UpdateItem>
         {allRestaurants.length > 0
@@ -173,6 +60,7 @@ const RestaurantControl = () => {
                   <div>Description:{restaurant.description}</div>
                   <div>Category:{restaurant.category}</div>
                   <div>Type: {restaurant.type}</div>
+                  <div>Type: {restaurant._id}</div>
 
                   <button
                     onClick={(e) => {
@@ -200,7 +88,7 @@ const RestaurantControl = () => {
 const Grid = styled.div`
   margin: 3rem 2rem;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1.2fr 2fr;
   justify-content: stretch;
   align-items: stretch;
   grid-gap: 1rem;
@@ -229,31 +117,6 @@ const UpdateItem = styled.div`
   align-items: left;
   padding: 2rem;
   background: ${COLORS.secondary};
-`;
-
-const Input = styled.input`
-  width: 17rem;
-  padding: 0.4rem;
-  border-radius: 0.3rem;
-  margin: 0.2rem 0.2rem 0.2rem 0;
-`;
-
-const Button = styled.button`
-  height: 2.1rem;
-  width: 5rem;
-  margin: 0.5rem 0.5rem 0.5rem 0;
-  background: ${COLORS.primary};
-  border: 0.1rem solid ${COLORS.primary};
-  border-radius: 0.4rem;
-  color: ${COLORS.secondary};
-  cursor: pointer;
-
-  &:hover {
-    background: ${COLORS.secondary};
-    border: 0.1rem solid ${COLORS.primary};
-    border-radius: 0.4rem;
-    color: ${COLORS.primary};
-  }
 `;
 
 const SingleUser = styled.div`

@@ -12,26 +12,41 @@ const AdminProfile = () => {
     <Grid>
       <ProfileInfo>
         <h1>Hello, {currentUser.fullName}! </h1>
-        {currentUser.isAdmin ? (
-          <h2>Welcome to Admin Pannel!</h2>
-        ) : currentUser.isRestaurantOwner ? (
-          <h2>Welcome to restaurant owner profile!</h2>
-        ) : (
-          <h2>Welcome to customer profile!</h2>
-        )}
-        <h2>Name: {currentUser.fullName}</h2>
-        <h2>Address: {currentUser.address}</h2>
-        <h2>Phone Number: {currentUser.phoneNo}</h2>
+        <ProfileHeading>
+          {currentUser.isAdmin ? (
+            <h2>Welcome to Admin Pannel.</h2>
+          ) : currentUser.isRestaurantOwner ? (
+            <h2>Welcome to restaurant owner profile.</h2>
+          ) : (
+            <h2>Welcome to customer profile.</h2>
+          )}
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span> Name:</Span> <span>{currentUser.fullName}</span>
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span>Your User ID: </Span>
+          <span>{currentUser._id}</span>
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span>Email:</Span> <span>{currentUser.email}</span>
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span>Phone No:</Span> <span>{currentUser.phoneNo}</span>
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span>Address:</Span> <span>{currentUser.address}</span>
+        </ProfileHeading>
       </ProfileInfo>
 
       <UpdateItem>
         <Link to="/admin-profile/user-control">
-          <UserControlBtn>User Control </UserControlBtn>
+          <ControlBtn>User Control </ControlBtn>
         </Link>
       </UpdateItem>
       <UpdateItem>
         <Link to="/admin-profile/restaurant-control">
-          <UserControlBtn>Restaurant Control </UserControlBtn>
+          <ControlBtn>Restaurant Control </ControlBtn>
         </Link>
       </UpdateItem>
     </Grid>
@@ -41,7 +56,7 @@ const AdminProfile = () => {
 const Grid = styled.div`
   margin: 3rem 2rem;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1.5fr 2fr;
   justify-content: stretch;
   align-items: stretch;
   grid-gap: 1rem;
@@ -60,6 +75,23 @@ const ProfileInfo = styled.div`
   padding: 2rem;
   background: ${COLORS.secondary};
   grid-row: 1/3;
+  h1 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0.2rem 0;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.8rem 0;
+  }
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 const UpdateItem = styled.div`
@@ -70,46 +102,11 @@ const UpdateItem = styled.div`
   align-items: left;
   padding: 2rem;
   background: ${COLORS.secondary};
-  //
 `;
-// const AddItem = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-//   align-items: left;
-//   padding: 2rem;
-//   background: ${COLORS.secondary};
-// `;
 
-// const Input = styled.input`
-//   width: 17rem;
-//   padding: 0.4rem;
-//   border-radius: 0.3rem;
-//   margin: 0.2rem 0.2rem 0.2rem 0;
-// `;
-
-// const Button = styled.button`
-//   height: 2.1rem;
-//   width: 5rem;
-//   margin: 0.5rem 0.5rem 0.5rem 0;
-//   background: ${COLORS.primary};
-//   border: 0.1rem solid ${COLORS.primary};
-//   border-radius: 0.4rem;
-//   color: ${COLORS.secondary};
-//   cursor: pointer;
-
-//   &:hover {
-//     background: ${COLORS.secondary};
-//     border: 0.1rem solid ${COLORS.primary};
-//     border-radius: 0.4rem;
-//     color: ${COLORS.primary};
-//   }
-// `;
-
-const UserControlBtn = styled.button`
-  height: 4rem;
-  width: 10rem;
+const ControlBtn = styled.button`
+  height: 5rem;
+  width: 15rem;
   margin: 0.5rem 0.5rem 0.5rem 0;
   background: ${COLORS.primary};
   border: 0.1rem solid ${COLORS.primary};
@@ -123,6 +120,24 @@ const UserControlBtn = styled.button`
     border: 0.1rem solid ${COLORS.primary};
     border-radius: 0.4rem;
     color: ${COLORS.primary};
+  }
+`;
+
+const Span = styled.span`
+  font-style: italic;
+`;
+
+const ProfileHeading = styled.h2`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  span {
+    width: 10rem;
+    margin-right: 6rem;
   }
 `;
 export default AdminProfile;

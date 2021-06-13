@@ -53,6 +53,7 @@ p,section{
       border: 0;
       font-size: 100%;
       vertical-align: baseline;
+      text-decoration: none;
   }
 
 `;

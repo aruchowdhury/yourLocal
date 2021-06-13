@@ -156,7 +156,7 @@ const Logo = styled(Link)`
   text-decoration: none;
   cursor: pointer;
   span {
-    font-weight: 300;
+    font-weight: 320;
     font-size: 1.5rem;
   }
 `;

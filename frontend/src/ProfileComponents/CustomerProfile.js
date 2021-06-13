@@ -20,38 +20,56 @@ const CustomerProfile = () => {
     <Grid>
       <ProfileInfo>
         <h1>Hello, {currentUser.fullName}! </h1>
-        <h2>User ID: {currentUser._id}</h2>
-        {currentUser.isAdmin ? (
-          <h2>Welcome to Admin Pannel!</h2>
-        ) : currentUser.isRestaurantOwner ? (
-          <h2>Welcome to restaurant owner profile!</h2>
-        ) : (
-          <h2>Welcome to customer profile!</h2>
-        )}
-        <h2>Name: {currentUser.fullName}</h2>
-        <h2>Address: {currentUser.address}</h2>
-        <h2>Phone Number: {currentUser.phoneNo}</h2>
+        <ProfileHeading>
+          {currentUser.isAdmin ? (
+            <h2>Welcome to Admin Pannel!</h2>
+          ) : currentUser.isRestaurantOwner ? (
+            <h2>Welcome to restaurant owner profile!</h2>
+          ) : (
+            <h2>Welcome to customer profile!</h2>
+          )}
+        </ProfileHeading>
+
+        <ProfileHeading>
+          <Span>User ID: </Span>
+          <span></span>
+          {currentUser._id}
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span>Name: </Span>
+          <span>{currentUser.fullName}</span>
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span>Address:</Span> <span>{currentUser.address}</span>
+        </ProfileHeading>
+        <ProfileHeading>
+          <Span>Phone No:</Span> <span>{currentUser.phoneNo}</span>
+        </ProfileHeading>
       </ProfileInfo>
       <OtherInfo>
-        <h2>Previous Orders</h2>
+        <h1>Previous Orders</h1>
+
         {myOrders
           ? myOrders.map((order) => {
               return (
-                <div>
-                  Order ID: {order._id}
-                  <br></br>
-                  <div>
-                    {order.orderArray.map((inner) => {
-                      return (
-                        <div>
-                          <span>Name: {inner.name} </span>
-                          <span>Price: ${inner.price} </span>
-                          <span>Quantity: {inner.quantity} </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <OrderWrapper>
+                  <OrderDiv>
+                    Order ID: {order._id}
+                    <br></br>
+                    <div>
+                      {order.orderArray.map((inner) => {
+                        return (
+                          <div>
+                            <span>Name: {inner.name} </span>
+                            <span>Price: ${inner.price} </span>
+                            <span>Quantity: {inner.quantity} </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </OrderDiv>
+                  <Button>Delete Order</Button>
+                </OrderWrapper>
               );
             })
           : ""}
@@ -63,9 +81,9 @@ const CustomerProfile = () => {
 const Grid = styled.div`
   margin: 3rem 2rem;
   display: grid;
-  grid-template-columns: 35% 65%;
-  justify-content: center;
-  align-items: center;
+  grid-template-columns: 1.3fr 2fr;
+  justify-content: stretch;
+  align-items: stretch;
   grid-gap: 1rem;
 
   @media (max-width: 675px) {
@@ -77,11 +95,30 @@ const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: left;
   padding: 2rem;
   background: ${COLORS.secondary};
+  grid-row: 1/3;
+  h1 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0.2rem 0;
+  }
+  h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.8rem 0;
+  }
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
 `;
+
 const OtherInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,5 +127,56 @@ const OtherInfo = styled.div`
   align-items: left;
   padding: 2rem;
   background: ${COLORS.secondary};
+  h1 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0.2rem 0;
+    padding: 0 0 0 0.5rem;
+  }
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
+`;
+
+const OrderWrapper = styled.div`
+  padding: 0.5rem;
+`;
+
+const OrderDiv = styled.div``;
+
+const Button = styled.button`
+  height: 1.5rem;
+  width: 10rem;
+  margin: 0.5rem 0;
+  background: ${COLORS.primary};
+  border: 0.1rem solid ${COLORS.primary};
+  border-radius: 0.3rem;
+  color: ${COLORS.secondary};
+  cursor: pointer;
+
+  &:hover {
+    background: ${COLORS.secondary};
+    border: 0.1rem solid ${COLORS.primary};
+    color: ${COLORS.primary};
+    transition: 0.3s ease-in-out;
+  }
+`;
+const Span = styled.span`
+  font-style: italic;
+`;
+
+const ProfileHeading = styled.h2`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
 `;
 export default CustomerProfile;
