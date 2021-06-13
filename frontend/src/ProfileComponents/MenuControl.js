@@ -13,7 +13,7 @@ const MenuControl = () => {
   console.log("restaurant id from menu control", restaurantId);
 
   useEffect(() => {
-    fetch(`/menu-items`, { method: "GET" })
+    fetch(`/menu-items/${restaurantId}`, { method: "GET" })
       .then((res) => res.json())
       .then((json) => {
         // console.log("data from user control", json.data);
@@ -42,32 +42,30 @@ const MenuControl = () => {
 
   return (
     <UserGrid>
-      {menuItems.length > 0
-        ? menuItems.map((item) => {
-            return (
-              <MenuItem key={item._id}>
-                <div>Name: {item.name}</div>
-                <div>Description:{item.description}</div>
-                <div>Price:{item.price}</div>
+      {menuItems.map((item) => {
+        return (
+          <MenuItem key={item._id}>
+            <div>Name: {item.name}</div>
+            <div>Description:{item.description}</div>
+            <div>Price:{item.price}</div>
 
-                <button
-                  onClick={(e) => {
-                    handleClickDelete(e, item._id);
-                  }}
-                >
-                  Delete menu item
-                </button>
-                <button
-                  onClick={(e) => {
-                    handleClickUpdate(e, item._id);
-                  }}
-                >
-                  Update menu item
-                </button>
-              </MenuItem>
-            );
-          })
-        : ""}
+            <button
+              onClick={(e) => {
+                handleClickDelete(e, item._id);
+              }}
+            >
+              Delete menu item
+            </button>
+            <button
+              onClick={(e) => {
+                handleClickUpdate(e, item._id);
+              }}
+            >
+              Update menu item
+            </button>
+          </MenuItem>
+        );
+      })}
     </UserGrid>
   );
 };
