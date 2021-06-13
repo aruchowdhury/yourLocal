@@ -191,6 +191,7 @@ const Button = styled.button`
     border: 0.1rem solid ${COLORS.primary};
     border-radius: 0.4rem;
     color: ${COLORS.primary};
+    transition: 0.3s ease-in-out;
   }
 `;
 const InputDivWrapper = styled.div`

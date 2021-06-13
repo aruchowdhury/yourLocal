@@ -22,6 +22,7 @@ import UserUpdate from "./ProfileComponents/UserUpdate";
 import MenuUpdate from "./ProfileComponents/MenuUpdate";
 import MenuControl from "./ProfileComponents/MenuControl";
 import RestaurantControl from "./ProfileComponents/RestaurantControl";
+import RestaurantUpdate from "./ProfileComponents/RestaurantUpdate";
 
 const App = () => {
   const { currentUser } = useContext(SignInContext);
@@ -67,10 +68,7 @@ const App = () => {
           <Route exact path="/restaurant-owner-profile">
             <RestaurantOwnerProfile />
           </Route>
-          <Route
-            exact
-            path="/restaurant-owner-profile/menu-control/:restaurantId"
-          >
+          <Route exact path="/restaurant-owner-profile/menu-control/:id">
             <MenuControl />
           </Route>
           <Route exact path="/signup/customer">
@@ -89,7 +87,7 @@ const App = () => {
             <MenuUpdate />
           </Route>
           <Route exact path="/admin-profile/restaurant-control/update/:id">
-            <UserUpdate />
+            <RestaurantUpdate />
           </Route>
           <Route exact path="/admin-profile/user-control/update/:id">
             <UserUpdate />

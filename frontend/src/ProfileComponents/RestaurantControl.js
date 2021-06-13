@@ -51,40 +51,79 @@ const RestaurantControl = () => {
       <ProfileInfo>
         <RestaurantAddition />
       </ProfileInfo>
-      <UpdateItem>
+      <UpdateRestaurant>
         {allRestaurants.length > 0
           ? allRestaurants.map((restaurant) => {
               return (
-                <SingleUser key={restaurant._id}>
+                <SingleRestaurant key={restaurant._id}>
                   <div>Name: {restaurant.name}</div>
                   <div>Description:{restaurant.description}</div>
                   <div>Category:{restaurant.category}</div>
                   <div>Type: {restaurant.type}</div>
-                  <div>Type: {restaurant._id}</div>
+                  <div>Restaurant ID: {restaurant._id}</div>
 
-                  <button
+                  <Button
                     onClick={(e) => {
                       handleClickDelete(e, restaurant._id);
                     }}
                   >
                     Delete restaurant
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={(e) => {
                       handleClickUpdate(e, restaurant._id);
                     }}
                   >
                     Update restaurant
-                  </button>
-                </SingleUser>
+                  </Button>
+                </SingleRestaurant>
               );
             })
           : ""}
-      </UpdateItem>
+      </UpdateRestaurant>
     </Grid>
   );
 };
 
+const SingleRestaurant = styled.div`
+  padding: 1rem;
+  width: 25rem;
+  height: 12rem;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: left;
+  align-content: left;
+  background: ${COLORS.secondary};
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
+`;
+
+const Button = styled.button`
+  width: 100%;
+  height: 1.6rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: ${COLORS.primary};
+  border: 0.1rem solid ${COLORS.primary};
+  color: ${COLORS.secondary};
+  cursor: pointer;
+  &:hover {
+    border: 0.1rem solid ${COLORS.primary};
+    background: ${COLORS.secondary};
+    color: ${COLORS.primary};
+    transition: 0.3s ease-in-out;
+  }
+`;
 const Grid = styled.div`
   margin: 3rem 2rem;
   display: grid;
@@ -107,25 +146,29 @@ const ProfileInfo = styled.div`
   padding: 2rem;
   background: ${COLORS.secondary};
   grid-row: 1/3;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
 `;
 
-const UpdateItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: left;
-  padding: 2rem;
-  background: ${COLORS.secondary};
-`;
+const UpdateRestaurant = styled.div`
+  width: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 25rem 25rem;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 1.2rem;
 
-const SingleUser = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: left;
-  align-items: left;
-  align-content: left;
+  @media (max-width: 675px) {
+    grid-template-columns: 20rem;
+  }
 `;
 
 export default RestaurantControl;

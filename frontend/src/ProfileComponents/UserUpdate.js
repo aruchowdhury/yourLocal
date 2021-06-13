@@ -3,6 +3,7 @@ import { SignInContext } from "../LoginComponents/SignInContext";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
+import { COLORS } from "../Constants";
 
 const UserUpdate = () => {
   const { allUsers, setAllUsers, userChange, setUserChange } =
@@ -13,6 +14,8 @@ const UserUpdate = () => {
   const [user, setUser] = useState({});
   const [fullName, setfullName] = useState();
   const [address, setAddress] = useState();
+  const [email, setEmail] = useState();
+  const [phoneNo, setPhoneNo] = useState();
 
   const handleInputChange = (e) => {
     // console.log(e.target.value);
@@ -31,7 +34,12 @@ const UserUpdate = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ fullName: user.fullName, address: user.address }),
+      body: JSON.stringify({
+        fullName: user.fullName,
+        address: user.address,
+        email: user.email,
+        phoneNo: user.phoneNo,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -45,43 +53,136 @@ const UserUpdate = () => {
 
   return (
     <UserGrid>
-      <form>
-        <label>Full Name</label>
-        <input
-          type="text"
-          name="fullName"
-          defaultValue={fullName}
-          onChange={handleInputChange}
-        />
+      <h1>Input user updated information below:</h1>
 
-        <label>Address</label>
-        <input
-          type="text"
-          name="address"
-          defaultValue={address}
-          onChange={handleInputChange}
-        />
-
-        <button type="submit" onSubmit={handleSubmit}>
-          Update
-        </button>
-        <button>Cancel</button>
-      </form>
+      <UpdateForm>
+        <InputDivWrapper>
+          <label>Full Name:</label>
+          <Input
+            type="text"
+            name="fullName"
+            defaultValue={fullName}
+            onChange={handleInputChange}
+            placeholder="new full name"
+          />
+        </InputDivWrapper>
+        <InputDivWrapper>
+          <label>Address:</label>
+          <Input
+            type="text"
+            name="address"
+            defaultValue={address}
+            onChange={handleInputChange}
+            placeholder="new address"
+          />
+        </InputDivWrapper>
+        <InputDivWrapper>
+          <label>Email:</label>
+          <Input
+            type="email"
+            name="email"
+            defaultValue={email}
+            onChange={handleInputChange}
+            placeholder="new email"
+          />
+        </InputDivWrapper>
+        <InputDivWrapper>
+          <label>Phone No:</label>
+          <Input
+            type="number"
+            name="phoneNo"
+            defaultValue={phoneNo}
+            onChange={handleInputChange}
+            placeholder="new phone no"
+          />
+        </InputDivWrapper>
+        <InputDivWrapper>
+          <button style={{ opacity: "0" }}>Cancel</button>
+          <Button type="submit" onSubmit={handleSubmit}>
+            Update
+          </Button>
+        </InputDivWrapper>
+      </UpdateForm>
     </UserGrid>
   );
 };
 
 const UserGrid = styled.div`
-  width: 100%;
-  margin: 3rem auto;
-  display: grid;
-  grid-template-columns: 100%;
-  justify-content: center;
+  margin: 5% 25%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
-  grid-gap: 1rem;
+  padding: 2rem;
+  align-content: center;
+  background: ${COLORS.secondary};
+  color: ${COLORS.primary};
+  border-radius: 1rem;
 
-  @media (max-width: 675px) {
-    grid-template-columns: 20rem;
+  h1 {
+    font-size: 1.5rem;
+  }
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
+`;
+
+const UpdateForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: left;
+  padding: 2rem;
+  @media (max-width: 600px) {
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const Input = styled.input`
+  width: 21rem;
+  height: 2.5rem;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  margin: 0.2rem 0.2rem 0.2rem 0;
+  border: none;
+  background: ${COLORS.background}; ;
+`;
+
+const Button = styled.button`
+  height: 2.6rem;
+  width: 20.9rem;
+  margin: 0.5rem 0 0 9.6rem;
+  background: ${COLORS.primary};
+  border: 0.1rem solid ${COLORS.primary};
+  border-radius: 0.4rem;
+  color: ${COLORS.secondary};
+  cursor: pointer;
+
+  &:hover {
+    background: ${COLORS.secondary};
+    border: 0.1rem solid ${COLORS.primary};
+    border-radius: 0.4rem;
+    color: ${COLORS.primary};
+    transition: 0.3s ease-in-out;
+  }
+`;
+const InputDivWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  label {
+    margin-right: 1rem;
   }
 `;
 
