@@ -33,6 +33,7 @@ const CustomerSignUp = () => {
   const onClick = (e) => {
     e.preventDefault();
     // console.log(input.isCustomer);
+
     const newUser = {
       fullName: input.fullName,
       email: input.email,
@@ -45,15 +46,19 @@ const CustomerSignUp = () => {
     // console.log(JSON.stringify(newUser));
 
     axios.post("/users/register", newUser);
-    setInput({
-      fullName: "",
-      email: "",
-      addres: "",
-      phoneNo: Number,
-      password: "",
-      confirmPassword: "",
-      isCustomer: false,
-    });
+    if (input.password !== input.confirmPassword) {
+      window.alert("password does not match");
+    } else {
+      setInput({
+        fullName: "",
+        email: "",
+        addres: "",
+        phoneNo: Number,
+        password: "",
+        confirmPassword: "",
+        isCustomer: false,
+      });
+    }
   };
 
   return (

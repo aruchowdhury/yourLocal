@@ -21,6 +21,7 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     setCurrentUser(false);
+    // localStorage.clear();
   };
 
   return (

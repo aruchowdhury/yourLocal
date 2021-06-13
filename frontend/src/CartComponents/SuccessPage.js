@@ -14,7 +14,7 @@ export const SuccessPage = () => {
         To Check your current order and all previous orders plase sign in.
       </div>
 
-      <Link>
+      <Link to="/signin">
         <Button>Sign in</Button>
       </Link>
     </Wrap>
@@ -36,10 +36,14 @@ const Wrap = styled.div`
   color: ${COLORS.primary};
   border-radius: 1rem;
 
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
   }
 `;
 
@@ -64,5 +68,6 @@ const Button = styled.button`
     border: 0.1rem solid ${COLORS.primary};
     border-radius: 0.4rem;
     color: ${COLORS.primary};
+    transition: 0.3s ease-in-out;
   }
 `;

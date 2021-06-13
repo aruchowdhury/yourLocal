@@ -46,16 +46,20 @@ const SignUp = () => {
     // console.log(JSON.stringify(newUser));
 
     axios.post("/users/register", newUser);
-    setInput({
-      fullName: "",
-      email: "",
-      address: "",
-      phoneNo: Number,
-      restaurantId: "",
-      password: "",
-      confirmPassword: "",
-      isRestaurantOwner: false,
-    });
+    if (input.password !== input.confirmPassword) {
+      window.alert("password does not match");
+    } else {
+      setInput({
+        fullName: "",
+        email: "",
+        address: "",
+        phoneNo: Number,
+        restaurantId: "",
+        password: "",
+        confirmPassword: "",
+        isRestaurantOwner: false,
+      });
+    }
   };
 
   return (

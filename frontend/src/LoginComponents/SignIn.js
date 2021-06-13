@@ -45,6 +45,7 @@ export const Login = () => {
           .then((json) => {
             // console.log(json);
             setCurrentUser(json.data);
+            // localStorage.setItem("currentUser", json.data);
             if (json.data.isAdmin) {
               history.push("/admin-profile");
             } else if (json.data.isRestaurantOwner) {
@@ -54,9 +55,11 @@ export const Login = () => {
             }
           });
       } else {
+        window.alert("password doesn't match");
         console.log("password doesn't match");
       }
     } else {
+      window.alert("no user in database");
       console.log("no user in db ");
     }
   };

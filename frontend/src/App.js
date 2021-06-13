@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GlobalStyle from "./GlobalStyles";
 import Navbar from "./NavComponents/Navbar";
@@ -25,7 +25,15 @@ import RestaurantControl from "./ProfileComponents/RestaurantControl";
 import RestaurantUpdate from "./ProfileComponents/RestaurantUpdate";
 
 const App = () => {
-  const { currentUser } = useContext(SignInContext);
+  const { currentUser, setCurrentUser } = useContext(SignInContext);
+
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem("currentUser");
+  //   if (loggedInUser) {
+  //     const foundUser = JSON.parse(loggedInUser);
+  //     setCurrentUser(foundUser);
+  //   }
+  // }, []);
 
   return (
     <>
