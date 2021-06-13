@@ -1,43 +1,50 @@
 import React, { useContext, useState } from "react";
-import { SignInContext } from "../LoginComponents/SignInContext";
+import { RestaurantContext } from "../RestaurantComponents/RestaurantContext";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
-const UserUpdate = () => {
-  const { allUsers, setAllUsers, userChange, setUserChange } =
-    useContext(SignInContext);
+const RestaurantUpdate = () => {
+  const {
+    allRestaurants,
+    setAllRestaurants,
+    restaurantChange,
+    setRestaurantChange,
+  } = useContext(RestaurantContext);
   const history = useHistory();
   const { id } = useParams();
 
-  const [user, setUser] = useState({});
-  const [fullName, setfullName] = useState();
-  const [address, setAddress] = useState();
+  const [restaurant, setRestaurant] = useState({});
+  const [name, setName] = useState();
+  const [description, setDescription] = useState();
 
   const handleInputChange = (e) => {
     // console.log(e.target.value);
     const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setRestaurant({ ...restaurant, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateUser();
+    updateRestaurant();
   };
 
-  const updateUser = () => {
-    fetch(`/users/update/${id}`, {
+  const updateRestaurant = () => {
+    fetch(`/restaurant/update/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ fullName: user.fullName, address: user.address }),
+      body: JSON.stringify({
+        name: restaurant.name,
+        address: restaurant.address,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
-        setUser(data.id);
-        setUserChange(!userChange);
-        setAllUsers(data);
+        setRestaurant(data.id);
+        setRestaurantChange(!restaurantChange);
+        setAllRestaurants(data);
         console.log("data from patch", data);
         // history.push("/admin-profile/user-control");
       });
@@ -46,19 +53,19 @@ const UserUpdate = () => {
   return (
     <UserGrid>
       <form>
-        <label>Full Name</label>
+        <label>Name</label>
         <input
           type="text"
-          name="fullName"
-          defaultValue={fullName}
+          name="name"
+          defaultValue={name}
           onChange={handleInputChange}
         />
 
-        <label>Address</label>
+        <label>Description</label>
         <input
           type="text"
-          name="address"
-          defaultValue={address}
+          name="description"
+          defaultValue={description}
           onChange={handleInputChange}
         />
 
@@ -85,4 +92,4 @@ const UserGrid = styled.div`
   }
 `;
 
-export default UserUpdate;
+export default RestaurantUpdate;
