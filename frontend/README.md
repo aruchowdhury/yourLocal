@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# yourLOCAL a Restaurant-management and Food-ordering web application.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The your LOCAL is a Restaurant-management and Food-ordering react web application which provides services to restaurant owners and customers.
 
-## Available Scripts
+Demo video:
 
-In the project directory, you can run:
+Technologies used: HTML, CSS, JavaScript, React, Styled-components, Node, Express, MongoDB, React-Icons and axios.
 
-### `yarn start`
+### Setup and ports
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Run `yarn install` to install all dependencies for yourLOCAL.
+Run `yarn start` to start the the application.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The application runs on port 3000, so you can view it in browser at http://localhost:3000/
 
-### `yarn test`
+### Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is a mobile responsive web based Restaurant-management and Food-ordering react application which brings all local small restaurant owners in one place so that any customer can find them all in one place and order from desired restaurent.
 
-### `yarn build`
+### Becoming a restaurant Owner
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. To become a restaurent owner at yourLOCAL physical resturant owner have to contact yourLOCAL admin via contact form at http://localhost:3000/contact .
+2. Based of information and discussion with restaurant owner yourLOCAL admin creates a restaurant in yourLOCAL and send the restaurant name and ID to restaurant owner.
+3. Using that restaurant name and ID restaurant owner resgister her/him self as restaurant owner at yourLOCAL then login to manage his restaurant in yourLOCAL.
+4. Inside restaurant owner profile a owner can create, update and delete menu items by her/him self.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Place an order and register as a customer
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. A customer come to your local and nevigate to desired restaurant menu page and add food items to cart.
+2. A customer dont have to be registered to checkout.
+3. Upon successfull checking out customer receives a success message and order id for future reference.
+4. But if customer register to creates a pfofile and order as loged in user she/he will be able to view previous order details and ID in addition to getting only a success message as a unregistered user.
 
-### `yarn eject`
+### your LOCAL admin user authority
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Admin user has full control over the yourLOCAL web application. Admin can add, update and delete a user also can add, update and delete a restaurant.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Features makes this application interesting:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. After login every user will see different profile page. All 3 parties (admin, restaurant owner, customer) will see their own version of customized profile page and its dynamic.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Admin user has full control on managing restaurents and users. Admin can add delete and update restaurents and users.
 
-## Learn More
+3. Alike admin user a restaurent owner user has full control over adding, updating and deleting menu items on her/his restaurant.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. All data flowing over the application are dynamic and interlinked, and updates are realtime using mongoDB database.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Disclaimers
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. This application focuses on displaying interaction between 3 parties (admin, restaurant owner, customer) and managing data in a dynamic way.
+2. This does not focues on detailed order management system and purchase food with various option because of short deadline of project submission.
