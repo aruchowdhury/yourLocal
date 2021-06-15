@@ -6,13 +6,6 @@ Demo video:
 
 Technologies used: HTML, CSS, JavaScript, React, Styled-components, Node, Express, MongoDB, React-Icons and axios.
 
-### Setup and ports
-
-Run `yarn install` to install all dependencies for yourLOCAL.
-Run `yarn start` to start the application.
-
-The application runs on port 3000, so you can view it in the browser at http://localhost:3000/
-
 ### Features
 
 This is a mobile responsive web-based Restaurant-management and Food-ordering react application that brings all local small restaurant owners in one place so that any customer can find them all in one place and order from the desired restaurant.
