@@ -1,6 +1,6 @@
 # yourLOCAL API docs
 
-The yourLOCAL API is a REST API for the yourLOCAL a Restaurant-management and Food-ordering web application which is the final capstone project of Concordia Web Development Bootcamp.
+The yourLOCAL API is a REST API for yourLOCAL a Restaurant-management and Food-ordering web application which is the final capstone project of Concordia Web Development Bootcamp.
 
 ---
 
@@ -26,13 +26,13 @@ Endpoints are grouped into 4 categories:
 
 ## Users Endpoints
 
-These endpoints control user specific data.
+These endpoints control user-specific data.
 
 1. Used to send user data to mongoDB database.
-2. Used to receive and display user data to the profile section of specefic user.
+2. Used to receive and display user data to the profile section of specific users.
 
 This data can be found in `clusterO` > `yourLOCAL` > `users` of mongoDB database.
-And a user data should have this strucure.
+And user data should have this structure.
 
 ```json
 [
@@ -53,35 +53,35 @@ And a user data should have this strucure.
 
 ### GET `/users`
 
-Brought all user data to the application to show all users is contorled by admin.
+Brought all user data to the application to show all users are controlled by the admin.
 
 ### GET `/users/find/:id`
 
-This has used to a get single user data using user ID to user profile.
+This has been used to get single-user data using user ID to a user profile.
 
 ### POST `/users/resgister`
 
-This endpoint has used to add a new user to the database using signup option.
+This endpoint has been used to add a new user to the database using the signup option.
 
 ### PATCH `/users/update/:id`
 
-This endpoint has used by admin user to update a user information using user ID from the database.
+This endpoint has used by the admin user to update a piece of user information using a user ID from the database.
 
 ### DELETE `/restaurant/delete/:id`
 
-This endpoint has used by admin user to delete a user information using user ID from the database.
+This endpoint has used by the admin user to delete a piece of user information using a user ID from the database.
 
 ---
 
 ## Restaurant Endpoints
 
-These endpoints control restaurant specific data.
+These endpoints control restaurant-specific data.
 
 1. Used to send restaurant data to mongoDB database.
-2. Used to receive and display restaurant data through out the application.
+2. Used to receive and display restaurant data throughout the application.
 
 This data can be found in `clusterO`>`yourLOCAL`>`restaurants` of mongoDB database.
-And a restaurant data should have this strucure.
+And a restaurant data should have this structure.
 
 ```json
 [
@@ -104,35 +104,35 @@ Brought all restaurant data to the application to show all restaurants.
 
 ### GET `/restaurant/:id`
 
-This has used to a get single restaurant data using restaurant ID.
+This has been used to get single restaurant data using restaurant ID.
 
 ### GET `/restaurant/:category`
 
-This has used to a get all restaurant data using restaurant category.
+This has been used to get all restaurant data using the restaurant category.
 
 ### POST `/add-restaurant`
 
-This endpoint has used by admin user to add a new restaurant to the database.
+This endpoint has used by the admin user to add a new restaurant to the database.
 
 ### PATCH `/restaurant/update/:id`
 
-This endpoint has used by admin user to update a restaurant information using restaurant ID from the database.
+This endpoint has used by the admin user to update a piece of restaurant information using restaurant ID from the database.
 
 ### DELETE `/restaurant/delete/:id`
 
-This endpoint has used by admin user to delete a restaurant information using restaurant ID from the database.
+This endpoint has used by the admin user to delete a piece of restaurant information using restaurant ID from the database.
 
 ---
 
 ## Menu-item Endpoints
 
-These endpoints control all restaurant menu specific data.
+These endpoints control all restaurant menu-specific data.
 
 1. Used to send menu-item data to mongoDB database.
 2. Used to receive and display menu-item data to the specific part of the application.
 
 This data can be found in `clusterO`>`yourLOCAL`>`menus` of mongoDB database.
-And a menu-item data should have this strucure.
+And a menu-item data should have this structure.
 
 ```json
 [
@@ -151,39 +151,39 @@ And a menu-item data should have this strucure.
 
 ### GET `/menu-items`
 
-Brought all menu-item data to the application to show all menu-items.
+Brought all menu-item data to the application to show all menu items.
 
 ### GET `/menu-items/:id`
 
-This has used to a get single menu-item data using menu-item ID.
+This has been used to get single menu-item data using menu-item ID.
 
 ### GET `/menu-items/:restaurantId`
 
-This has used to a get all menu-item data using restaurant ID of which this menu-item belong.
+This has been used to get all menu-item data using the restaurant ID to which this menu item belongs.
 
 ### POST `/menu-items`
 
-This endpoint has used by restaurant-owner user to add a new menu-item to the database.
+This endpoint has used by a restaurant-owner user to add a new menu item to the database.
 
 ### PATCH `/menu-items/update/:id`
 
-This endpoint has used by restaurant-owner user to update a menu-item information using menu-item ID from the database.
+This endpoint has used by a restaurant-owner user to update a piece of menu-item information using menu-item ID from the database.
 
 ### DELETE `/menu-items/delete/:id`
 
-This endpoint has used by restaurant-owner user to delete a menu-item information using menu-item ID from the database.
+This endpoint has used by a restaurant-owner user to delete a piece of menu-item information using menu-item ID from the database.
 
 ---
 
 ## Orders Endpoints
 
-These endpoints control all oreder specific data.
+These endpoints control all order-specific data.
 
 1. Used to send order data to mongoDB database.
 2. Used to receive and display order data to the specific part of the application.
 
 This data can be found in `clusterO`>`yourLOCAL`>`orders` of mongoDB database.
-And a order data should have this strucure.
+And order data should have this structure.
 
 ```json
 [
@@ -208,18 +208,18 @@ And a order data should have this strucure.
 
 ### GET `/orders`
 
-Brought all orders data to the application to show all orders.
+Brought all order data to the application to show all orders.
 
 ### GET `/order/:id`
 
-This has used to a get single order data using order ID to show it to customer profile.
+This has been used to get single order data using order ID to show it to a customer profile.
 
 ### POST `/order/add`
 
-This endpoint has used by customer user to add a new order to the database.
+This endpoint has used by customer users to add a new order to the database.
 
 ### DELETE `/order/delete/:id`
 
-This endpoint has used by customer user to delete a older order information using order ID from the database.
+This endpoint has used by customer users to delete a piece of older order information using order ID from the database.
 
 ---
