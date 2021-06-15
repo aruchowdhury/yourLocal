@@ -65,7 +65,7 @@ const Cart = () => {
         )}
         {cartItems.map((item) => (
           <AllOrders key={item._id}>
-            <ItemImg src={item.imageSrc} alt={item.name} />
+            <ItemImg src={item.imgSrc} alt={item.name} />
             <ItemName>{item.name}</ItemName>
             <ButtonWrap>
               <RemoveButton onClick={() => onRemove(item)}>-</RemoveButton>
@@ -97,25 +97,45 @@ const Cart = () => {
             <WrapperDiv>
               <label> Name:</label>
 
-              <input type="email" name="email" required />
+              <Input
+                type="email"
+                name="email"
+                placeholder="full name"
+                required
+              />
             </WrapperDiv>
             <WrapperDiv>
               <label> Address:</label>
 
-              <input type="email" name="email" required />
+              <Input
+                type="text"
+                name="address"
+                placeholder=" address"
+                required
+              />
             </WrapperDiv>
             <WrapperDiv>
               <label>Card No:</label>
 
-              <input type="number" name="number" required />
+              <Input
+                type="number"
+                name="number"
+                placeholder="0000 0000 0000 0000"
+                required
+              />
             </WrapperDiv>
             <WrapperDiv>
               <label>Expiry:</label>
 
-              <input type="date" name="date" required />
+              <Input1
+                type="number"
+                name="number"
+                placeholder="mm yy"
+                required
+              />
               <label>CVV:</label>
 
-              <input type="number" name="number" required />
+              <Input1 type="number" name="number" placeholder=" XXX" required />
             </WrapperDiv>
           </Div2>
           <Div3>
@@ -135,7 +155,7 @@ const Cart = () => {
 const Grid = styled.div`
   margin: 2% 4%;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1.2fr;
   justify-content: stretch;
   align-items: stretch;
   grid-gap: 0.5rem;
@@ -160,9 +180,16 @@ const AllOrders = styled.div`
   grid-row: 1/3;
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 0.3rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
 
   @media only screen and (max-width: 700px) {
     display: flex;
@@ -175,12 +202,10 @@ const AllOrders = styled.div`
 `;
 
 const ItemImg = styled.img`
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   padding: 0.8rem;
   margin: auto;
-  border: 1px solid #fff;
-  border-radius: 0.6rem;
 `;
 
 const ItemName = styled.div`
@@ -209,8 +234,8 @@ const OrderSummary = styled.div`
   grid-row-gap: 1rem;
   justify-content: stretch;
   align-items: stretch;
-  grid-gap: 0.5rem;
-  font-size: 1.2rem;
+  grid-gap: 0.8rem;
+  font-size: 1.1rem;
   margin: 0.5rem;
 
   @media only screen and (max-width: 700px) {
@@ -306,25 +331,30 @@ const Terms = styled.div`
 const Div1 = styled.div`
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
 `;
 const Div2 = styled.div`
   padding: 0.4rem;
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-  /* div {
-    margin: 0.3rem 0;
-    box-shadow: 0px 15px 10px -15px;
-  } */
-  input {
-    border: none;
-    background: ${COLORS.secondary};
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
   }
 `;
 
@@ -341,9 +371,34 @@ const Div3 = styled.div`
   align-content: center;
   background: ${COLORS.secondary};
   color: ${COLORS.primary};
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
 `;
 
+const Input = styled.input`
+  width: 70%;
+  height: 1.8rem;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  margin: 0.2rem 0.2rem 0.2rem 0;
+  border: none;
+  background: ${COLORS.secondary};
+`;
+const Input1 = styled.input`
+  width: 30%;
+  height: 1.8rem;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  margin: 0.2rem 0.2rem 0.2rem 0;
+  border: none;
+  background: ${COLORS.secondary};
+`;
 export default Cart;

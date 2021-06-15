@@ -51,7 +51,7 @@ const RestaurantUpdate = () => {
         setRestaurantChange(!restaurantChange);
         setAllRestaurants(data);
         console.log("data from patch", data);
-        // history.push("/admin-profile/user-control");
+        history.push("/admin-profile/restaurant-control");
       });
   };
 
@@ -100,7 +100,7 @@ const RestaurantUpdate = () => {
         </InputDivWrapper>
         <InputDivWrapper>
           <button style={{ opacity: "0" }}>Cancel</button>
-          <Button type="submit" onSubmit={handleSubmit}>
+          <Button type="submit" onClick={handleSubmit}>
             Update
           </Button>
         </InputDivWrapper>

@@ -5,7 +5,7 @@ export const RestaurantContext = createContext(null);
 export const RestaurantProvider = ({ children }) => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [menuItems, setMenuItems] = useState([]);
-  const [menuChange, setMenuChange] = useState(false);
+  const [menuItemChange, setMenuItemChange] = useState(false);
   const [restaurantChange, setRestaurantChange] = useState(false);
 
   return (
@@ -15,8 +15,8 @@ export const RestaurantProvider = ({ children }) => {
         setMenuItems,
         allRestaurants,
         setAllRestaurants,
-        menuChange,
-        setMenuChange,
+        menuItemChange,
+        setMenuItemChange,
         restaurantChange,
         setRestaurantChange,
       }}

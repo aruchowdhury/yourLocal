@@ -35,7 +35,7 @@ const MenuGrid = styled.div`
   width: 100%;
   margin: 3rem auto;
   display: grid;
-  grid-template-columns: 20rem 20rem 20rem;
+  grid-template-columns: 22rem 22rem 22rem;
   justify-content: center;
   align-items: center;
   grid-gap: 3rem;

@@ -7,12 +7,12 @@ export const SuccessPage = () => {
   const { id } = useParams();
   return (
     <Wrap>
-      <div>Your order is successfull!</div>
+      <h1>Your order is successfull!</h1>
 
-      <div>Order ID: {id}</div>
-      <div>
-        To Check your current order and all previous orders plase sign in.
-      </div>
+      <h2>Order ID: {id}</h2>
+      <h2>
+        To Check your current order and all previous orders please sign in.
+      </h2>
 
       <Link to="/signin">
         <Button>Sign in</Button>
@@ -36,6 +36,15 @@ const Wrap = styled.div`
   color: ${COLORS.primary};
   border-radius: 1rem;
 
+  h1 {
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+  }
+  h2 {
+    font-size: 1.2rem;
+    padding: 0.3rem 0;
+  }
+
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 12px 12px rgba(0, 0, 0, 0.12);
@@ -45,11 +54,8 @@ const Wrap = styled.div`
       0 12px 12px rgba(0, 0, 0, 0.25);
     transition: 0.3s ease-in-out;
   }
-`;
-
-const MessageDiv = styled.form`
-  padding: 2rem;
   @media (max-width: 600px) {
+    margin: 5% 1.5%;
   }
 `;
 

@@ -51,6 +51,13 @@ const RestaurantAddition = () => {
 
   //update or delete restaurant
 
+  //   <select onChange={onChange} name="type" id="type">
+  //   <option value="Italian">Italian</option>
+  //   <option value="Bangladeshi">Bangladeshi</option>
+  //   <option value="Japanese">Japanese</option>
+  //   <option value="Montreal-born">Montreal-born</option>
+  // </select>
+
   return (
     <Grid>
       <ProfileInfo>
@@ -148,6 +155,8 @@ const Grid = styled.div`
 
   @media (max-width: 675px) {
     grid-template-columns: 20rem;
+    justify-content: space-evenly;
+    justify-items: center;
   }
 `;
 
@@ -164,6 +173,11 @@ const ProfileInfo = styled.div`
   h1 {
     padding: 0 0 1rem 0;
   }
+  @media (max-width: 600px) {
+    h1 {
+      padding: 0 0 1rem 0;
+    }
+  }
 `;
 
 const Input = styled.input`
@@ -174,6 +188,10 @@ const Input = styled.input`
   margin: 0.2rem 0.2rem 0.2rem 0;
   background: ${COLORS.background};
   border: none;
+  @media (max-width: 600px) {
+    width: 14rem;
+    margin: 0.5rem 0;
+  }
 `;
 
 const Button = styled.button`
@@ -193,6 +211,10 @@ const Button = styled.button`
     color: ${COLORS.primary};
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    width: 14rem;
+    margin: 0.5rem 0 0 0;
+  }
 `;
 const InputDivWrapper = styled.div`
   display: flex;
@@ -200,5 +222,9 @@ const InputDivWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 export default RestaurantAddition;

@@ -55,7 +55,9 @@ const Foot = styled.div`
   font-size: 1rem;
 
   @media (max-width: 600px) {
-    position: relative;
+    position: absolute;
+    bottom: -1rem;
+    z-index: 1;
   }
 `;
 

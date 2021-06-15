@@ -34,8 +34,9 @@ const RestaurantGrid = styled.div`
   align-items: center;
   grid-gap: 1.8rem;
 
-  @media (max-width: 675px) {
-    grid-template-columns: 27rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 20rem;
+    margin: 0 0 0 0;
   }
 `;
 

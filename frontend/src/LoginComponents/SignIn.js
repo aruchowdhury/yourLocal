@@ -45,7 +45,7 @@ export const Login = () => {
           .then((json) => {
             // console.log(json);
             setCurrentUser(json.data);
-            // localStorage.setItem("currentUser", json.data);
+            localStorage.setItem("currentUser", json.data);
             if (json.data.isAdmin) {
               history.push("/admin-profile");
             } else if (json.data.isRestaurantOwner) {
@@ -129,6 +129,9 @@ const Wrap = styled.div`
       0 12px 12px rgba(0, 0, 0, 0.25);
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    margin: 5% 1.5%;
+  }
 `;
 
 const LoginForm = styled.form`
@@ -139,8 +142,8 @@ const LoginForm = styled.form`
   align-items: left;
   padding: 2rem;
   @media (max-width: 600px) {
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 `;
 
@@ -152,6 +155,10 @@ const Input = styled.input`
   margin: 0.2rem 0.2rem 0.2rem 0;
   background: ${COLORS.background};
   border: none;
+  @media (max-width: 600px) {
+    width: 17rem;
+    margin: 0.5rem 0;
+  }
 `;
 
 const Button = styled.button`
@@ -171,6 +178,10 @@ const Button = styled.button`
     color: ${COLORS.primary};
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    width: 17rem;
+    margin: 0.5rem 0;
+  }
 `;
 const InputDivWrapper = styled.div`
   display: flex;
@@ -181,9 +192,21 @@ const InputDivWrapper = styled.div`
   label {
     margin-right: 1rem;
   }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      margin: 0;
+    }
+  }
 `;
 const StyledLink = styled.h3`
   margin: 1rem 0 0 5.7rem;
+  @media (max-width: 600px) {
+    margin: 1rem 0;
+  }
 `;
 const SignUpLink = styled(Link)`
   background: ${COLORS.secondary};

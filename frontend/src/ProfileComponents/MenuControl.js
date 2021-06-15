@@ -9,12 +9,12 @@ const MenuControl = () => {
   const { menuItems, setMenuItems, menuItemChange, setMenuItemChange } =
     useContext(RestaurantContext);
   const history = useHistory();
-  const { restaurantId } = useParams();
+  const { restoid } = useParams();
 
-  console.log("restaurant id from menu control", restaurantId);
+  console.log("restaurant id from menu control", restoid);
 
   useEffect(() => {
-    fetch(`/menu-items/${restaurantId}`, { method: "GET" })
+    fetch(`/menu-items/${restoid}`, { method: "GET" })
       .then((res) => res.json())
       .then((json) => {
         // console.log("data from user control", json.data);
@@ -38,7 +38,7 @@ const MenuControl = () => {
   };
 
   const handleClickUpdate = (e, id) => {
-    history.push(`/restaurant-owner-profile/menu-control/update/${id}`);
+    history.push(`/restaurant-owner-profile/menu-control/update/cats/${id}`);
   };
 
   return (

@@ -3,19 +3,32 @@ import { DropDownItems } from "./DropDownItems";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS } from "../Constants";
-
+import { SignInContext } from "../LoginComponents/SignInContext";
 const RestaurantDropDown = () => {
+  const { currentUser } = useContext(SignInContext);
   return (
     <>
-      <DropDownMenu>
-        {DropDownItems.map((item, index) => {
-          return (
-            <MenuItems key={index}>
-              <ItemLink to={item.path}>{item.title}</ItemLink>
-            </MenuItems>
-          );
-        })}
-      </DropDownMenu>
+      {!currentUser ? (
+        <DropDownMenu>
+          {DropDownItems.map((item, index) => {
+            return (
+              <MenuItems key={index}>
+                <ItemLink to={item.path}>{item.title}</ItemLink>
+              </MenuItems>
+            );
+          })}
+        </DropDownMenu>
+      ) : (
+        <DropDownMenu1>
+          {DropDownItems.map((item, index) => {
+            return (
+              <MenuItems key={index}>
+                <ItemLink to={item.path}>{item.title}</ItemLink>
+              </MenuItems>
+            );
+          })}
+        </DropDownMenu1>
+      )}
     </>
   );
 };
@@ -24,10 +37,10 @@ const RestaurantDropDown = () => {
 //and onclick it will take you to restaurents page
 
 const DropDownMenu = styled.div`
-  width: 7.1rem;
+  width: 7.2rem;
   position: absolute;
-  top: 2.05rem;
-  right: 0.1rem;
+  top: 2.9rem;
+  right: 22.5rem;
   list-style: none;
   text-align: left;
   z-index: 1;
@@ -36,6 +49,21 @@ const DropDownMenu = styled.div`
     display: none;
   }
 `;
+
+const DropDownMenu1 = styled.div`
+  width: 7.2rem;
+  position: absolute;
+  top: 2.9rem;
+  right: 23.35rem;
+  list-style: none;
+  text-align: left;
+  z-index: 1;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
+
 const MenuItems = styled.div`
   background: ${COLORS.secondary};
   cursor: pointer;

@@ -147,6 +147,10 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   font-size: 1.2rem;
   color: ${COLORS.primary};
+  @media (max-width: 600px) {
+    position: absolute;
+    z-index: 10;
+  }
 `;
 
 const Logo = styled(Link)`
@@ -190,7 +194,7 @@ const MenuItems = styled.div`
     flex-direction: column;
     width: 100%;
     // passed isOpen through props to control menu is open or not by changing max-height
-    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
+    max-height: ${({ isOpen }) => (isOpen ? "330px" : "0")};
     transition: max-height 0.4s ease-in;
   }
 `;
@@ -270,7 +274,7 @@ const RestaurantMenuItemLink = styled(NavLink)`
   text-align: center;
   color: ${COLORS.primary};
   border-radius: 4px;
-  position: absolute;
+  /* position: absolute; */
   top: 0.05rem;
   right: 22rem;
 
@@ -289,7 +293,7 @@ const ProfileMenuItemLink = styled(NavLink)`
   text-align: center;
   color: ${COLORS.primary};
   border-radius: 4px;
-  position: absolute;
+  /* position: absolute; */
   top: 0.05rem;
   right: 30rem;
 

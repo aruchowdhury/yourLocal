@@ -47,7 +47,7 @@ const UserUpdate = () => {
         setUserChange(!userChange);
         setAllUsers(data);
         console.log("data from patch", data);
-        // history.push("/admin-profile/user-control");
+        history.push("/admin-profile/user-control");
       });
   };
 
@@ -98,7 +98,7 @@ const UserUpdate = () => {
         </InputDivWrapper>
         <InputDivWrapper>
           <button style={{ opacity: "0" }}>Cancel</button>
-          <Button type="submit" onSubmit={handleSubmit}>
+          <Button type="submit" onClick={handleSubmit}>
             Update
           </Button>
         </InputDivWrapper>
@@ -132,6 +132,9 @@ const UserGrid = styled.div`
       0 12px 12px rgba(0, 0, 0, 0.25);
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    margin: 5% 1.5%;
+  }
 `;
 
 const UpdateForm = styled.form`
@@ -154,7 +157,11 @@ const Input = styled.input`
   border-radius: 0.3rem;
   margin: 0.2rem 0.2rem 0.2rem 0;
   border: none;
-  background: ${COLORS.background}; ;
+  background: ${COLORS.background};
+  @media (max-width: 600px) {
+    width: 17rem;
+    margin: 0.5rem 0;
+  }
 `;
 
 const Button = styled.button`
@@ -174,6 +181,10 @@ const Button = styled.button`
     color: ${COLORS.primary};
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    width: 17rem;
+    margin: 0.5rem 0 0 0;
+  }
 `;
 const InputDivWrapper = styled.div`
   display: flex;
@@ -183,6 +194,14 @@ const InputDivWrapper = styled.div`
   align-items: center;
   label {
     margin-right: 1rem;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      margin: 0 0;
+    }
   }
 `;
 

@@ -95,7 +95,7 @@ const RestaurantOwnerProfile = () => {
 
       <UpdateItem>
         <Link
-          to={`/restaurant-owner-profile/menu-control/${currentUser.restaurantId}`}
+          to={`/restaurant-owner-profile/menu-control/resto/get/${currentUser.restaurantId}`}
         >
           <MenuUpdateBtn>Update/Delete Menu Items</MenuUpdateBtn>
         </Link>
@@ -300,6 +300,10 @@ const Input = styled.input`
   border-radius: 0.3rem;
   margin: 0.2rem 10rem 0.2rem 0;
   border: none;
+  @media (max-width: 600px) {
+    width: 16.5rem;
+    margin: 0.5rem 0;
+  }
 `;
 
 const Button = styled.button`
@@ -319,6 +323,10 @@ const Button = styled.button`
     border-radius: 0.4rem;
     color: ${COLORS.primary};
     transition: 0.3s ease-in-out;
+  }
+  @media (max-width: 600px) {
+    width: 16.5rem;
+    margin: 0.5rem 5rem 0 0;
   }
 `;
 
@@ -341,6 +349,9 @@ const MenuUpdateBtn = styled.button`
     color: ${COLORS.primary};
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    width: 16.5rem;
+  }
 `;
 
 const InputDivWrapper = styled.div`
@@ -349,6 +360,10 @@ const InputDivWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const Span = styled.span`

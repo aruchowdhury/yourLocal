@@ -146,14 +146,13 @@ const CustomerSignUp = () => {
           <Button onClick={onClick}> Register Now </Button>
         </InputDivWrapper>
       </RegistrationForm>
-      <div>
-        <StyledLink>
-          Restaurant Owner?{" "}
-          <SignUpLink Link to="/signup/restaurant-owner">
-            Please sign up here!
-          </SignUpLink>
-        </StyledLink>
-      </div>
+
+      <StyledLink>
+        Restaurant Owner?{" "}
+        <SignUpLink Link to="/signup/restaurant-owner">
+          Sign up here!
+        </SignUpLink>
+      </StyledLink>
     </Wrap>
   );
 };
@@ -181,6 +180,9 @@ const Wrap = styled.div`
       0 12px 12px rgba(0, 0, 0, 0.25);
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    margin: 5% 1.5%;
+  }
 `;
 
 const RegistrationForm = styled.form`
@@ -191,8 +193,8 @@ const RegistrationForm = styled.form`
   align-items: left;
   padding: 2rem;
   @media (max-width: 600px) {
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 `;
 
@@ -203,7 +205,11 @@ const Input = styled.input`
   border-radius: 0.3rem;
   margin: 0.2rem 0.2rem 0.2rem 0;
   border: none;
-  background: ${COLORS.background}; ;
+  background: ${COLORS.background};
+  @media (max-width: 600px) {
+    width: 17rem;
+    margin: 0.5rem 0;
+  }
 `;
 
 const Button = styled.button`
@@ -223,6 +229,10 @@ const Button = styled.button`
     color: ${COLORS.primary};
     transition: 0.3s ease-in-out;
   }
+  @media (max-width: 600px) {
+    width: 17rem;
+    margin: 0.5rem 0 0 0;
+  }
 `;
 const InputDivWrapper = styled.div`
   display: flex;
@@ -233,9 +243,20 @@ const InputDivWrapper = styled.div`
   label {
     margin-right: 1rem;
   }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      margin: 0 0;
+    }
+  }
 `;
 const StyledLink = styled.h3`
   margin: 1rem 0 0 8rem;
+  @media (max-width: 600px) {
+    margin: 0;
+  }
 `;
 const SignUpLink = styled(Link)`
   background: ${COLORS.secondary};
@@ -253,4 +274,8 @@ const SignUpLink = styled(Link)`
 `;
 const InputDiv = styled.div`
   margin: 0.5rem 0 0.5rem 9.6rem;
+
+  @media (max-width: 600px) {
+    margin: 0.5rem 0;
+  }
 `;

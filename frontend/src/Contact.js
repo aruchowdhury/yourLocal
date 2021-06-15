@@ -119,9 +119,10 @@ const Wrapper = styled.div`
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
   @media (max-width: 600px) {
-    margin: 1rem;
+    margin: 5% 1.5%;
+    padding: 0;
     border-radius: 1rem;
-    width: 80vw;
+    width: 90vw;
     height: 100%;
   }
 `;
@@ -177,6 +178,9 @@ const Input = styled.input`
   margin: 0.2rem 0.2rem 0.2rem 0;
   border: none;
   background-color: ${COLORS.background};
+  @media (max-width: 600px) {
+    width: 17rem;
+  }
 `;
 const MessageInput = styled.input`
   width: 30.5rem;
@@ -188,7 +192,7 @@ const MessageInput = styled.input`
   background-color: ${COLORS.background};
 
   @media (max-width: 600px) {
-    width: 15rem;
+    width: 17rem;
     height: 10rem;
   }
 `;
@@ -218,7 +222,7 @@ const Button = styled.button`
     color: ${COLORS.primary};
   }
   @media (max-width: 600px) {
-    margin-right: 0.5rem;
+    margin-right: 0.2rem;
   }
 `;
 

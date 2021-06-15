@@ -11,14 +11,12 @@ const Restaurant = ({ restaurant }) => {
     <ItemWrapper>
       <ItemImg src={restaurant.imgSrc} />
       <InfoWrap>
-        <Hover>
-          <Link to={`/restaurants/${restaurant.category}/${restaurant._id}`}>
-            <OrderButton>Order now!</OrderButton>
-          </Link>
-          <Name>{restaurant.name}</Name>
-          <InfoDiv>{restaurant.description}</InfoDiv>
-          <Address>{restaurant.address}</Address>
-        </Hover>
+        <Name>{restaurant.name}</Name>
+        <InfoDiv>{restaurant.description}</InfoDiv>
+        <Address>{restaurant.address}</Address>
+        <Link to={`/restaurants/${restaurant.category}/${restaurant._id}`}>
+          <OrderButton>Order now!</OrderButton>
+        </Link>
       </InfoWrap>
     </ItemWrapper>
   );
@@ -35,14 +33,38 @@ const ItemWrapper = styled.div`
   justify-content: space-between;
   align-items: left;
   align-content: left;
+  color: orange;
   background: ${COLORS.secondary};
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
-    0 16px 16px rgba(0, 0, 0, 0.12);
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
+  @media (max-width: 600px) {
+    width: 20rem;
+    height: 13rem;
+  }
 `;
 
 const InfoWrap = styled.div`
   margin: 1rem;
+  position: relative;
+  background-color: rgba(74, 66, 66, 0.8);
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 12px 12px rgba(0, 0, 0, 0.12);
+  &:hover {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
+      0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
+      0 12px 12px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 const ItemImg = styled.img`
@@ -50,19 +72,16 @@ const ItemImg = styled.img`
   width: 26rem;
   height: 18rem;
   position: absolute;
-`;
-const Hover = styled.div`
-  position: relative;
-  background: none;
-  opacity: 0;
-  &:hover {
-    opacity: 1;
-    transition: all 0.3s ease-in-out;
+  @media (max-width: 600px) {
+    width: 20rem;
+    height: 13rem;
   }
 `;
+
 const OrderButton = styled.button`
-  width: 60%;
+  width: 100%;
   height: 1.6rem;
+  font-size: 1.2rem;
   border: none;
   margin: 0.3rem 0;
   border-radius: 0.3rem;
@@ -71,10 +90,16 @@ const OrderButton = styled.button`
   border-radius: 0.4rem;
   color: ${COLORS.secondary};
   cursor: pointer;
+  &:hover {
+    border: 0.1rem solid orange;
+    background: rgba(74, 66, 66, 0.8);
+    color: orange;
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 const InfoDiv = styled.div`
-  color: #5c5e5e;
+  color: ${COLORS.background};
   font-style: italic;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;

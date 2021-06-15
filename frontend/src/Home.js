@@ -97,6 +97,8 @@ const Landing = styled.div`
     0 16px 16px rgba(0, 0, 0, 0.12);
   @media (max-width: 600px) {
     background-image: url(${imgMobile});
+    top: 10%;
+    z-index: 2;
   }
 `;
 
