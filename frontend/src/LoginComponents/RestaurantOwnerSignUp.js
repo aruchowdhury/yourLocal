@@ -10,6 +10,7 @@ const SignUp = () => {
     phoneNo: Number,
     email: "",
     restaurantId: "",
+    restaurantName: "",
     password: "",
     confirmPassword: "",
     isRestaurantOwner: false,
@@ -39,6 +40,7 @@ const SignUp = () => {
       phoneNo: input.phoneNo,
       email: input.email,
       restaurantId: input.restaurantId,
+      restaurantName: input.restaurantName,
       password: input.password,
       confirmPassword: input.confirmPassword,
       isRestaurantOwner: trueResto,
@@ -55,6 +57,7 @@ const SignUp = () => {
         address: "",
         phoneNo: Number,
         restaurantId: "",
+        restaurantName: "",
         password: "",
         confirmPassword: "",
         isRestaurantOwner: false,
@@ -122,6 +125,17 @@ const SignUp = () => {
           />
         </InputDivWrapper>
         <InputDivWrapper>
+          <label> Restaurant Name:</label>
+          <Input
+            onChange={onChange}
+            type="text"
+            name="restaurantName"
+            value={input.restaurantName}
+            placeholder="Restaurant Name"
+            required
+          />
+        </InputDivWrapper>
+        <InputDivWrapper>
           <label>Password:</label>
           <Input
             onChange={onChange}
@@ -155,7 +169,7 @@ const SignUp = () => {
         </InputDiv>
 
         <div>
-          <Button onClick={onClick}> Add User </Button>
+          <Button onClick={onClick}> Register </Button>
         </div>
       </RegistrationForm>
     </Wrap>

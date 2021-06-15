@@ -143,7 +143,7 @@ const CustomerSignUp = () => {
         </InputDiv>
 
         <InputDivWrapper>
-          <Button onClick={onClick}> Register Now </Button>
+          <Button onClick={onClick}> Register </Button>
         </InputDivWrapper>
       </RegistrationForm>
 

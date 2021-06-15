@@ -23,7 +23,7 @@ const Cart = () => {
   }, 0);
 
   const taxPrice = itemsPrice * 0.15;
-  const shippingPrice = itemsPrice > 200 ? "Free" : 4.99;
+  const shippingPrice = itemsPrice > 50 ? "Free" : 2.99;
   const totalPrice =
     shippingPrice === "Free"
       ? itemsPrice + taxPrice
