@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { COLORS } from "../Constants";
 import { Link, useHistory } from "react-router-dom";
 import { SignInContext } from "./SignInContext";
@@ -7,7 +7,7 @@ import { SignInContext } from "./SignInContext";
 export const Login = () => {
   const { allUsers, currentUser, setCurrentUser, setAllUsers } =
     useContext(SignInContext);
-
+  //
   const [inputEmail, setInputEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -107,8 +107,18 @@ export const Login = () => {
 
 export default Login;
 
+const Animation = keyframes`
+  0% { top: -3.125rem; }
+  100% { top: 3rem;}
+`;
+
 const Wrap = styled.div`
-  margin: 10% 25%;
+  position: relative;
+  top: 0;
+  animation: ${Animation};
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  margin: 5% 25%;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -130,7 +140,10 @@ const Wrap = styled.div`
     transition: 0.3s ease-in-out;
   }
   @media (max-width: 600px) {
-    margin: 5% 1.5%;
+    margin: 5% 1.5% 32%;
+    position: relative;
+    top: 100;
+    animation: none;
   }
 `;
 

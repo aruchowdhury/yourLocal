@@ -20,6 +20,12 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     line-height: 1;
     text-decoration: none;
+
+   
+}
+
+
+
   }
   h1{
       font-weight: 00;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { COLORS } from "../Constants";
 import { CartContext } from "../CartComponents/CartContext";
 
@@ -20,11 +20,20 @@ const MenuItem = ({ item }) => {
     </ItemWrapper>
   );
 };
+const Animation = keyframes`
+  0% { top: -3.125rem; }
+  100% { top: 3rem;}
+`;
 
 const ItemWrapper = styled.div`
-  padding: 1rem;
+  position: relative;
+  top: 0;
+  animation: ${Animation};
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  padding: 0 0 1rem 0;
   width: 100%;
-  height: 22rem;
+  height: 18rem;
   border: none;
   border-radius: 0.5rem;
   display: flex;
@@ -34,34 +43,38 @@ const ItemWrapper = styled.div`
   align-items: left;
   align-content: left;
   background: ${COLORS.secondary};
+  margin: -25% 0 20%;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 12px 12px rgba(0, 0, 0, 0.12);
+  transition: 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
       0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
       0 12px 12px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease-in-out;
+    transform: translateY(-0.5rem);
   }
   @media (max-width: 600px) {
     height: 23rem;
+    margin: -12% 0 20%;
   }
 `;
 
 const InfoWrap = styled.div`
+  padding: 0.5rem;
   border-radius: 0.5rem;
   width: 100%;
-  height: 5rem;
-  margin-bottom: 1rem;
+  height: 5.8rem;
+  margin-bottom: 0.5rem;
   @media (max-width: 600px) {
-    height: 5.5rem;
+    height: 6.5rem;
   }
 `;
 
 const ItemImg = styled.img`
-  border-radius: 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
   width: 100%;
-  height: 14rem;
+  height: 10rem;
 `;
 
 const PriceWrap = styled.div`
@@ -99,7 +112,7 @@ const OrderButton = styled.button`
 const InfoDiv = styled.div`
   color: #5c5e5e;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 0.5rem;
   height: 2rem;
   @media (max-width: 600px) {
@@ -108,7 +121,8 @@ const InfoDiv = styled.div`
 `;
 
 const Name = styled.div`
-  font-size: 1.3rem;
+  font-size: 1rem;
+  font-weight: bold;
   border-radius: 0.3rem;
 `;
 

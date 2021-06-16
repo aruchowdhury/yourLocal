@@ -147,8 +147,9 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   font-size: 1.2rem;
   color: ${COLORS.primary};
+
   @media (max-width: 600px) {
-    position: absolute;
+    position: relative;
     z-index: 10;
   }
 `;

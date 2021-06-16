@@ -209,7 +209,7 @@ const Grid = styled.div`
   grid-template-columns: 1.3fr 2fr;
   justify-content: stretch;
   align-items: stretch;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
 
   @media (max-width: 675px) {
     grid-template-columns: 20rem;
@@ -236,11 +236,13 @@ const ProfileInfo = styled.div`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 12px 12px rgba(0, 0, 0, 0.12);
+  transition: 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
       0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
       0 12px 12px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease-in-out;
+
+    transform: translateY(-0.5rem);
   }
 `;
 // const OtherInfo = styled.div`
@@ -262,11 +264,13 @@ const UpdateItem = styled.div`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 12px 12px rgba(0, 0, 0, 0.12);
+  transition: 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
       0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
       0 12px 12px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease-in-out;
+
+    transform: translateY(-0.5rem);
   }
 `;
 const AddItem = styled.div`
@@ -284,11 +288,13 @@ const AddItem = styled.div`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 12px 12px rgba(0, 0, 0, 0.12);
+  transition: 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
       0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
       0 12px 12px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease-in-out;
+
+    transform: translateY(-0.5rem);
   }
 `;
 

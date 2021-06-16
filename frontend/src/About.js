@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { COLORS } from "./Constants";
 
 const About = () => {
@@ -51,6 +51,11 @@ const About = () => {
   );
 };
 
+const Animation = keyframes`
+  0% { top: -3.125rem; }
+  100% { top: 3rem;}
+`;
+
 const Background = styled.div`
   align-content: center;
   align-items: center;
@@ -58,9 +63,15 @@ const Background = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
+
 const Wrapper = styled.div`
+  position: relative;
+  top: 0;
+  animation: ${Animation};
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
   padding: 2rem;
-  margin: 2% 20%;
+  margin: 0 20%;
   border-radius: 1.5rem;
   width: 100%;
   height: 100%;
@@ -71,7 +82,7 @@ const Wrapper = styled.div`
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
   @media (max-width: 600px) {
-    margin: 1rem;
+    margin: 0 1.5% 22%;
     border-radius: 1rem;
     width: 90vw;
     height: 100%;

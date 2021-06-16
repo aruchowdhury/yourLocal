@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { COLORS } from "../Constants";
 
@@ -22,9 +22,20 @@ const Restaurant = ({ restaurant }) => {
   );
 };
 
+const Animation = keyframes`
+  0% { top: -3.125rem; }
+  100% { top: 3rem;}
+`;
+
 const ItemWrapper = styled.div`
+  position: relative;
+  top: 0;
+  animation: ${Animation};
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
   width: 26rem;
   height: 18rem;
+  margin: -15% 0 20%;
   border: none;
   border-radius: 1.5rem;
   display: flex;
@@ -38,15 +49,18 @@ const ItemWrapper = styled.div`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
     0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
     0 12px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 2px 2px rgba(0, 0, 0, 0.25),
       0 4px 4px rgba(0, 0, 0, 0.25), 0 8px 8px rgba(0, 0, 0, 0.25),
       0 12px 12px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease-in-out;
+
+    transform: translateY(-0.5rem);
   }
   @media (max-width: 600px) {
     width: 20rem;
     height: 13rem;
+    margin: -12% 0 20%;
   }
 `;
 
@@ -91,7 +105,7 @@ const OrderButton = styled.button`
   color: ${COLORS.secondary};
   cursor: pointer;
   &:hover {
-    border: 0.1rem solid orange;
+    border: 0.1rem solid ${COLORS.primary};
     background: rgba(74, 66, 66, 0.8);
     color: orange;
     transition: 0.3s ease-in-out;

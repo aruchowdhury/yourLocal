@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { COLORS } from "../Constants";
 import axios from "axios";
 
@@ -177,9 +177,18 @@ const SignUp = () => {
 };
 
 export default SignUp;
+const Animation = keyframes`
+  0% { top: -3.125rem; }
+  100% { top: .7rem;}
+`;
 
 const Wrap = styled.div`
-  margin: 5% 25%;
+  position: relative;
+  top: 0;
+  animation: ${Animation};
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  margin: 1% 25%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

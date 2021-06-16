@@ -55,9 +55,7 @@ const Foot = styled.div`
   font-size: 1rem;
 
   @media (max-width: 600px) {
-    position: absolute;
-    bottom: -1rem;
-    z-index: 1;
+    position: inherit;
   }
 `;
 
@@ -95,10 +93,9 @@ const Social = styled.div`
     margin: 0 2rem;
     padding: 0 0.3rem;
     color: ${COLORS.primary};
-    border: 0.1rem solid ${COLORS.background};
+    border: 0.1rem solid transparent;
     border-radius: 0.4rem;
     &:hover {
-      opacity: 0.5;
       transition: all 0.2s ease-in-out;
       border: 0.1rem solid ${COLORS.primary};
     }

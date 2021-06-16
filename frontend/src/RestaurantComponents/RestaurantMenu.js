@@ -35,10 +35,10 @@ const MenuGrid = styled.div`
   width: 100%;
   margin: 3rem auto;
   display: grid;
-  grid-template-columns: 22rem 22rem 22rem;
+  grid-template-columns: 17rem 17rem 17rem 17rem;
   justify-content: center;
   align-items: center;
-  grid-gap: 3rem;
+  grid-gap: 2rem;
 
   @media (max-width: 675px) {
     grid-template-columns: 20rem;

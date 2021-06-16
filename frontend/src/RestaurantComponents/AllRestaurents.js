@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Restaurant from "./Restaurant";
 import { RestaurantContext } from "./RestaurantContext";
 

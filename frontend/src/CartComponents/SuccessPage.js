@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { COLORS } from "../Constants";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
@@ -23,7 +23,17 @@ export const SuccessPage = () => {
 
 export default SuccessPage;
 
+const Animation = keyframes`
+  0% { top: -3.125rem; }
+  100% { top: 3rem;}
+`;
+
 const Wrap = styled.div`
+  position: relative;
+  top: 0;
+  animation: ${Animation};
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
   margin: 10% 25%;
   padding: 2rem;
   display: flex;
