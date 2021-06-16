@@ -55,7 +55,7 @@ const ItemWrapper = styled.div`
     transform: translateY(-0.5rem);
   }
   @media (max-width: 600px) {
-    height: 23rem;
+    height: 18rem;
     margin: -12% 0 20%;
   }
 `;

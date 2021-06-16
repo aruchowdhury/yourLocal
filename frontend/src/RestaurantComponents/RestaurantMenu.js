@@ -41,7 +41,7 @@ const MenuGrid = styled.div`
   grid-gap: 2rem;
 
   @media (max-width: 675px) {
-    grid-template-columns: 20rem;
+    grid-template-columns: 18rem;
   }
 `;
 
