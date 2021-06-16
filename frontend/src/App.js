@@ -58,13 +58,9 @@ const App = () => {
           <Route exact path="/customer-profile">
             <CustomerProfile />
           </Route>
-          {currentUser.isAdmin ? (
+          {currentUser.isAdmin && (
             <Route exact path="/admin-profile">
               <AdminProfile />
-            </Route>
-          ) : (
-            <Route exact path="/signin">
-              <SignIn />
             </Route>
           )}
           <Route exact path="/admin-profile/user-control">
