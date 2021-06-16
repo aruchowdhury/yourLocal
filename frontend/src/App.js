@@ -78,7 +78,7 @@ const App = () => {
           </Route>
           <Route
             exact
-            path="/restaurant-owner-profile/menu-control/resto/get/:restoid"
+            path="/restaurant-owner-profile/menu-control/resto/:restoid"
           >
             <MenuControl />
           </Route>
@@ -94,13 +94,7 @@ const App = () => {
           <Route exact path="/order/cart">
             <Cart />
           </Route>
-          {/* <Route exact path="/restaurant-owner-profile/menu-control/:id">
-            <MenuControl />
-          </Route> */}
-          <Route
-            exact
-            path="/restaurant-owner-profile/menu-control/update/cats/:id"
-          >
+          <Route exact path="/restaurant-owner-profile/menu-control/update/:id">
             <MenuUpdate />
           </Route>
 

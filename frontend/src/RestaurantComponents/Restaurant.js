@@ -60,7 +60,7 @@ const ItemWrapper = styled.div`
   @media (max-width: 600px) {
     width: 20rem;
     height: 13rem;
-    margin: -12% 0 20%;
+    margin: -9% 0 20%;
   }
 `;
 

@@ -5,8 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { SignInContext } from "./SignInContext";
 
 export const Login = () => {
-  const { allUsers, currentUser, setCurrentUser, setAllUsers } =
-    useContext(SignInContext);
+  const { allUsers, setCurrentUser, setAllUsers } = useContext(SignInContext);
   //
   const [inputEmail, setInputEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -99,7 +98,6 @@ export const Login = () => {
             Not Registed?{" "}
             <SignUpLink to="/signup/customer">Please sign up!</SignUpLink>
           </StyledLink>
-          ßß
         </div>
       </LoginForm>
     </Wrap>
@@ -141,10 +139,9 @@ const Wrap = styled.div`
     transition: 0.3s ease-in-out;
   }
   @media (max-width: 600px) {
-    margin: 5% 1.5% 32%;
+    margin: 25% 1.5% 42%;
     position: relative;
     top: 100;
-    animation: none;
   }
 `;
 

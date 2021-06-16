@@ -6,13 +6,13 @@ import { useHistory } from "react-router-dom";
 import { COLORS } from "../Constants";
 
 const MenuUpdate = () => {
-  const { menuItems, setMenuItems, menuItemChange, setMenuItemChange } =
+  const { setMenuItems, menuItemChange, setMenuItemChange } =
     useContext(RestaurantContext);
   const { id } = useParams();
 
   const [menu, setMenu] = useState({});
   const [name, setName] = useState();
-  const [des, setAddress] = useState();
+  const [address, setAddress] = useState();
   const [description, setDescription] = useState();
   const [price, setPrice] = useState();
 

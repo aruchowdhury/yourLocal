@@ -95,7 +95,7 @@ const RestaurantOwnerProfile = () => {
 
       <UpdateItem>
         <Link
-          to={`/restaurant-owner-profile/menu-control/resto/get/${currentUser.restaurantId}`}
+          to={`/restaurant-owner-profile/menu-control/resto/${currentUser.restaurantId}`}
         >
           <MenuUpdateBtn>Update/Delete Menu Items</MenuUpdateBtn>
         </Link>

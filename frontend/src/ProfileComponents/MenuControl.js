@@ -38,7 +38,7 @@ const MenuControl = () => {
   };
 
   const handleClickUpdate = (e, id) => {
-    history.push(`/restaurant-owner-profile/menu-control/update/cats/${id}`);
+    history.push(`/restaurant-owner-profile/menu-control/update/${id}`);
   };
 
   return (
