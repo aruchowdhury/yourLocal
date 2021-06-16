@@ -46,7 +46,7 @@ const MenuUpdate = () => {
         setMenu(data.id);
         setMenuItemChange(!menuItemChange);
         setMenuItems(data);
-        console.log("data from patch", data);
+        //console.log("data from patch", data);
         history.push(`/restaurant-owner-profile`);
       });
   };
