@@ -11,7 +11,7 @@ const MenuControl = () => {
   const history = useHistory();
   const { restoid } = useParams();
 
-  console.log("restaurant id from menu control", restoid);
+  //console.log("restaurant id from menu control", restoid);
 
   useEffect(() => {
     fetch(`/menu-items/${restoid}`, { method: "GET" })
@@ -22,7 +22,7 @@ const MenuControl = () => {
       });
   }, [menuItemChange]);
 
-  console.log("menuItems from menu control", menuItems);
+  //console.log("menuItems from menu control", menuItems);
 
   const handleClickDelete = (e, id) => {
     e.preventDefault();

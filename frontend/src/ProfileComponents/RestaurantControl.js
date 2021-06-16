@@ -15,7 +15,7 @@ const RestaurantControl = () => {
     setRestaurantChange,
   } = useContext(RestaurantContext);
 
-  console.log("all restaurants at admin profile page", allRestaurants);
+  //console.log("all restaurants at admin profile page", allRestaurants);
 
   // console.log("all users from user control", allUsers);
   const history = useHistory();

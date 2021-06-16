@@ -9,7 +9,7 @@ const RestaurantMenu = () => {
 
   const { restaurantId } = useParams();
 
-  console.log("restaurantId", restaurantId);
+  //console.log("restaurantId", restaurantId);
 
   useEffect(() => {
     fetch(`/menu-items/${restaurantId}`, { method: "GET" })
@@ -20,7 +20,7 @@ const RestaurantMenu = () => {
       });
   }, []);
 
-  console.log("menuitems", menuItems);
+  //console.log("menuitems", menuItems);
 
   return (
     <MenuGrid>

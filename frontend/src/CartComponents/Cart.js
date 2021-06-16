@@ -5,18 +5,12 @@ import { COLORS } from "../Constants";
 import { useHistory } from "react-router-dom";
 import { SignInContext } from "../LoginComponents/SignInContext";
 
-//imported CartContyext to add reomve ites and calculate price on cart
-// if there is no item conditionaly it will show an empty message
-// used map to display some information of added items on the cartItems array
-// calcuted total price of all items from the cartItems array
-
 const Cart = () => {
   const { cartItems, setCartItems, onAdd, onRemove } = useContext(CartContext);
   const { currentUser } = useContext(SignInContext);
   const history = useHistory();
 
-  //calculated price of items and conditionaly display those to the summary section
-  console.log(cartItems, "hello from cart items");
+  //console.log(cartItems, "hello from cart items");
 
   const itemsPrice = cartItems.reduce((a, c) => {
     return a + c.quantity * c.price;

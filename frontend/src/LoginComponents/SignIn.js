@@ -19,7 +19,7 @@ export const Login = () => {
       .then((res) => res.json())
       .then((json) => {
         // const restaurantArray = Object.values(data);
-        console.log(json.data);
+        //console.log(json.data);
         setAllUsers(json.data);
       });
   }, []);
@@ -39,7 +39,7 @@ export const Login = () => {
     }); // end of filter
     if (filteredUser) {
       if (filteredUser.password === password) {
-        console.log(filteredUser);
+        //console.log(filteredUser);
         fetch(`/users/find/${filteredUser._id}`, { METHOD: "GET" })
           .then((res) => res.json())
           .then((json) => {
@@ -56,11 +56,11 @@ export const Login = () => {
           });
       } else {
         window.alert("password doesn't match");
-        console.log("password doesn't match");
+        //console.log("password doesn't match");
       }
     } else {
       window.alert("no user in database");
-      console.log("no user in db ");
+      //console.log("no user in db ");
     }
   };
 
@@ -99,6 +99,7 @@ export const Login = () => {
             Not Registed?{" "}
             <SignUpLink to="/signup/customer">Please sign up!</SignUpLink>
           </StyledLink>
+          ßß
         </div>
       </LoginForm>
     </Wrap>

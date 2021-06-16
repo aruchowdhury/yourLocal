@@ -46,7 +46,7 @@ const UserUpdate = () => {
         setUser(data.id);
         setUserChange(!userChange);
         setAllUsers(data);
-        console.log("data from patch", data);
+        //console.log("data from patch", data);
         history.push("/admin-profile/user-control");
       });
   };

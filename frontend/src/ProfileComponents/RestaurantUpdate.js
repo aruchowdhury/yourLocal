@@ -50,7 +50,7 @@ const RestaurantUpdate = () => {
         setRestaurant(data.id);
         setRestaurantChange(!restaurantChange);
         setAllRestaurants(data);
-        console.log("data from patch", data);
+        //console.log("data from patch", data);
         history.push("/admin-profile/restaurant-control");
       });
   };

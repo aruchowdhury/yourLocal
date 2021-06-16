@@ -34,7 +34,7 @@ const RestaurantOwnerProfile = () => {
 
   const onClick = (e) => {
     e.preventDefault();
-    console.log("user registered now", input);
+    //console.log("user registered now", input);
     const newMenuItem = {
       name: input.name,
       description: input.description,
