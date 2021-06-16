@@ -6,8 +6,7 @@ import { useHistory } from "react-router-dom";
 import { COLORS } from "../Constants";
 
 const UserUpdate = () => {
-  const { allUsers, setAllUsers, userChange, setUserChange } =
-    useContext(SignInContext);
+  const { setAllUsers, userChange, setUserChange } = useContext(SignInContext);
   const history = useHistory();
   const { id } = useParams();
 

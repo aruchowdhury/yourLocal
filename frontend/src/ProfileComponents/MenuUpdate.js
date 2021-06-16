@@ -9,14 +9,12 @@ const MenuUpdate = () => {
   const { setMenuItems, menuItemChange, setMenuItemChange } =
     useContext(RestaurantContext);
   const { id } = useParams();
+  const history = useHistory();
 
   const [menu, setMenu] = useState({});
   const [name, setName] = useState();
-  const [address, setAddress] = useState();
   const [description, setDescription] = useState();
   const [price, setPrice] = useState();
-
-  const history = useHistory();
 
   const handleInputChange = (e) => {
     // console.log(e.target.value);
@@ -53,6 +51,7 @@ const MenuUpdate = () => {
 
   return (
     <MenuItemGrid>
+      <h1>Input updated information below:</h1>
       <UpdateForm>
         <InputDivWrapper>
           <label> Name:</label>
@@ -61,6 +60,7 @@ const MenuUpdate = () => {
             name="name"
             defaultValue={name}
             onChange={handleInputChange}
+            placeholder="new name"
           />
         </InputDivWrapper>
         <InputDivWrapper>
@@ -70,6 +70,7 @@ const MenuUpdate = () => {
             name="description"
             defaultValue={description}
             onChange={handleInputChange}
+            placeholder="new description"
           />
         </InputDivWrapper>
         <InputDivWrapper>
@@ -79,15 +80,17 @@ const MenuUpdate = () => {
             name="price"
             defaultValue={price}
             onChange={handleInputChange}
+            placeholder="new price"
           />
         </InputDivWrapper>
         <InputDivWrapper>
           <button style={{ opacity: "0" }}>Cancel</button>
           <Button
             type="submit"
-            onClick={(e) => {
-              handleSubmit(e);
-            }}
+            // onClick={(e) => {
+            //   handleSubmit(e);
+            // }}
+            onClick={handleSubmit}
           >
             Update
           </Button>

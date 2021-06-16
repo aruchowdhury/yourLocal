@@ -43,30 +43,32 @@ const MenuControl = () => {
 
   return (
     <Grid>
-      {menuItems.map((item) => {
-        return (
-          <MenuItem key={item._id}>
-            <div>Name: {item.name}</div>
-            <div>Description: {item.description}</div>
-            <div>Price: {item.price}</div>
+      {menuItems.length > 0
+        ? menuItems.map((item) => {
+            return (
+              <MenuItem key={item._id}>
+                <div>Name: {item.name}</div>
+                <div>Description: {item.description}</div>
+                <div>Price: {item.price}</div>
 
-            <Button
-              onClick={(e) => {
-                handleClickDelete(e, item._id);
-              }}
-            >
-              Delete menu item
-            </Button>
-            <Button
-              onClick={(e) => {
-                handleClickUpdate(e, item._id);
-              }}
-            >
-              Update menu item
-            </Button>
-          </MenuItem>
-        );
-      })}
+                <Button
+                  onClick={(e) => {
+                    handleClickDelete(e, item._id);
+                  }}
+                >
+                  Delete menu item
+                </Button>
+                <Button
+                  onClick={(e) => {
+                    handleClickUpdate(e, item._id);
+                  }}
+                >
+                  Update menu item
+                </Button>
+              </MenuItem>
+            );
+          })
+        : ""}
     </Grid>
   );
 };
