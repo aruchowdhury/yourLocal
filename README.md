@@ -8,7 +8,7 @@ Technologies used: HTML, CSS, JavaScript, React, Styled-components, Node, Expres
 
 ![](frontend/src/assets/img1.png)
 
-❮img src="frontend/src/assets/img3.png" width="100" ❯
+<img src="frontend/src/assets/img3.png" width= "100px">
 
 ![](frontend/src/assets/img2.png)
 
