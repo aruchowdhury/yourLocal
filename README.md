@@ -2,7 +2,7 @@
 
 The yourLOCAL is a Restaurant-management and Food-ordering react web application that provides services to restaurant owners and customers.
 
-Demo video:
+Demo video: https://www.youtube.com/watch?v=L3HJ9Wx25-E
 
 Technologies used: HTML, CSS, JavaScript, React, Styled-components, Node, Express, MongoDB, React-Icons and axios.
 
