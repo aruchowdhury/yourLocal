@@ -8,6 +8,10 @@ Technologies used: HTML, CSS, JavaScript, React, Styled-components, Node, Expres
 
 ![](frontend/src/assets/img1.png)
 
+![](frontend/src/assets/img3.png)
+
+![](frontend/src/assets/img2.png)
+
 ### Features
 
 This is a mobile responsive web-based Restaurant-management and Food-ordering react application that brings all local small restaurant owners in one place so that any customer can find them all in one place and order from the desired restaurant.
