@@ -6,6 +6,8 @@ Demo video: https://www.youtube.com/watch?v=L3HJ9Wx25-E
 
 Technologies used: HTML, CSS, JavaScript, React, Styled-components, Node, Express, MongoDB, React-Icons and axios.
 
+API Documentation: https://github.com/aruchowdhury/yourLocal/blob/main/backend/API_DOCS.md
+
 ![](frontend/src/assets/img1.png)
 
 <img src="frontend/src/assets/img3.png" width= "400px">
