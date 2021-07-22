@@ -8,6 +8,7 @@ Technologies used: HTML, CSS, JavaScript, React, Styled-components, Node, Expres
 
 API Documentation: https://github.com/aruchowdhury/yourLocal/blob/main/backend/API_DOCS.md
 
+
 ![](frontend/src/assets/img1.png)
 
 <img src="frontend/src/assets/img3.png" width= "400px">
